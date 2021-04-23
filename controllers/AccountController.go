@@ -66,11 +66,7 @@ func (c *AccountController) DoRegist() {
 	}
 	encodePassword := string(hash)
 	member.Password = encodePassword
-	if account == "admin" {
-		member.Role = common.MemberAdminRole
-	} else {
-		member.Role = common.MemberGeneralRole
-	}
+	//TODO 设置注册时的角色类型
 	member.Avatar = common.DefaultAvatar()
 	member.Status = 0
 	if err := member.Add(); err != nil {

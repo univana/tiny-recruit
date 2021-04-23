@@ -47,9 +47,6 @@ textarea{
     background: #A2A2A2;
     -webkit-border-radius: 6px;
     -moz-border-radius: 6px;
-    -ms-border-radius: 6px;
-    -o-border-radius: 6px;
-    border-radius: 6px;
 }
 .bootstrap-tagsinput{
     display: block !important;
@@ -71,25 +68,8 @@ textarea{
 .manual-reader .slidebar {
     margin: 7px 10px 0 0;
 }
-.user-info{
-    border: 0;
-    background-color: #ffffff;
-    padding: 5px 10px !important;
-    cursor: pointer;
-}
-.user-info:hover{
-    background-color: #F5F5F5;
-}
-.user-info-dropdown a{
-    font-size: 14px;
-    color: #333333;
-    height: 30px !important;
-    line-height: 25px !important;
-}
-.user-info-dropdown a>i{
-    display: inline-block;
-    margin-right: 5px;
-}
+
+
 .userbar-avatar{
     display: inline-block;
     width: 40px;
@@ -180,9 +160,7 @@ textarea{
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
     line-height: 20px;
-    -webkit-line-clamp:2;
     text-decoration: none;
 }
 .manual-body .page-left .menu .item:hover {
@@ -617,7 +595,7 @@ textarea{
 
 /* 以下是Bookstack的修正样式 */
 .navbar{min-height: 49px;}
-.navbar-brand{padding-left: 0px;}
+.navbar-brand{padding-left: 0;}
 a{color: #333}
 .mgt-15px{margin-top: 15px;}
 .none-listyle{list-style: none;padding: 0px;}
@@ -676,23 +654,7 @@ a{color: #333}
 
 .friend-links a{margin-right: 8px;}
 .book-title{line-height: 200%;}
-/*星*/
-.mbook-star{display: inline-block;height: 15px;position: relative;top: 2px;width: 80px;}
-.star-1,.star-2,.star-3{background:url(../images/stars.png) no-repeat 0px -150px;}/*0星*/
-.star-4,.star-5,.star-6,.star-7,.star-8{background:url(../images/stars.png) no-repeat 0px -135px;}/*0.5星*/
-.star-9,.star-10,.star-11,.star-12,.star-13{background:url(../images/stars.png) no-repeat 0px -120px;}/*1.0星*/
-.star-14,.star-15,.star-16,.star-17,.star-18{background:url(../images/stars.png) no-repeat 0px -105px;}/*1.5星*/
-.star-19,.star-20,.star-21,.star-22,.star-23{background:url(../images/stars.png) no-repeat 0px -90px;}/*2.0星*/
-.star-24,.star-25,.star-26,.star-27,.star-28{background:url(../images/stars.png) no-repeat 0px -75px;}/*2.5星*/
-.star-29,.star-30,.star-31,.star-32,.star-33{background:url(../images/stars.png) no-repeat 0px -60px;}/*3.0星*/
-.star-34,.star-35,.star-36,.star-37,.star-38{background:url(../images/stars.png) no-repeat 0px -45px;}/*3.5星*/
-.star-39,.star-40,.star-41,.star-42,.star-43{background:url(../images/stars.png) no-repeat 0px -30px;}/*4.0星*/
-.star-44,.star-45,.star-46,.star-47,.star-48{background:url(../images/stars.png) no-repeat 0px -15px;}/*4.5星*/
-.star-49,.star-50{background:url(../images/stars.png) no-repeat 0px 0px;}/*5.0星*/
 
-.mbook-labels{text-indent: 2em;}
-.mbook-labels a{margin-right: 10px;}
-.qrcode-pay{max-width:100%;cursor: pointer;}
 
 
 .footer{margin-top: 45px;line-height: 1.7;}
@@ -781,12 +743,6 @@ a{color: #333}
 .ucenter .fans-item .btn{margin-top: 5px;}
 .ucenter .fans-item .thumbnail{border-radius: 50%;margin-bottom: 5px;margin: 5px auto;max-width: 100px;}
 .ucenter .fans-item .thumbnail img{border-radius: 50%;max-width: 100px;}
-
-.recommend-book:before{
-    content: url("../images/recommend-red.png");
-    position: absolute;top:5px;left: 22px;
-}
-.book-list .recommend-book:before,.ucenter .recommend-book:before{left: 7px;}
 
 .manual-header .nav>li>a:focus, .manual-header .nav>li>a:hover{
     padding-bottom: 16px !important;

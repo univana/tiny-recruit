@@ -50,7 +50,7 @@ func (c *BaseController) Prepare() {
 		}
 	}
 	if c.Member.RoleName == "" {
-		c.Member.RoleName = common.Role(c.Member.MemberId)
+		c.Member.RoleName = common.Role(c.Member.Role)
 	}
 	c.Data["Member"] = c.Member
 	c.Data["BaseUrl"] = c.BaseUrl()

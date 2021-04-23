@@ -1,58 +1,22 @@
-<header class="navbar navbar-static-top navbar-fixed-top manual-header" role="banner">
-    <div class="container" style="position: relative;">
-        <div class="navbar-header col-sm-12 col-md-10 col-lg-10">
-            <a href="/" class="navbar-brand" title="{{.SITE_NAME}}">
-               {{.SITE_NAME}}
-            </a>
-            <ul class="nav nav-pills">
-
-                <li role="presentation" ><a href="{{urlfor "NavigationController.Home"}}">首页</a></li>
-                <li role="presentation"><a href="{{urlfor "NavigationController.Job"}}">职位</a></li>
-                <li role="presentation"><a href="{{urlfor "NavigationController.Company"}}">公司</a></li>
-            </ul>
-
-        </div>
-        <nav class="navbar-collapse hidden-xs hidden-sm" style="position: absolute;right: 0px;" role="navigation">
-            <ul class="nav navbar-nav navbar-right" style="margin-right: 15px;">
-                {{if gt .Member.MemberId 0}}
-                <li>
-                    <div class="img user-info" data-toggle="dropdown">
-                        <img onerror="this.src='/static/images/avatar.jpg'" src="{{showImg .Member.Avatar "avatar"}}"
-                            class="img-circle userbar-avatar border" alt="{{.Member.Nickname}}">
-                        <div class="userbar-content">
-                            <span>{{.Member.Nickname}}</span>
-                            <div>{{.Member.RoleName}}</div>
-                        </div>
-                        <i class="fa fa-chevron-down" aria-hidden="true"></i>
-                    </div>
-                    <ul class="dropdown-menu user-info-dropdown" role="menu">
-                        <li>
-                            <a href="{{urlfor "NavigationController.UserCenter"}}" title="个人中心">
-                            个人中心</a>
-                        </li>
-                        <li>
-                            <a href="{{urlfor "AccountController.Logout"}}" title="退出登录"><i class="fa fa-sign-out"></i>
-                                退出登录</a>
-                        </li>
-                    </ul>
-                </li>
-                {{else}}
-                <li><a href="{{urlfor "AccountController.Regist"}}" title="注册"><i
-                            class="fa fa-user-plus"></i> 注册</a></li>
-                <li><a href="{{urlfor "AccountController.Login"}}" title="登录"><i class="fa fa-sign-in"></i> 登录</a></li>
-                {{end}}
-            </ul>
-        </nav>
-
-
-    </div>
-</header>
+<div id="head-menu">
+    <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
+        <el-menu-item index="1" ><a href="{{urlfor "NavigationController.Home"}}">首页</a></el-menu-item>
+        <el-menu-item index="2" ><a href="{{urlfor "NavigationController.Job"}}">职位</a></el-menu-item>
+        <el-menu-item index="3" ><a href="{{urlfor "NavigationController.Company"}}">公司</a></el-menu-item>
+    </el-menu>
+</div>
 <script>
-   /* $(function () {
-        $('.nav-pills').find('a').each(function (){
-            if(this.href===document.location.href || document.location.href.search(this.href)>=0){
-                $(this).parent().addClass('active');
+    new Vue({
+        el: '#head-menu',
+        data: function () {
+            return {
+                activeIndex: '1',
             }
-        })
-    })*/
+        },
+        methods: {
+            setActiveIndex(a) {
+                this.activeIndex = a;
+            }
+        }
+    })
 </script>

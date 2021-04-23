@@ -17,7 +17,7 @@ type Member struct {
 	Password      string    ` json:"-"`                                            //密码
 	Avatar        string    `json:"avatar"`                                        //头像地址
 	Role          int       `orm:"default(1)" json:"role"`                         //权限
-	RoleName      string    `orm:"-" json:"role_name"`                             //权限名
+	RoleName      string    `orm:"-" json:"role_name"`                             //权限名 0：管理员 1：求职者 2：企业用户
 	Status        int       `orm:"default(0)" json:"status"`                       //状态
 	CreateTime    time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	LastLoginTime time.Time `orm:"type(datetime);null" json:"last_login_time"`     //最后登录时间

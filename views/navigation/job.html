@@ -1,16 +1,32 @@
 <head>
     {{template "widgets/head.html" .}}
+    <title>tiny-recruit</title>
 </head>
 
 <body>
-{{template "widgets/header.html" .}}
+<div id="app">
+    {{template "widgets/head-menu.html" .}}
 
-
-<div class="jumbotron" style="height: 80%">
-    <div class="container" style="text-align: center;margin-top: 50px">
-        <h1>JOB</h1>
+    <div class="jumbotron" style="height: 80%">
+        <div class="container" style="text-align: center;margin-top: 50px">
+            <h1>JOB</h1>
+        </div>
     </div>
 </div>
 
 </body>
 {{template "widgets/footer.html" .}}
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                activeIndex:'2',
+            }
+        },
+        methods: {
+
+        }
+    })
+</script>
