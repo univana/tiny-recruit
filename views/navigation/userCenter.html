@@ -1,0 +1,76 @@
+<head>
+    {{template "widgets/head.html" .}}
+</head>
+
+<body>
+{{template "widgets/header.html" .}}
+<div class="container manual-body">
+    <div id="app">
+        <el-row>
+            <!-- 左侧导航栏 -->
+            <el-col :span="4" style="height:100%">
+                <el-menu default-active="1">
+                    <el-menu-item index="1" @click="displayIndex=1;getResume();" >
+                        <span ><i class="fa fa-file" aria-hidden="true"></i>简历</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-col>
+
+            <!-- 右侧内容 -->
+            <el-col :span="20" v-if="displayIndex===1">
+                <h3>简历</h3>
+                <el-divider></el-divider>
+                <el-card shadow="hover">
+                    <p class="name">{[resume.name]}</p>
+                </el-card>
+                <el-card shadow="hover">
+                    <p class="name">{[resume.advantage]}</p>
+                </el-card>
+            </el-col>
+        </el-row>
+    </div>
+</div>
+
+</body>
+{{template "widgets/footer.html" .}}
+
+
+<!-- import Vue before Element -->
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<!-- import JavaScript -->
+<script src="https://unpkg.com/element-ui/lib/index.js"></script>
+<link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                displayIndex: 0,
+                resume:'',
+                member:{{.Member}},
+
+            }
+        },
+        methods: {
+            getResume(){
+               let self=this;
+               let myFormData = new FormData();
+               let memberID = this.member.member_id;
+               console.log(memberID);
+               myFormData.append("id", memberID);
+               $.ajax({
+                   url:"{{urlfor "ResumeController.GetResumeByMemberID"}}",
+                   type:"POST",
+                   success:function (res){
+                       self.resume=res.data;
+                   }
+
+               });
+               console.log(this.resume);
+            }
+
+        },
+        delimiters: ['{[', ']}'],
+    })
+</script>

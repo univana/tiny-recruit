@@ -6,11 +6,10 @@ import (
 	"myApp/models"
 	_ "myApp/models"
 	_ "myApp/routers"
+	"myApp/utils"
 	"path/filepath"
 
 	conf "myApp/common"
-
-	"myApp/utils"
 
 	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/orm"
@@ -81,6 +80,9 @@ func registDatabase(alias string) {
 	//数据库端口
 	dbPort := beego.AppConfig.String("db_" + alias + "_port")
 
-	orm.RegisterDataBase(dbAlias, "mysql", dbUser+":"+dbPwd+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset=utf8", 30)
+	err := orm.RegisterDataBase(dbAlias, "mysql", dbUser+":"+dbPwd+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset=utf8", 30)
+	if err != nil {
+		return 
+	}
 
 }

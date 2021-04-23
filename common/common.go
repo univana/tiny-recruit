@@ -3,7 +3,7 @@ package common
 import "github.com/astaxie/beego"
 
 // session
-const SessionName = "__tinydiary_session__"
+const SessionName = "__tiny-recruit_session__"
 
 //正则表达式
 const RegexpEmail = `^(\w)+(\.\w+)*@(\w)+((\.\w+)+)$`
@@ -35,7 +35,7 @@ func Role(role int) string {
 
 // app_key
 func AppKey() string {
-	return beego.AppConfig.DefaultString("app_key", "tinydiary")
+	return beego.AppConfig.DefaultString("app_key", "tiny-recruit")
 }
 
 //默认头像

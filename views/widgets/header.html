@@ -6,10 +6,9 @@
             </a>
             <ul class="nav nav-pills">
 
-                <li role="presentation" ><a href="{{urlfor "DiaryController.Edit"}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i> 写日记</a></li>
-                <li role="presentation"><a href="{{urlfor "NotebookController.Index"}}" title="我的日记本"><i class="fa fa-book" aria-hidden="true"></i> 日记本</a></li>
-                <li role="presentation"><a href="{{urlfor "SearchController.Index"}}"><i class="fa fa-search" aria-hidden="true"></i> 检索</a></li>
-                <li role="presentation"><a href="{{urlfor "ManageController.Index"}}"><i class="fa fa-cogs" aria-hidden="true"></i> 管理</a></li>
+                <li role="presentation" ><a href="{{urlfor "NavigationController.Home"}}">首页</a></li>
+                <li role="presentation"><a href="{{urlfor "NavigationController.Job"}}">职位</a></li>
+                <li role="presentation"><a href="{{urlfor "NavigationController.Company"}}">公司</a></li>
             </ul>
 
         </div>
@@ -28,6 +27,10 @@
                     </div>
                     <ul class="dropdown-menu user-info-dropdown" role="menu">
                         <li>
+                            <a href="{{urlfor "NavigationController.UserCenter"}}" title="个人中心">
+                            个人中心</a>
+                        </li>
+                        <li>
                             <a href="{{urlfor "AccountController.Logout"}}" title="退出登录"><i class="fa fa-sign-out"></i>
                                 退出登录</a>
                         </li>
@@ -45,11 +48,11 @@
     </div>
 </header>
 <script>
-    $(function () {
+   /* $(function () {
         $('.nav-pills').find('a').each(function (){
             if(this.href===document.location.href || document.location.href.search(this.href)>=0){
                 $(this).parent().addClass('active');
             }
         })
-    })
+    })*/
 </script>
