@@ -1,5 +1,29 @@
+<link rel="stylesheet" href="/static/css/head-menu.css">
 <el-menu :default-active="activeIndex" class="el-menu-demo" mode="horizontal">
-    <el-menu-item index="1" ><a href="{{urlfor "NavigationController.Home"}}">首页</a></el-menu-item>
-    <el-menu-item index="2" ><a href="{{urlfor "NavigationController.Job"}}">职位</a></el-menu-item>
-    <el-menu-item index="3" ><a href="{{urlfor "NavigationController.Company"}}">公司</a></el-menu-item>
+    <el-menu-item index="1"><a href="{{urlfor "NavigationController.Home"}}">首页</a></el-menu-item>
+    <el-menu-item index="2"><a href="{{urlfor "NavigationController.Job"}}">职位</a></el-menu-item>
+    <el-menu-item index="3"><a href="{{urlfor "NavigationController.Company"}}">公司</a></el-menu-item>
+    {{/*右侧导航小栏*/}}
+    {{if gt .Member.MemberId 0}}
+        {{/*用户已登录*/}}
+        <el-menu-item style="float: right;margin-right: 40px;">
+            <el-dropdown>
+                <span class="el-dropdown-link">
+                    <span style="margin-right: 5px">{{.Member.Nickname}}</span>
+                    <el-avatar :size="40" src="/static/images/avatar.jpg"></el-avatar>
+                    <i class="el-icon-arrow-down"></i>
+                </span>
+                <el-dropdown-menu class="dropdown-group" slot="dropdown">
+                    <el-dropdown-item><a href="{{urlfor "NavigationController.UserCenter"}}">个人中心</a></el-dropdown-item>
+                    <el-dropdown-item icon="el-icon-table-lamp"><a href="{{urlfor "AccountController.Logout"}}">登出</a></el-dropdown-item>
+                </el-dropdown-menu>
+
+            </el-dropdown>
+        </el-menu-item>
+    {{else}}
+        {{/*用户未登录 提示登录*/}}
+        <el-menu-item style="float: right"><a href="{{urlfor "AccountController.Login"}}">登录</a></el-menu-item>
+    {{end}}
+
+
 </el-menu>
