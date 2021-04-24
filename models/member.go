@@ -3,7 +3,6 @@ package models
 import (
 	"errors"
 	"golang.org/x/crypto/bcrypt"
-	"myApp/common"
 	"time"
 
 	"github.com/astaxie/beego/orm"
@@ -13,12 +12,12 @@ import (
 type Member struct {
 	MemberId      int       `orm:"pk;auto" json:"member_id"`                       //用户ID
 	Account       string    `orm:"size(30);unique" json:"account"`                 //账户
-	Nickname      string    `orm:"size(30);unique" json:"nickname"`                //昵称
-	Password      string    ` json:"-"`                                            //密码
+	Nickname      string    `json:"nickname"`                                      //昵称
+	Password      string    `json:"password"`                                      //密码
 	Avatar        string    `json:"avatar"`                                        //头像地址
-	Role          int       `orm:"default(1)" json:"role"`                         //权限
-	RoleName      string    `orm:"-" json:"role_name"`                             //权限名 0：管理员 1：求职者 2：企业用户
-	Status        int       `orm:"default(0)" json:"status"`                       //状态
+	Role          int       `orm:"default(1)" json:"role"`                         //权限 1：普通用户 0：管理员
+	Status        int       `orm:"default(0)" json:"status"`                       //状态 0：正常 1：禁用
+	HuntStatus    string    `json:"hunt_status"`                                   //求职状态
 	CreateTime    time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	LastLoginTime time.Time `orm:"type(datetime);null" json:"last_login_time"`     //最后登录时间
 }
@@ -36,7 +35,6 @@ func (m *Member) Find(id int) (*Member, error) {
 	if err := orm.NewOrm().Read(m); err != nil {
 		return m, err
 	}
-	m.RoleName = common.Role(m.Role)
 	return m, nil
 }
 
@@ -58,7 +56,6 @@ func (m *Member) Add() error {
 	if _, err := o.Insert(m); err != nil {
 		return err
 	}
-	m.RoleName = common.Role(m.Role)
 	return nil
 }
 
@@ -86,7 +83,6 @@ func (m *Member) Login(account string, password string) (*Member, error) {
 		return member, errors.New("密码错误")
 	} else {
 		//设置用户身份
-		m.RoleName = common.Role(m.Role)
 		return member, nil
 	}
 }

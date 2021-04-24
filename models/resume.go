@@ -18,6 +18,7 @@ type Resume struct {
 	Advantage  string    `orm:"type(text)" json:"advantage"`                    //个人优势
 	HopeJob    string    `json:"hope_job"`                                      //期望职位
 	HopeSalary string    `json:"hope_salary"`                                   //期望薪资
+	City       string    `json:"city"`                                          //城市
 	CreateTime time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	ModifyTime time.Time `orm:"type(datetime);auto_now_add" json:"modify_time"` //修改时间
 }
@@ -25,11 +26,6 @@ type Resume struct {
 //TableName :return-笔记本表名
 func (m *Resume) TableName() string {
 	return TNResume()
-}
-
-//NewDiary :return-日记
-func NewDiary() *Resume {
-	return &Resume{}
 }
 
 // GetResumeByMemberID 根据用户ID获得简历

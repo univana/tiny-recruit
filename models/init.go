@@ -11,10 +11,10 @@ func init() {
 
 //TNMembers return-用户表名
 func TNMembers() string {
-	return "md_members"
+	return "t_member"
 }
 
 //TNResume return-用户表名
 func TNResume() string {
-	return "md_resume"
+	return "t_resume"
 }

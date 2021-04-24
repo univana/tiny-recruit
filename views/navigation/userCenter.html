@@ -4,48 +4,45 @@
     <link href="/static/css/userCenter.css" rel="stylesheet">
 </head>
 
-<body>
+<body style="background-color: #f6f6f6">
 <div id="app">
     {{template "widgets/head-menu.html" .}}
-    <div class="container manual-body">
-        <el-row>
-            <!-- 左侧导航栏 -->
-            <el-col :span="4" style="height:100%">
-                <el-menu default-active="1">
-                    <el-menu-item index="1" @click="displayIndex=1;getResume();">
-                        <span><i class="fa fa-file" aria-hidden="true"></i>简历</span>
-                    </el-menu-item>
-                </el-menu>
-            </el-col>
 
-            <!-- 右侧内容 -->
-            {{/*简历*/}}
-            <el-col :span="20" v-if="displayIndex===1">
-                <el-card class="box-card">
-                    <div slot="header" class="clearfix">
-                        <span>我的在线简历</span>
-                        <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-                    </div>
+    <el-row>
+        <!-- 左侧导航栏 -->
+        <el-col :span="3" style="height:100%;margin:10px 10px">
+            <el-menu default-active="1">
+                <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
+                    <span>简历</span>
+                </el-menu-item>
+            </el-menu>
+        </el-col>
 
-                    {{/*div-个人简历内容*/}}
-                    <div class="resume-box">
-                        {{/*个人基本信息*/}}
-                        <div class="user-info">
-                            <el-card id="userinfo" shadow="hover">
-                                个人信息
-                            </el-card>
-                        </div>
-                        {{/*个人优势*/}}
-                        <el-card id="summary" shadow="hover">
-                            个人总结
-                        </el-card>
-                    </div>
-                </el-card>
+        <!-- 右侧内容 -->
+        {{/*简历*/}}
+        <el-col :span="20" v-if="displayIndex===1" style="margin:10px 10px">
+            <el-card shadow="never" style="padding: 0">
+                <div slot="header" class="clearfix">
+                    <span>我的在线简历</span>
+                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+                </div>
 
-            </el-col>
-        </el-row>
-    </div>
+                {{/*div-个人简历内容*/}}
+                <div class="resume-box">
+                    {{/*个人基本信息*/}}
+                    <el-card id="user-info" shadow="hover">
+                        <span class="user-info-name">{[resume.name]}</span>
+                        <p class="user-info-other"></p>
+                    </el-card>
+                    {{/*个人优势*/}}
+
+                </div>
+            </el-card>
+
+        </el-col>
+    </el-row>
 </div>
+
 </body>
 {{template "widgets/footer.html" .}}
 
