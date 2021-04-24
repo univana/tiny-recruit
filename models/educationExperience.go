@@ -1,5 +1,7 @@
 package models
 
+import "github.com/astaxie/beego/orm"
+
 type EducationExperience struct {
 	EduExpID   int    `orm:"pk;auto;column(edu_exp_id)" json:"edu_exp_id"` //教育经历ID
 	School     string `json:"school"`                                      //学校名称
@@ -14,4 +16,12 @@ type EducationExperience struct {
 
 func (e *EducationExperience) TableName() string {
 	return TNEducationExperience()
+}
+
+// GetEducationExperiencesByResumeID 根据简历ID获取所有教育经历
+func GetEducationExperiencesByResumeID(resumeID int) ([]*EducationExperience, error) {
+	o := orm.NewOrm()
+	var educationExperiences []*EducationExperience
+	_, err := o.QueryTable(TNEducationExperience()).Filter("resume_id", resumeID).All(&educationExperiences)
+	return educationExperiences, err
 }

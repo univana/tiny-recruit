@@ -21,8 +21,8 @@ type Resume struct {
 	CreateTime time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	ModifyTime time.Time `orm:"type(datetime);auto_now_add" json:"modify_time"` //修改时间
 
-	Member               *Member                `orm:"rel(one)"`      //简历所属用户 一对一关系
-	EducationExperiences []*EducationExperience `orm:"reverse(many)"` //简历和教育经历的一对多关系
+	Member               *Member                `orm:"rel(one)"`                                   //简历所属用户 一对一关系
+	EducationExperiences []*EducationExperience `orm:"reverse(many)" json:"education_experiences"` //简历和教育经历的一对多关系
 }
 
 //TableName :return-笔记本表名
