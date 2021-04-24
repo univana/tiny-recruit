@@ -51,9 +51,17 @@
             </el-card>
 
             {{/*教育经历*/}}
-            <el-card id="education-experience" shadow="hover" style="border: none">
+            <el-card id="education-experience" shadow="never" style="border: none">
                 <p class="user-info-title">教育经历</p>
-                教育经历内容
+                <template v-for="edu_exp in resume.education_experiences">
+                    <el-card shadow="hover" >
+                        <p style="font-size: 10px">{[edu_exp.start_year]} - {[edu_exp.end_year]}</p>
+                        <p style="font-weight: bold">{[edu_exp.school]}</p>
+                        <p>{[edu_exp.education]} <el-divider direction="vertical"></el-divider> {[edu_exp.profession]}</p>
+                        <p>{[edu_exp.experience]}</p>
+                    </el-card>
+                </template>
+
             </el-card>
 
             {{/*项目经历*/}}
