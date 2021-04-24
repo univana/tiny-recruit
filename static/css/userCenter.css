@@ -2,3 +2,12 @@
     position: relative;
     border: 1px solid transparent;
 }
+
+.user-info-tel{
+    margin-top: 10px;
+    font-size: 14px;
+}
+
+.user-info-title{
+    font-size: 18px;
+}

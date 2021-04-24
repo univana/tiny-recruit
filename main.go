@@ -38,7 +38,7 @@ func sysInit() {
 
 //dbInit :数据库初始化
 func dbInit(aliases ...string) {
-	isDev := (beego.AppConfig.String("runmode") == "dev")
+	isDev := beego.AppConfig.String("runmode") == "dev"
 
 	if len(aliases) > 0 {
 		for _, alias := range aliases {
@@ -82,7 +82,7 @@ func registDatabase(alias string) {
 
 	err := orm.RegisterDataBase(dbAlias, "mysql", dbUser+":"+dbPwd+"@tcp("+dbHost+":"+dbPort+")/"+dbName+"?charset=utf8", 30)
 	if err != nil {
-		return 
+		return
 	}
 
 }

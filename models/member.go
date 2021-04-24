@@ -20,6 +20,8 @@ type Member struct {
 	HuntStatus    string    `json:"hunt_status"`                                   //求职状态
 	CreateTime    time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	LastLoginTime time.Time `orm:"type(datetime);null" json:"last_login_time"`     //最后登录时间
+
+	Resume *Resume `orm:"reverse(one)"` //用户所属简历 一对一关系
 }
 
 func (m *Member) TableName() string {

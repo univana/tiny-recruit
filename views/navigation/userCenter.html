@@ -19,27 +19,9 @@
         </el-col>
 
         <!-- 右侧内容 -->
-        {{/*简历*/}}
-        <el-col :span="20" v-if="displayIndex===1" style="margin:10px 10px">
-            <el-card shadow="never" style="padding: 0">
-                <div slot="header" class="clearfix">
-                    <span>我的在线简历</span>
-                    <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
-                </div>
+        {{/*简历展示*/}}
+        {{template "user-center/resume-display.html" .}}
 
-                {{/*div-个人简历内容*/}}
-                <div class="resume-box">
-                    {{/*个人基本信息*/}}
-                    <el-card id="user-info" shadow="hover">
-                        <span class="user-info-name">{[resume.name]}</span>
-                        <p class="user-info-other"></p>
-                    </el-card>
-                    {{/*个人优势*/}}
-
-                </div>
-            </el-card>
-
-        </el-col>
     </el-row>
 </div>
 
@@ -61,6 +43,7 @@
                 displayIndex: 0,
                 resume: '',
                 member:{{.Member}},
+                fit: 'fill'
 
             }
         },
@@ -80,7 +63,11 @@
 
                 });
                 console.log(this.resume);
-            }
+            },
+            /*日期格式化工具*/
+            dateFormat(date) {
+                return moment(date).format("LL");
+            },
 
         },
         delimiters: ['{[', ']}'],

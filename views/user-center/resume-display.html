@@ -1,0 +1,73 @@
+<el-col :span="14" v-if="displayIndex===1" style="margin:10px 10px">
+  <el-card shadow="never" style="padding: 0;">
+    <div slot="header" class="clearfix">
+      <span>我的在线简历</span>
+      <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+    </div>
+
+    {{/*div-个人简历内容*/}}
+    <div class="resume-box">
+      {{/*个人基本信息*/}}
+      <el-card id="user-info" shadow="hover" style="border: none">
+
+        <el-avatar :fit="fit" :size="100" shape="square"
+                   :src="resume.photo" style="float: right"></el-avatar>
+        {{/*姓名*/}}
+        <span class="user-info-name">{[resume.name]}</span><br>
+
+        <span>
+                            {{/*生日*/}}
+                            <span><i class="fa fa-birthday-cake"></i>{[dateFormat(resume.birthday)]}</span>
+                            <el-divider direction="vertical"></el-divider>
+                            {{/*招聘状态*/}}
+                            <span class="user-info-tel"><i class="el-icon-phone"></i>{[member.hunt_status]}</span>
+                        </span>
+
+
+        <br>
+        {{/*电话号码*/}}
+        <span class="user-info-tel"><i class="el-icon-phone"></i>{[resume.tel]}</span>
+        <el-divider direction="vertical"></el-divider>
+        {{/*邮箱*/}}
+        <span class="user-info-tel"><i class="fa fa-envelope"></i>{[resume.email]}</span>
+      </el-card>
+      {{/*个人优势*/}}
+      <el-card id="advantage" shadow="hover" style="border: none">
+        <p class="user-info-title">个人优势</p>
+        {[resume.advantage]}
+      </el-card>
+
+      {{/*期望职位*/}}
+      <el-card id="hope-job" shadow="hover" style="border: none">
+        <p class="user-info-title">期望职位</p>
+        {{/*职位*/}}
+        <span class="user-info-tel"><i class="fa fa-black-tie"></i>{[resume.hope_job]}</span>
+        <el-divider direction="vertical"></el-divider>
+        {{/*期望薪资*/}}
+        <span class="user-info-tel"><i class="fa fa-money"></i>{[resume.hope_salary]}</span>
+        <el-divider direction="vertical"></el-divider>
+        {{/*城市*/}}
+        <span class="user-info-tel"><i class="fa fa-building"></i>{[resume.city]}</span>
+      </el-card>
+
+      {{/*教育经历*/}}
+      <el-card id="education-experience" shadow="hover" style="border: none">
+        <p class="user-info-title">教育经历</p>
+        教育经历内容
+      </el-card>
+
+      {{/*项目经历*/}}
+      <el-card id="project-experience" shadow="hover" style="border: none">
+        <p class="user-info-title">项目经历</p>
+        项目经历内容
+      </el-card>
+
+      {{/*实习经历*/}}
+      <el-card id="internship-experience" shadow="hover" style="border: none">
+        <p class="user-info-title">实习经历</p>
+        实习经历内容
+      </el-card>
+    </div>
+  </el-card>
+
+</el-col>

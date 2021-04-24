@@ -8,7 +8,6 @@ import (
 // Resume 简历模型
 type Resume struct {
 	ResumeId   int       `orm:"pk;auto" json:"resume_id"`                       //简历ID
-	MemberId   int       ` json:"member_id"`                                    //用户ID
 	Name       string    `orm:"size(30)" json:"name"`                           //姓名
 	Gender     int       `json:"gender"`                                        //性别
 	Birthday   time.Time `orm:"type(datetime)" json:"birthday"`                 //生日
@@ -21,6 +20,8 @@ type Resume struct {
 	City       string    `json:"city"`                                          //城市
 	CreateTime time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //创建时间
 	ModifyTime time.Time `orm:"type(datetime);auto_now_add" json:"modify_time"` //修改时间
+
+	Member *Member `orm:"rel(one)"` //简历所属用户 一对一关系
 }
 
 //TableName :return-笔记本表名
