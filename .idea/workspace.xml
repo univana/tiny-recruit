@@ -2,16 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/static/images/default-photo.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/e/d/edb29639794339cf500568148d9d643f" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/educationExperience.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/member.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/member.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/resume.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/userCenter.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/userCenter.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/c/b/cbccf6fcede5098406dc8024a565de9c" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/e/d/edb29639794339cf500568148d9d643f" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/e/d/edb29639794339cf500568148d9d643f" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,8 +17,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Go File" />
         <option value="HTML File" />
+        <option value="Go File" />
       </list>
     </option>
   </component>
@@ -115,7 +111,8 @@
     <MESSAGE value="修改头部菜单的实现" />
     <MESSAGE value="重写头部导航栏" />
     <MESSAGE value="修改了 member 和 resume 的数据表设计" />
-    <option name="LAST_COMMIT_MESSAGE" value="修改了 member 和 resume 的数据表设计" />
+    <MESSAGE value="实现了简历展示的基本样式并对member和resume模型进行了重构" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了简历展示的基本样式并对member和resume模型进行了重构" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

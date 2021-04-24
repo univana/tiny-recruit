@@ -6,6 +6,7 @@ func init() {
 	orm.RegisterModel(
 		new(Member),
 		new(Resume),
+		new(EducationExperience),
 	)
 }
 
@@ -17,4 +18,9 @@ func TNMembers() string {
 //TNResume return-用户表名
 func TNResume() string {
 	return "t_resume"
+}
+
+//TNEducationExperience return-教育经历表
+func TNEducationExperience() string {
+	return "t_education_experience"
 }
