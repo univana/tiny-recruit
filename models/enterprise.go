@@ -30,3 +30,11 @@ func GetAllEnterprises() ([]*Enterprise, error) {
 	_, err := o.QueryTable(TNEnterprise()).All(&enterprises)
 	return enterprises, err
 }
+
+// FilterEnterprisesByStage 根据融资阶段过滤企业
+func FilterEnterprisesByStage(stage string) ([]*Enterprise, error) {
+	o := orm.NewOrm()
+	var enterprises []*Enterprise
+	_, err := o.QueryTable(TNEnterprise()).Filter("financing_stage", stage).All(&enterprises)
+	return enterprises, err
+}

@@ -24,4 +24,6 @@ func init() {
 	beego.Router("/logout", &controllers.AccountController{}, "*:Logout")
 	beego.Router("/login", &controllers.AccountController{}, "*:Login")
 
+	beego.Router("/enterprise/filter/financing-stage", &controllers.EnterpriseController{}, "*:FilterByStage")
+
 }
