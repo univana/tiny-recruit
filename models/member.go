@@ -10,7 +10,7 @@ import (
 
 //Member :用户模型
 type Member struct {
-	MemberId      int       `orm:"pk;auto" json:"member_id"`                       //用户ID
+	MemberID      int       `orm:"pk;auto" json:"member_id"`                       //用户ID
 	Account       string    `orm:"size(30);unique" json:"account"`                 //账户
 	Nickname      string    `json:"nickname"`                                      //昵称
 	Password      string    `json:"password"`                                      //密码
@@ -33,7 +33,7 @@ func NewMember() *Member {
 }
 
 func (m *Member) Find(id int) (*Member, error) {
-	m.MemberId = id
+	m.MemberID = id
 	if err := orm.NewOrm().Read(m); err != nil {
 		return m, err
 	}
@@ -45,7 +45,7 @@ func (m *Member) Add() error {
 	cond := orm.NewCondition().Or("nickname", m.Nickname).Or("account", m.Account)
 	var one Member
 	o := orm.NewOrm()
-	if o.QueryTable(m.TableName()).SetCond(cond).One(&one, "member_id", "nickname", "account"); one.MemberId > 0 {
+	if o.QueryTable(m.TableName()).SetCond(cond).One(&one, "member_id", "nickname", "account"); one.MemberID > 0 {
 		if one.Nickname == m.Nickname {
 			return errors.New("昵称已存在")
 		}
@@ -96,7 +96,7 @@ func (m *Member) GetByUsername(username string) (member Member, err error) {
 }
 
 func (m *Member) IsAdministrator() bool {
-	if m == nil || m.MemberId <= 0 {
+	if m == nil || m.MemberID <= 0 {
 		return false
 	}
 	return m.Role == 0 || m.Role == 1

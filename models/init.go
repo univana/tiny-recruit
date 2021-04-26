@@ -9,6 +9,7 @@ func init() {
 		new(EducationExperience),
 		new(ProjectExperience),
 		new(InternshipExperience),
+		new(Enterprise),
 	)
 }
 
@@ -33,4 +34,8 @@ func TNProjectExperience() string {
 
 func TNInternshipExperience() string {
 	return "t_internship_experience"
+}
+
+func TNEnterprise() string {
+	return "t_enterprise"
 }

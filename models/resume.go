@@ -7,7 +7,7 @@ import (
 
 // Resume 简历模型
 type Resume struct {
-	ResumeId   int       `orm:"pk;auto" json:"resume_id"`                       //简历ID
+	ResumeID   int       `orm:"pk;auto" json:"resume_id"`                       //简历ID
 	Name       string    `orm:"size(30)" json:"name"`                           //姓名
 	Gender     int       `json:"gender"`                                        //性别
 	Birthday   time.Time `orm:"type(datetime)" json:"birthday"`                 //生日
