@@ -14,8 +14,41 @@
                 <div slot="header" class="clearfix">
                     <span>公司浏览</span>
                     <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+
+                    {{/*公司过滤器*/}}
+                    <el-row style="margin-left: 60px">
+                        <el-col :span="20">
+                            <div class="filter-box">
+                                <p>
+                                    <span class="filter-box-title">公司地点</span>
+                                    <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_city">
+                                                <template v-for="city in cities">
+                                                    <el-radio-button :label="city"></el-radio-button>
+                                                </template>
+                                            </el-radio-group>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="filter-box-title">融资阶段</span>
+                                    <span>
+
+                                            <el-radio-group v-model="radio_financing_stage">
+                                                <template v-for="stage in stages">
+                                                    <el-radio-button :label="stage"></el-radio-button>
+                                                </template>
+                                            </el-radio-group>
+
+                                    </span>
+                                </p>
+                                <p><span class="filter-box-title">公司规模</span></p>
+                                <p><span class="filter-box-title">行业领域</span></p>
+                            </div>
+                        </el-col>
+                    </el-row>
                 </div>
-                <el-row>
+
+                <el-row style="margin-left: 50px">
                     {{/*公司简介卡片*/}}
                     <template v-for="enterprise in enterprises.slice((currentPage-1)*pageSize,currentPage*pageSize)">
 
@@ -77,10 +110,14 @@
                 currentPage: '1',
                 pageSize: '12',
                 enterprises:{{.Enterprises}},
+                cities: ['不限','北京', '上海', '广州', '深圳'],
+                stages:['不限','未融资','A轮','B轮','B轮','C轮','D轮及以上','上市公司','不需要融资',],
+                radio_financing_stage: '不限',
+                radio_city:'不限',
             }
         },
         methods: {
-            handleCurrentChange: function(currentPage){
+            handleCurrentChange: function (currentPage) {
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
