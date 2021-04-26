@@ -74,7 +74,7 @@ func (c *AccountController) DoRegist() {
 		c.JsonResult(1, err.Error())
 	}
 
-	if err = c.login(member.MemberID); err != nil {
+	if err = c.login(member.MemberId); err != nil {
 		beego.Error(err.Error())
 		c.JsonResult(1, err.Error())
 	}
@@ -85,7 +85,7 @@ func (c *AccountController) DoRegist() {
 //封装一个内部调用的函数，login
 func (c *AccountController) login(memberId int) (err error) {
 	member, err := models.NewMember().Find(memberId)
-	if member.MemberID == 0 {
+	if member.MemberId == 0 {
 		return errors.New("用户不存在")
 	}
 	//如果没有数据
@@ -96,7 +96,7 @@ func (c *AccountController) login(memberId int) (err error) {
 	member.Update()
 	c.SetMember(*member)
 	var remember CookieRemember
-	remember.MemberId = member.MemberID
+	remember.MemberId = member.MemberId
 	remember.Account = member.Account
 	remember.Time = time.Now()
 	v, err := utils.Encode(remember)
@@ -137,7 +137,7 @@ func (c *AccountController) Login() {
 		member.LastLoginTime = time.Now()
 		member.Update()
 		c.SetMember(*member)
-		remember.MemberId = member.MemberID
+		remember.MemberId = member.MemberId
 		remember.Account = member.Account
 		remember.Time = time.Now()
 		v, err := utils.Encode(remember)

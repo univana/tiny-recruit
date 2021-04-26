@@ -12,7 +12,7 @@ type ResumeController struct {
 func (c *ResumeController) GetResumeByMemberID() {
 	c.TplName = "navigation/userCenter.html"
 
-	memberID := c.Member.MemberID
+	memberID := c.Member.MemberId
 	resume, err := models.GetResumeByMemberID(memberID)
 	if err != nil {
 		logs.Error("Error get resume:", err)

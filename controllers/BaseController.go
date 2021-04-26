@@ -33,7 +33,7 @@ type CookieRemember struct {
 func (c *BaseController) Prepare() {
 	c.Member = models.NewMember() //初始化
 	//从session中获取用户信息
-	if member, ok := c.GetSession(common.SessionName).(models.Member); ok && member.MemberID > 0 {
+	if member, ok := c.GetSession(common.SessionName).(models.Member); ok && member.MemberId > 0 {
 		c.Member = &member
 	} else {
 		//如果Cookie中存在登录信息，从cookie中获取用户信息
@@ -72,13 +72,13 @@ func (c *BaseController) BaseUrl() string {
 // 设置登录用户信息
 //TODO :待了解
 func (c *BaseController) SetMember(member models.Member) {
-	if member.MemberID <= 0 {
+	if member.MemberId <= 0 {
 		c.DelSession(common.SessionName)
 		c.DelSession("uid")
 		c.DestroySession()
 	} else {
 		c.SetSession(common.SessionName, member)
-		c.SetSession("uid", member.MemberID)
+		c.SetSession("uid", member.MemberId)
 	}
 }
 

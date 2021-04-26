@@ -2,16 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="">
-      <change afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/6/e/6e22a2f230e59cab175263bb831a346d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AccountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/BaseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/resume.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/e/d/edb29639794339cf500568148d9d643f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/member.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/member.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
