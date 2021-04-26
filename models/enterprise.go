@@ -45,3 +45,10 @@ func FilterEnterprisesByCity(city string) ([]*Enterprise, error) {
 	_, err := o.QueryTable(TNEnterprise()).Filter("location", city).All(&enterprises)
 	return enterprises, err
 }
+
+func FilterEnterprisesByScale(scale string) ([]*Enterprise, error) {
+	o := orm.NewOrm()
+	var enterprises []*Enterprise
+	_, err := o.QueryTable(TNEnterprise()).Filter("scale", scale).All(&enterprises)
+	return enterprises, err
+}

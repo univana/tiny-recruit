@@ -48,3 +48,23 @@ func (c *EnterpriseController) FilterByCity() {
 
 	c.TplName = "navigation/enterprise.html"
 }
+
+func (c *EnterpriseController) FilterByScale() {
+	scale := c.GetString("scale")
+	var enterprises []*models.Enterprise
+	var err error
+
+	if scale == "不限" {
+		enterprises, err = models.GetAllEnterprises()
+	} else {
+		enterprises, err = models.FilterEnterprisesByScale(scale)
+	}
+
+	if err != nil {
+		logs.Error("Error filter enterprises by scale: ", err)
+		c.JsonResult(1, "Error filter by scale")
+	}
+	c.JsonResult(0, "ok", enterprises)
+
+	c.TplName = "navigation/enterprise.html"
+}
