@@ -1,21 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="MemberId字段修改回正(TODO 重构该字段)">
-      <change afterPath="$PROJECT_DIR$/static/css/enterprise.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/covers/default-cover.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/7/a/7a69151ea242e656fbdec496fad68b5b" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现公司页面基本样式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/member.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/member.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/resume.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/6/e/6e22a2f230e59cab175263bb831a346d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/7/1/71277f7402a639c6d5349c3270fd5f3d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/company.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/header.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/header.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -140,7 +128,8 @@
     <MESSAGE value="创建教育经历表 educationExperience.go" />
     <MESSAGE value="实现教育经历的后端逻辑" />
     <MESSAGE value="实现教育经历的前段基本显示" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现教育经历的前段基本显示" />
+    <MESSAGE value="实现公司页面基本样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现公司页面基本样式" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
