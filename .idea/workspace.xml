@@ -2,8 +2,15 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/6/e/6e22a2f230e59cab175263bb831a346d" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/resume.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/e/d/edb29639794339cf500568148d9d643f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -61,13 +68,14 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/models" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Go-Projects\tiny-recruit\models" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images" />
     </key>
   </component>
@@ -112,7 +120,8 @@
     <MESSAGE value="实现了简历展示的基本样式并对member和resume模型进行了重构" />
     <MESSAGE value="创建教育经历表 educationExperience.go" />
     <MESSAGE value="实现教育经历的后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现教育经历的后端逻辑" />
+    <MESSAGE value="实现教育经历的前段基本显示" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现教育经历的前段基本显示" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

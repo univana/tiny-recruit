@@ -54,7 +54,7 @@
             <el-card id="education-experience" shadow="never" style="border: none">
                 <p class="user-info-title">教育经历</p>
                 <template v-for="edu_exp in resume.education_experiences">
-                    <el-card shadow="hover" >
+                    <el-card shadow="hover" style="margin: 1px 20px">
                         <p style="font-size: 10px">{[edu_exp.start_year]} - {[edu_exp.end_year]}</p>
                         <p style="font-weight: bold">{[edu_exp.school]}</p>
                         <p>{[edu_exp.education]} <el-divider direction="vertical"></el-divider> {[edu_exp.profession]}</p>
@@ -65,15 +65,28 @@
             </el-card>
 
             {{/*项目经历*/}}
-            <el-card id="project-experience" shadow="hover" style="border: none">
+            <el-card id="project-experience" shadow="never" style="border: none">
                 <p class="user-info-title">项目经历</p>
-                项目经历内容
+                <template v-for="project_exp in resume.project_experiences">
+                    <el-card shadow="hover" style="margin: 1px 20px" >
+                        <p style="font-size: 10px">{[dateFormat(project_exp.start_time)]} - {[dateFormat(project_exp.end_time)]}</p>
+                        <p style="font-weight: bold">{[project_exp.name]}</p>
+                        <p>{[project_exp.description]}</p>
+                    </el-card>
+                </template>
             </el-card>
 
             {{/*实习经历*/}}
-            <el-card id="internship-experience" shadow="hover" style="border: none">
+            <el-card id="internship-experience" shadow="never" style="border: none">
                 <p class="user-info-title">实习经历</p>
-                实习经历内容
+                <template v-for="int_exp in resume.internship_experiences">
+                    <el-card shadow="hover" style="margin: 1px 20px" >
+                        <p style="font-size: 10px">{[dateFormat(int_exp.start_time)]} - {[dateFormat(int_exp.end_time)]}</p>
+                        <p style="font-weight: bold">{[int_exp.company_name]}</p>
+                        <p>{[int_exp.department]} <el-divider direction="vertical"></el-divider> {[int_exp.position]}</p>
+                        <p>{[int_exp.work_content]}</p>
+                    </el-card>
+                </template>
             </el-card>
         </div>
     </el-card>

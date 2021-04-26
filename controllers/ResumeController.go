@@ -23,5 +23,20 @@ func (c *ResumeController) GetResumeByMemberID() {
 		logs.Error("Error get education experiences: ", err)
 	}
 	resume.EducationExperiences = educationExperiences
+
+	//查找简历对应的项目经历
+	projectExperiences, err := models.GetProjectExperiencesByResumeID(resume.ResumeId)
+	if err != nil {
+		logs.Error("Error get project experiences: ", err)
+	}
+	resume.ProjectExperiences = projectExperiences
+
+	//查找简历对应的实习经历
+	internshipExperiences, err := models.GetInternshipExperiencesByResumeID(resume.ResumeId)
+	if err != nil {
+		logs.Error("Error get internship experiences: ", err)
+	}
+	resume.InternshipExperiences = internshipExperiences
+
 	c.JsonResult(0, "ok", resume)
 }

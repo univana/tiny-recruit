@@ -7,6 +7,8 @@ func init() {
 		new(Member),
 		new(Resume),
 		new(EducationExperience),
+		new(ProjectExperience),
+		new(InternshipExperience),
 	)
 }
 
@@ -23,4 +25,12 @@ func TNResume() string {
 //TNEducationExperience return-教育经历表
 func TNEducationExperience() string {
 	return "t_education_experience"
+}
+
+func TNProjectExperience() string {
+	return "t_project_experience"
+}
+
+func TNInternshipExperience() string {
+	return "t_internship_experience"
 }
