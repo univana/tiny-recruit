@@ -38,3 +38,10 @@ func FilterEnterprisesByStage(stage string) ([]*Enterprise, error) {
 	_, err := o.QueryTable(TNEnterprise()).Filter("financing_stage", stage).All(&enterprises)
 	return enterprises, err
 }
+
+func FilterEnterprisesByCity(city string) ([]*Enterprise, error) {
+	o := orm.NewOrm()
+	var enterprises []*Enterprise
+	_, err := o.QueryTable(TNEnterprise()).Filter("location", city).All(&enterprises)
+	return enterprises, err
+}

@@ -22,7 +22,7 @@
                                 <p>
                                     <span class="filter-box-title">公司地点</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_city">
+                                       <el-radio-group v-model="radio_city" @change="handleFilterByCity">
                                                 <template v-for="city in cities">
                                                     <el-radio-button :label="city"></el-radio-button>
                                                 </template>
@@ -128,6 +128,22 @@
                 myFormData.append("financing_stage", this.radio_financing_stage);
                 $.ajax({
                     url:"{{urlfor "EnterpriseController.FilterByStage"}}",
+                    data:myFormData,
+                    contentType: false,
+                    processData: false,
+                    type:"POST",
+                    success:function (res){
+                        self.enterprises=res.data;
+                    }
+
+                });
+            },
+            handleFilterByCity(){
+                let myFormData = new FormData();
+                let self = this;
+                myFormData.append("city", this.radio_city);
+                $.ajax({
+                    url:"{{urlfor "EnterpriseController.FilterByCity"}}",
                     data:myFormData,
                     contentType: false,
                     processData: false,

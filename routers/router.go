@@ -25,5 +25,6 @@ func init() {
 	beego.Router("/login", &controllers.AccountController{}, "*:Login")
 
 	beego.Router("/enterprise/filter/financing-stage", &controllers.EnterpriseController{}, "*:FilterByStage")
+	beego.Router("/enterprise/filter/city", &controllers.EnterpriseController{}, "*:FilterByCity")
 
 }
