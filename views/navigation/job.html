@@ -79,16 +79,46 @@
                         </el-col>
                     </el-row>
                 </div>
-
-
-
                 {{/*职位展示卡片*/}}
-                <el-row style="margin-left: 50px">
-                    <el-col :span="20" style="margin:10px 10px">
-                        <el-card shadow="hover">
+                <el-row style="margin-left: 100px" >
+                    <template v-for="job in jobs">
+                        <el-col :span="20">
+                            <el-card shadow="hover" >
+                                <el-col :span="10">
+                                    <el-card shadow="never" style="">
+                                        <p>{[job.title]}</p>
+                                        <p>
+                                            <span class="job-info-salary">{[job.min_monthly_salary]}K-{[job.max_monthly_salary]}K</span>
+                                            <span class="job-info-other"></span>
+                                        </p>
+                                    </el-card>
+                                </el-col>
+                                <el-col :span="10">
+                                    <el-card shadow="never" style="height: 100px">
+                                        <el-row>
+                                            <el-col :span="16">
+                                                {{/*企业名称*/}}
+                                                <p class="enterprise-name">{[job.enterprise.name]}</p>
+                                                {{/*企业其他内容*/}}
+                                                <p class="enterprise-other">
+                                                    {[job.enterprise.type]}
+                                                    <el-divider direction="vertical"></el-divider>
+                                                    {[job.enterprise.financing_stage]}
+                                                    <el-divider direction="vertical"></el-divider>
+                                                    {[job.enterprise.scale]}
+                                                </p>
+                                            </el-col>
+                                            {{/*企业封面*/}}
+                                            <el-avatar :size="60" shape="square"
+                                                       :src="job.enterprise.cover"
+                                                       style="float: right;border-radius: 10px"></el-avatar>
+                                        </el-row>
+                                    </el-card>
+                                </el-col>
+                            </el-card>
+                        </el-col>
 
-                        </el-card>
-                    </el-col>
+                    </template>
                 </el-row>
             </el-card>
         </el-col>
@@ -127,7 +157,7 @@
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
-            handleClick(){
+            handleClick() {
                 console.log(this.jobs);
             }
         },

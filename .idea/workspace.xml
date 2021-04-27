@@ -1,15 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位基本模型">
-      <change afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/css/job.css" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了获取职位数据并同步对应企业数据的后端逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/5/6/56d8606c0bb094c34c00ba974d938305" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/5/6/56d8606c0bb094c34c00ba974d938305" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/job.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/job.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -142,7 +136,8 @@
     <MESSAGE value="实现了根据规模过滤企业的前后端逻辑" />
     <MESSAGE value="实现了企业过滤器的所有逻辑并整合为一个函数" />
     <MESSAGE value="实现了职位基本模型" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了职位基本模型" />
+    <MESSAGE value="实现了获取职位数据并同步对应企业数据的后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了获取职位数据并同步对应企业数据的后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
