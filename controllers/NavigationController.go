@@ -1,6 +1,7 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/logs"
 	"myApp/models"
 )
@@ -14,6 +15,14 @@ func (c *NavigationController) Home() {
 }
 
 func (c *NavigationController) Job() {
+	//获取所有的职位信息
+	jobs, err := models.GetAllJobs()
+	fmt.Println(jobs[0].Enterprise)
+	if err != nil {
+		logs.Error("Error get jobs:", err)
+	}
+	c.Data["Jobs"] = jobs
+
 	c.TplName = "navigation/job.html"
 }
 

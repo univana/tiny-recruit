@@ -1,17 +1,99 @@
 <head>
     {{template "widgets/head.html" .}}
+    <link href="/static/css/job.css" rel="stylesheet">
     <title>tiny-recruit</title>
 </head>
 
-<body>
+<body style="background-color: #f6f6f6">
 <div id="app">
     {{template "widgets/head-menu.html" .}}
+    <el-row type="flex" justify="center">
+        <el-col :span="20" style="margin:10px 10px">
+            <el-card shadow="never" style="padding: 0;">
+                <div slot="header" class="clearfix">
+                    <span>职位</span>
+                    <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick">操作按钮</el-button>
+                    {{/*职位过滤器*/}}
+                    <el-row style="margin-left: 60px">
+                        <el-col :span="20">
+                            <div class="filter-box">
+                                <p>
+                                    <span class="filter-box-title">工作地点：</span>
+                                    <el-radio-group v-model="radio_city">
+                                        <template v-for="city in cities">
+                                            <el-radio-button :label="city"></el-radio-button>
+                                        </template>
+                                    </el-radio-group>
+                                </p>
 
-    <div class="jumbotron" style="height: 80%">
-        <div class="container" style="text-align: center;margin-top: 50px">
-            <h1>JOB</h1>
-        </div>
-    </div>
+                                <p>
+                                    <span class="filter-box-title">工作经验：</span>
+                                    <el-radio-group v-model="radio_require_experience">
+                                        <template v-for="experience in require_experiences">
+                                            <el-radio-button :label="experience"></el-radio-button>
+                                        </template>
+                                    </el-radio-group>
+                                </p>
+
+                                <p>
+                                    <span class="filter-box-title">学历要求：</span>
+                                    <el-radio-group v-model="radio_require_education">
+                                        <template v-for="education in require_educations">
+                                            <el-radio-button :label="education"></el-radio-button>
+                                        </template>
+                                    </el-radio-group>
+                                </p>
+
+                                <p>
+                                    <span class="filter-box-title">融资阶段： </span>
+                                    <span>
+                                        <el-radio-group v-model="radio_financing_stage"
+                                                        @change="handleFilter">
+                                            <template v-for="stage in stages">
+                                                <el-radio-button :label="stage"></el-radio-button>
+                                            </template>
+                                        </el-radio-group>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="filter-box-title">公司规模： </span>
+                                    <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_scale" @change="handleFilter">
+                                                <template v-for="scale in scales">
+                                                    <el-radio-button :label="scale"></el-radio-button>
+                                                </template>
+                                            </el-radio-group>
+                                    </span>
+                                </p>
+                                <p>
+                                    <span class="filter-box-title">行业领域： </span>
+                                    <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_type" @change="handleFilter">
+                                                <template v-for="type in types">
+                                                    <el-radio-button :label="type"></el-radio-button>
+                                                </template>
+                                            </el-radio-group>
+                                    </span>
+                                </p>
+                            </div>
+                        </el-col>
+                    </el-row>
+                </div>
+
+
+
+                {{/*职位展示卡片*/}}
+                <el-row style="margin-left: 50px">
+                    <el-col :span="20" style="margin:10px 10px">
+                        <el-card shadow="hover">
+
+                        </el-card>
+                    </el-col>
+                </el-row>
+            </el-card>
+        </el-col>
+    </el-row>
+
 </div>
 
 </body>
@@ -22,11 +104,34 @@
         el: '#app',
         data: function () {
             return {
-                activeIndex:'2',
+                activeIndex: '2',
+                currentPage: 1,
+                pageSize: 12,
+                jobs:{{.Jobs}},
+                cities: ['不限', '北京', '上海', '广州', '深圳'],
+                stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
+                scales: ['不限', '0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人', '10000人以上'],
+                types: ['不限', '互联网', '电子商务', '更多'],
+                require_experiences: ['不限', '在校/应届', '3年及以下', '3-5年', '5-10年', '10年以上'],
+                require_educations: ['不限', '大专', '本科', '硕士', '博士'],
+                radio_financing_stage: '不限',
+                radio_type: '不限',
+                radio_city: '不限',
+                radio_scale: '不限',
+                radio_require_experience: '不限',
+                radio_require_education: '不限',
             }
         },
         methods: {
+            handleCurrentChange: function (currentPage) {
+                this.currentPage = currentPage;
+                console.log(this.currentPage)  //点击第几页
+            },
+            handleClick(){
+                console.log(this.jobs);
+            }
+        },
+        delimiters: ['{[', ']}'],
 
-        }
     })
 </script>

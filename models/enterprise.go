@@ -33,6 +33,16 @@ func GetAllEnterprises() ([]*Enterprise, error) {
 	return enterprises, err
 }
 
+// GetEnterpriseByID 根据ID查询企业信息
+func GetEnterpriseByID(id int) (Enterprise, error) {
+	o := orm.NewOrm()
+	enterprise := Enterprise{EnterpriseID: id}
+
+	err := o.Read(&enterprise)
+
+	return enterprise, err
+}
+
 // FilterEnterprises 过滤企业
 func FilterEnterprises(city string, stage string, scale string, enterpriseType string) ([]*Enterprise, error) {
 	o := orm.NewOrm()
