@@ -81,8 +81,8 @@
                 </div>
                 {{/*职位展示卡片*/}}
                 <el-row style="margin-left: 100px" >
-                    <template v-for="job in jobs">
-                        <el-col :span="20">
+                    <template v-for="job in jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                        <el-col :span="22">
                             <el-card shadow="hover" >
                                 <el-col :span="10">
                                     <el-card shadow="never" style="">
@@ -119,6 +119,20 @@
                         </el-col>
 
                     </template>
+                </el-row>
+
+                {{/*分页器*/}}
+                <el-row type="flex" justify="center">
+                    <el-col :span="10" style="text-align: center;margin-top: 20px">
+                        <el-pagination
+                                background
+                                layout="prev, pager, next"
+                                @current-change="handleCurrentChange"
+                                :current-page="currentPage"
+                                :page-size="pageSize"
+                                :total=jobs.length>
+                        </el-pagination>
+                    </el-col>
                 </el-row>
             </el-card>
         </el-col>
