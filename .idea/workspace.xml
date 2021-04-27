@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了根据规模过滤企业的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/a/7/a70e09739a52556b2b158452931c1889" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了企业过滤器的所有逻辑并整合为一个函数">
+      <change afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/5/6/56d8606c0bb094c34c00ba974d938305" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/EnterpriseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EnterpriseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/educationExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/educationExperience.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/0/5/051372b99001e30af0b641bd3c530f67" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/a/7/a70e09739a52556b2b158452931c1889" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -138,7 +138,8 @@
     <MESSAGE value="实现了企业过滤器的基本样式" />
     <MESSAGE value="实现了根据所在城市过滤企业的前后端逻辑" />
     <MESSAGE value="实现了根据规模过滤企业的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了根据规模过滤企业的前后端逻辑" />
+    <MESSAGE value="实现了企业过滤器的所有逻辑并整合为一个函数" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了企业过滤器的所有逻辑并整合为一个函数" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

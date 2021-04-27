@@ -11,7 +11,7 @@ type EducationExperience struct {
 	EndYear    int    `json:"end_year"`                                    //结束年份
 	Experience string `orm:"type(text)" json:"experience"`                 //教育经历内容
 
-	Resume *Resume `orm:"rel(fk)"` //简历与教育经历的一对多关系
+	Resume *Resume `orm:"rel(fk)" json:"resume"` //简历与教育经历的一对多关系
 }
 
 func (e *EducationExperience) TableName() string {

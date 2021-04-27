@@ -17,6 +17,8 @@ type Enterprise struct {
 	Scale          string    `json:"scale"`                                                        //企业规模
 	CreateTime     time.Time `orm:"type(datetime);auto_now_add" json:"create_time"`                //创建时间
 	LastLoginTime  time.Time `orm:"type(datetime);null" json:"last_login_time"`                    //最后登录时间
+
+	Jobs []*Job `orm:"reverse(many)" json:"jobs"` //企业和职位的一对多关系
 }
 
 func (m *Enterprise) TableName() string {
