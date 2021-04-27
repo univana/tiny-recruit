@@ -9,62 +9,18 @@ type EnterpriseController struct {
 	BaseController
 }
 
-func (c *EnterpriseController) FilterByStage() {
-	stage := c.GetString("financing_stage")
-	var enterprises []*models.Enterprise
-	var err error
-
-	if stage == "不限" {
-		enterprises, err = models.GetAllEnterprises()
-	} else {
-		enterprises, err = models.FilterEnterprisesByStage(stage)
-	}
-
-	if err != nil {
-		logs.Error("Error filter enterprises by stage: ", err)
-		c.JsonResult(1, "Error filter by stage")
-	}
-	c.JsonResult(0, "ok", enterprises)
-
-	c.TplName = "navigation/enterprise.html"
-}
-
-func (c *EnterpriseController) FilterByCity() {
+func (c *EnterpriseController) Filter() {
 	city := c.GetString("city")
-	var enterprises []*models.Enterprise
-	var err error
-
-	if city == "不限" {
-		enterprises, err = models.GetAllEnterprises()
-	} else {
-		enterprises, err = models.FilterEnterprisesByCity(city)
-	}
-
-	if err != nil {
-		logs.Error("Error filter enterprises by city: ", err)
-		c.JsonResult(1, "Error filter by city")
-	}
-	c.JsonResult(0, "ok", enterprises)
-
-	c.TplName = "navigation/enterprise.html"
-}
-
-func (c *EnterpriseController) FilterByScale() {
+	stage := c.GetString("financing_stage")
 	scale := c.GetString("scale")
-	var enterprises []*models.Enterprise
-	var err error
+	enterpriseType := c.GetString("type")
 
-	if scale == "不限" {
-		enterprises, err = models.GetAllEnterprises()
-	} else {
-		enterprises, err = models.FilterEnterprisesByScale(scale)
-	}
-
+	enterprises, err := models.FilterEnterprises(city, stage, scale, enterpriseType)
 	if err != nil {
-		logs.Error("Error filter enterprises by scale: ", err)
-		c.JsonResult(1, "Error filter by scale")
+		logs.Error("Error filter enterprises: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok", enterprises)
 	}
-	c.JsonResult(0, "ok", enterprises)
-
 	c.TplName = "navigation/enterprise.html"
 }

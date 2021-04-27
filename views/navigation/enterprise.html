@@ -22,7 +22,7 @@
                                 <p>
                                     <span class="filter-box-title">公司地点</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_city" @change="handleFilterByCity">
+                                       <el-radio-group v-model="radio_city" @change="handleFilter">
                                                 <template v-for="city in cities">
                                                     <el-radio-button :label="city"></el-radio-button>
                                                 </template>
@@ -33,7 +33,7 @@
                                     <span class="filter-box-title">融资阶段</span>
                                     <span>
                                         <el-radio-group v-model="radio_financing_stage"
-                                                        @change="handleFilterByStage">
+                                                        @change="handleFilter">
                                             <template v-for="stage in stages">
                                                 <el-radio-button :label="stage"></el-radio-button>
                                             </template>
@@ -43,15 +43,23 @@
                                 <p>
                                     <span class="filter-box-title">公司规模</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_scale" @change="handleFilterByScale">
+                                       <el-radio-group v-model="radio_scale" @change="handleFilter">
                                                 <template v-for="scale in scales">
                                                     <el-radio-button :label="scale"></el-radio-button>
                                                 </template>
                                             </el-radio-group>
                                     </span>
-
                                 </p>
-                                <p><span class="filter-box-title">行业领域</span></p>
+                                <p>
+                                    <span class="filter-box-title">行业领域</span>
+                                    <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_type" @change="handleFilter">
+                                                <template v-for="type in types">
+                                                    <el-radio-button :label="type"></el-radio-button>
+                                                </template>
+                                            </el-radio-group>
+                                    </span>
+                                </p>
                             </div>
                         </el-col>
                     </el-row>
@@ -120,9 +128,11 @@
                 pageSize: 12,
                 enterprises:{{.Enterprises}},
                 cities: ['不限', '北京', '上海', '广州', '深圳'],
-                stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '上市公司', '不需要融资',],
-                scales:['不限','0-20人','20-99人','100-499人','500-999人','1000-9999人','10000人以上'],
+                stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
+                scales: ['不限', '0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人', '10000人以上'],
+                types: ['不限', '互联网', '电子商务', '更多'],
                 radio_financing_stage: '不限',
+                radio_type: '不限',
                 radio_city: '不限',
                 radio_scale: '不限',
             }
@@ -132,45 +142,17 @@
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
-            /*根据融资规模过滤企业*/
-            handleFilterByStage() {
-                let myFormData = new FormData();
-                let self = this;
-                myFormData.append("financing_stage", this.radio_financing_stage);
-                $.ajax({
-                    url: "{{urlfor "EnterpriseController.FilterByStage"}}",
-                    data: myFormData,
-                    contentType: false,
-                    processData: false,
-                    type: "POST",
-                    success: function (res) {
-                        self.enterprises = res.data;
-                    }
-
-                });
-            },
-            handleFilterByCity() {
+            //企业过滤器
+            handleFilter() {
                 let myFormData = new FormData();
                 let self = this;
                 myFormData.append("city", this.radio_city);
-                $.ajax({
-                    url: "{{urlfor "EnterpriseController.FilterByCity"}}",
-                    data: myFormData,
-                    contentType: false,
-                    processData: false,
-                    type: "POST",
-                    success: function (res) {
-                        self.enterprises = res.data;
-                    }
-
-                });
-            },
-            handleFilterByScale() {
-                let myFormData = new FormData();
-                let self = this;
+                myFormData.append("financing_stage", this.radio_financing_stage);
                 myFormData.append("scale", this.radio_scale);
+                myFormData.append("type", this.radio_type);
+
                 $.ajax({
-                    url: "{{urlfor "EnterpriseController.FilterByScale"}}",
+                    url: "{{urlfor "EnterpriseController.Filter"}}",
                     data: myFormData,
                     contentType: false,
                     processData: false,
@@ -179,7 +161,8 @@
                         self.enterprises = res.data;
                     }
                 });
-            },
+            }
+
 
         },
         delimiters: ['{[', ']}'],

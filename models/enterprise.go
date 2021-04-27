@@ -31,24 +31,32 @@ func GetAllEnterprises() ([]*Enterprise, error) {
 	return enterprises, err
 }
 
-// FilterEnterprisesByStage 根据融资阶段过滤企业
-func FilterEnterprisesByStage(stage string) ([]*Enterprise, error) {
+// FilterEnterprises 过滤企业
+func FilterEnterprises(city string, stage string, scale string, enterpriseType string) ([]*Enterprise, error) {
 	o := orm.NewOrm()
 	var enterprises []*Enterprise
-	_, err := o.QueryTable(TNEnterprise()).Filter("financing_stage", stage).All(&enterprises)
-	return enterprises, err
-}
+	var err error
+	qs := o.QueryTable(TNEnterprise())
+	cond := orm.NewCondition()
 
-func FilterEnterprisesByCity(city string) ([]*Enterprise, error) {
-	o := orm.NewOrm()
-	var enterprises []*Enterprise
-	_, err := o.QueryTable(TNEnterprise()).Filter("location", city).All(&enterprises)
-	return enterprises, err
-}
+	//按城市过滤
+	if city != "不限" {
+		cond = cond.And("location", city)
+	}
+	//按融资状态过滤
+	if stage != "不限" {
+		cond = cond.And("financing_stage", stage)
+	}
+	//按企业规模过滤
+	if scale != "不限" {
+		cond = cond.And("scale", scale)
+	}
+	//按行业领域过滤
+	if enterpriseType != "不限" {
+		cond = cond.And("type", enterpriseType)
+	}
+	_, err = qs.SetCond(cond).All(&enterprises)
 
-func FilterEnterprisesByScale(scale string) ([]*Enterprise, error) {
-	o := orm.NewOrm()
-	var enterprises []*Enterprise
-	_, err := o.QueryTable(TNEnterprise()).Filter("scale", scale).All(&enterprises)
 	return enterprises, err
+
 }
