@@ -1,6 +1,5 @@
 <head>
     {{template "widgets/head.html" .}}
-    <link href="/static/css/job.css" rel="stylesheet">
     <title>tiny-recruit</title>
 </head>
 
@@ -10,90 +9,100 @@
     <el-row type="flex" justify="center">
         <el-col :span="20" style="margin:10px 10px">
             <el-card shadow="never" style="padding: 0;">
-                <div slot="header" class="clearfix">
-                    <span>职位</span>
-                    <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick">操作按钮</el-button>
-                    {{/*职位过滤器*/}}
-                    <el-row style="margin-left: 60px">
-                        <el-col :span="20">
-                            <div class="filter-box">
-                                <p>
-                                    <span class="filter-box-title">工作地点：</span>
-                                    <el-radio-group v-model="radio_city">
-                                        <template v-for="city in cities">
-                                            <el-radio-button :label="city"></el-radio-button>
-                                        </template>
-                                    </el-radio-group>
-                                </p>
+                <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick">操作按钮</el-button>
+                {{/*职位过滤器*/}}
+                <el-row style="margin-left: 60px">
+                    <el-col :span="20">
 
-                                <p>
-                                    <span class="filter-box-title">工作经验：</span>
-                                    <el-radio-group v-model="radio_require_experience">
-                                        <template v-for="experience in require_experiences">
-                                            <el-radio-button :label="experience"></el-radio-button>
-                                        </template>
-                                    </el-radio-group>
-                                </p>
+                        <p>
+                            <span class="filter-box-title">工作地点：</span>
+                            <el-radio-group v-model="radio_city" size="small">
+                                <template v-for="city in cities">
+                                    <el-radio-button :label="city"></el-radio-button>
+                                </template>
+                            </el-radio-group>
+                        </p>
 
-                                <p>
-                                    <span class="filter-box-title">学历要求：</span>
-                                    <el-radio-group v-model="radio_require_education">
-                                        <template v-for="education in require_educations">
-                                            <el-radio-button :label="education"></el-radio-button>
-                                        </template>
-                                    </el-radio-group>
-                                </p>
+                        <p>
+                            <span class="filter-box-title">工作经验：</span>
+                            <el-radio-group v-model="radio_require_experience" size="small">
+                                <template v-for="experience in require_experiences">
+                                    <el-radio-button :label="experience"></el-radio-button>
+                                </template>
+                            </el-radio-group>
+                        </p>
 
-                                <p>
-                                    <span class="filter-box-title">融资阶段： </span>
-                                    <span>
-                                        <el-radio-group v-model="radio_financing_stage"
-                                                        @change="handleFilter">
+                        <p>
+                            <span class="filter-box-title">学历要求：</span>
+                            <el-radio-group v-model="radio_require_education" size="small">
+                                <template v-for="education in require_educations">
+                                    <el-radio-button :label="education"></el-radio-button>
+                                </template>
+                            </el-radio-group>
+                        </p>
+
+                        <p>
+                            <span class="filter-box-title">融资阶段：</span>
+                            <span>
+                                        <el-radio-group v-model="radio_financing_stage" size="small">
                                             <template v-for="stage in stages">
                                                 <el-radio-button :label="stage"></el-radio-button>
                                             </template>
                                         </el-radio-group>
                                     </span>
-                                </p>
-                                <p>
-                                    <span class="filter-box-title">公司规模： </span>
-                                    <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_scale" @change="handleFilter">
+                        </p>
+                        <p>
+                            <span class="filter-box-title">公司规模： </span>
+                            <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_scale" size="small">
                                                 <template v-for="scale in scales">
                                                     <el-radio-button :label="scale"></el-radio-button>
                                                 </template>
                                             </el-radio-group>
                                     </span>
-                                </p>
-                                <p>
-                                    <span class="filter-box-title">行业领域： </span>
-                                    <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_type" @change="handleFilter">
+                        </p>
+                        <p>
+                            <span class="filter-box-title">行业领域： </span>
+                            <span class="filter-box-rows">
+                                       <el-radio-group v-model="radio_type" size="small">
                                                 <template v-for="type in types">
                                                     <el-radio-button :label="type"></el-radio-button>
                                                 </template>
                                             </el-radio-group>
                                     </span>
-                                </p>
-                            </div>
-                        </el-col>
-                    </el-row>
-                </div>
+                        </p>
+                    </el-col>
+                </el-row>
+            </el-card>
+        </el-col>
+    </el-row>
+
+    <el-row type="flex" justify="center">
+        <el-col :span="14" style="margin:1px 5px">
+            <el-card shadow="never" style="padding: 0;">
                 {{/*职位展示卡片*/}}
-                <el-row style="margin-left: 100px" >
+                <el-row style="margin-left: 50px">
                     <template v-for="job in jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
                         <el-col :span="22">
-                            <el-card shadow="hover" >
-                                <el-col :span="10">
-                                    <el-card shadow="never" style="">
-                                        <p>{[job.title]}</p>
+                            <el-card shadow="never" style="height: 140px;margin: 5px 0">
+                                <el-col :span="14">
+                                    <el-card shadow="never" style="border: none">
+                                        <p>
+                                            <span class="job-info-title">{[job.title]}</span>
+                                            <span class="job-info-location">[{[job.location]}]</span>
+                                            <span class="job-info-create-time">发布于{[dateFormatMMDD(job.create_time)]}</span>
+                                        </p>
                                         <p>
                                             <span class="job-info-salary">{[job.min_monthly_salary]}K-{[job.max_monthly_salary]}K</span>
-                                            <span class="job-info-other"></span>
+                                            <span class="job-info-other">
+                                                {[job.require_experience]}
+                                                <el-divider direction="vertical"></el-divider>
+                                                {[job.require_education]}
+                                            </span>
                                         </p>
                                     </el-card>
                                 </el-col>
-                                <el-col :span="10">
+                                <el-col :span="10" style="float: right">
                                     <el-card shadow="never" style="height: 100px">
                                         <el-row>
                                             <el-col :span="16">
@@ -117,9 +126,9 @@
                                 </el-col>
                             </el-card>
                         </el-col>
-
                     </template>
                 </el-row>
+                <el-divider></el-divider>
 
                 {{/*分页器*/}}
                 <el-row type="flex" justify="center">
@@ -134,6 +143,12 @@
                         </el-pagination>
                     </el-col>
                 </el-row>
+
+            </el-card>
+        </el-col>
+        <el-col :span="6" style="margin:1px 5px">
+            <el-card shadow="never" style="padding: 0;">
+                2
             </el-card>
         </el-col>
     </el-row>
@@ -173,9 +188,58 @@
             },
             handleClick() {
                 console.log(this.jobs);
+            },
+            dateFormatMMDD(time) {
+                return moment(time).format("MM月DD日")
             }
         },
         delimiters: ['{[', ']}'],
 
     })
 </script>
+<style>
+    .filter-box-title {
+        font-weight: bold;
+    }
+
+    .job-info-salary {
+        font-size: 16px;
+        color: #FD5F39;
+    }
+
+    .job-info-title {
+        font-size: 16px;
+        color: #409EFF
+    }
+
+    .job-info-location {
+        font-size: 16px;
+        color: #409EFF
+    }
+
+    .job-info-create-time {
+        margin-left: 5px;
+        color: #8D92A1;
+        font-size: 13px;
+    }
+
+    .job-info-other {
+        margin-left: 5px;
+        font-size: 14px;
+        color: grey;
+    }
+
+    .enterprise-name {
+        font-size: 16px;
+        color: #409EFF
+    }
+
+    .enterprise-other {
+        font-size: 14px;
+        color: grey;
+    }
+
+    .filter-box-title {
+        font-weight: bold;
+    }
+</style>
