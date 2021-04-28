@@ -9,11 +9,18 @@
     <el-row type="flex" justify="center">
         <el-col :span="20" style="margin:10px 10px">
             <el-card shadow="never" style="padding: 0;">
-                <el-button style="float: right; padding: 3px 0" type="text" @click="handleClick">操作按钮</el-button>
+                {{/*搜索框*/}}
+                <el-row style="margin-left: 60px">
+                    <el-col :span="20">
+                        <el-input placeholder="请输入内容" v-model="input" class="search-bar"></el-input>
+                        <el-button icon="el-icon-search">搜索</el-button>
+
+                    </el-col>
+                </el-row>
+                <el-divider></el-divider>
                 {{/*职位过滤器*/}}
                 <el-row style="margin-left: 60px">
                     <el-col :span="20">
-
                         <p>
                             <span class="filter-box-title">工作地点：</span>
                             <el-radio-group v-model="radio_city" size="small">
@@ -54,22 +61,22 @@
                         <p>
                             <span class="filter-box-title">公司规模： </span>
                             <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_scale" size="small">
-                                                <template v-for="scale in scales">
-                                                    <el-radio-button :label="scale"></el-radio-button>
-                                                </template>
-                                            </el-radio-group>
-                                    </span>
+                               <el-radio-group v-model="radio_scale" size="small">
+                                    <template v-for="scale in scales">
+                                        <el-radio-button :label="scale"></el-radio-button>
+                                    </template>
+                               </el-radio-group>
+                            </span>
                         </p>
                         <p>
                             <span class="filter-box-title">行业领域： </span>
                             <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_type" size="small">
-                                                <template v-for="type in types">
-                                                    <el-radio-button :label="type"></el-radio-button>
-                                                </template>
-                                            </el-radio-group>
-                                    </span>
+                               <el-radio-group v-model="radio_type" size="small">
+                                    <template v-for="type in types">
+                                        <el-radio-button :label="type"></el-radio-button>
+                                    </template>
+                               </el-radio-group>
+                            </span>
                         </p>
                     </el-col>
                 </el-row>
@@ -165,7 +172,7 @@
             return {
                 activeIndex: '2',
                 currentPage: 1,
-                pageSize: 12,
+                pageSize: 8,
                 jobs:{{.Jobs}},
                 cities: ['不限', '北京', '上海', '广州', '深圳'],
                 stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
@@ -241,5 +248,9 @@
 
     .filter-box-title {
         font-weight: bold;
+    }
+
+    .search-bar {
+        width: 700px;
     }
 </style>

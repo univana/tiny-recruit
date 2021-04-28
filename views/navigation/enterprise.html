@@ -22,7 +22,7 @@
                                 <p>
                                     <span class="filter-box-title">公司地点</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_city" @change="handleFilter">
+                                       <el-radio-group v-model="radio_city" @change="handleFilter" size="small">
                                                 <template v-for="city in cities">
                                                     <el-radio-button :label="city"></el-radio-button>
                                                 </template>
@@ -32,7 +32,7 @@
                                 <p>
                                     <span class="filter-box-title">融资阶段</span>
                                     <span>
-                                        <el-radio-group v-model="radio_financing_stage"
+                                        <el-radio-group v-model="radio_financing_stage" size="small"
                                                         @change="handleFilter">
                                             <template v-for="stage in stages">
                                                 <el-radio-button :label="stage"></el-radio-button>
@@ -43,7 +43,7 @@
                                 <p>
                                     <span class="filter-box-title">公司规模</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_scale" @change="handleFilter">
+                                       <el-radio-group v-model="radio_scale" @change="handleFilter" size="small">
                                                 <template v-for="scale in scales">
                                                     <el-radio-button :label="scale"></el-radio-button>
                                                 </template>
@@ -53,7 +53,7 @@
                                 <p>
                                     <span class="filter-box-title">行业领域</span>
                                     <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_type" @change="handleFilter">
+                                       <el-radio-group v-model="radio_type" @change="handleFilter" size="small">
                                                 <template v-for="type in types">
                                                     <el-radio-button :label="type"></el-radio-button>
                                                 </template>

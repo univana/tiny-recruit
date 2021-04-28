@@ -1,11 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位分页器并实现了前端分页逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/5/4/547a07db5106b10f4bc45f8791a3850f" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位卡片的基本样式并对job.html进行了部分重写">
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/static/css/job.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/job.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/5/6/56d8606c0bb094c34c00ba974d938305" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +140,8 @@
     <MESSAGE value="实现了获取职位数据并同步对应企业数据的后端逻辑" />
     <MESSAGE value="添加了职位卡片的粗糙样式" />
     <MESSAGE value="添加了职位分页器并实现了前端分页逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了职位分页器并实现了前端分页逻辑" />
+    <MESSAGE value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
