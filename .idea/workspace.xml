@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位展示界面获取职位数据的后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/8/9/894957dece9d9c003d7e63fc72307c51" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位展示界面前端样式">
+      <change afterPath="$PROJECT_DIR$/store/session/c/4/c4cbdd7c9ed17941f38d48a74c878b00" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/b/6/b69ef265c5055e22feb3e7eaa7c33e4d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/8/9/894957dece9d9c003d7e63fc72307c51" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
     </list>
@@ -149,7 +149,8 @@
     <MESSAGE value="添加了搜索框的前端样式" />
     <MESSAGE value="实现了职位详情页跳转的后端逻辑并创建了前端页面" />
     <MESSAGE value="添加了职位展示界面获取职位数据的后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了职位展示界面获取职位数据的后端逻辑" />
+    <MESSAGE value="添加了职位展示界面前端样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了职位展示界面前端样式" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

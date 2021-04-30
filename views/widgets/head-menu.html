@@ -10,6 +10,7 @@
             {{/*右侧导航小栏*/}}
             {{if gt .Member.MemberId 0}}
                 {{/*用户已登录*/}}
+                <el-menu-item index="4"><a href="{{urlfor "NavigationController.EnterpriseHome"}}">进入企业版</a></el-menu-item>
                 <el-menu-item style="float: right;margin-right: 5px;">
                     <el-dropdown>
                 <span class="el-dropdown-link">
@@ -23,7 +24,6 @@
                             <el-dropdown-item icon="el-icon-table-lamp"><a href="{{urlfor "AccountController.Logout"}}">登出</a>
                             </el-dropdown-item>
                         </el-dropdown-menu>
-
                     </el-dropdown>
                 </el-menu-item>
             {{else}}

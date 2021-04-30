@@ -1,0 +1,42 @@
+<head>
+    {{template "widgets/head.html" .}}
+    <title>tiny-recruit</title>
+</head>
+
+<body>
+<div id="app">
+    {{template "widgets/head-menu.html" .}}
+
+    <el-row type="flex" justify="center">
+        <el-col :span="20">
+            <!-- 左侧导航栏 -->
+            <el-col :span="3" style="height:100%;margin-top: 10px;">
+                <el-menu default-active="1">
+                    <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
+                        <span>职位管理</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-col>
+
+            <!-- 右侧内容 -->
+            {{/*职位管理*/}}
+            {{template "enterprise-home/job-management.html" .}}
+        </el-col>
+    </el-row>
+</div>
+
+</body>
+{{template "widgets/footer.html" .}}
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                activeIndex: '4',
+                displayIndex: 0,
+            }
+        },
+        methods: {}
+    })
+</script>

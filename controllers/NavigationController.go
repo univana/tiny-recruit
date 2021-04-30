@@ -43,3 +43,9 @@ func (c *NavigationController) UserCenter() {
 	c.TplName = "navigation/userCenter.html"
 	c.Data["Member"] = c.Member
 }
+
+// EnterpriseHome 企业中心导航
+func (c *NavigationController) EnterpriseHome() {
+	c.TplName = "navigation/enterprise-home.html"
+	c.Data["Member"] = c.Member
+}
