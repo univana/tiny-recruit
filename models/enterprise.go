@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -18,10 +19,11 @@ type Enterprise struct {
 	CreateTime     time.Time `orm:"type(datetime);auto_now_add" json:"create_time"`                //创建时间
 	LastLoginTime  time.Time `orm:"type(datetime);null" json:"last_login_time"`                    //最后登录时间
 
-	Jobs []*Job `orm:"reverse(many)" json:"jobs"` //企业和职位的一对多关系
+	Jobs   []*Job  `orm:"reverse(many)" json:"jobs"` //企业和职位的一对多关系
+	Member *Member `orm:"rel(one)"`                  //企业所属的用户
 }
 
-func (m *Enterprise) TableName() string {
+func (e *Enterprise) TableName() string {
 	return TNEnterprise()
 }
 
@@ -70,5 +72,25 @@ func FilterEnterprises(city string, stage string, scale string, enterpriseType s
 	_, err = qs.SetCond(cond).All(&enterprises)
 
 	return enterprises, err
+}
 
+// GetEnterpriseByMemberID 根据用户ID或取所属的企业
+func GetEnterpriseByMemberID(memberID int) Enterprise {
+	o := orm.NewOrm()
+	var enterprise Enterprise
+	err := o.QueryTable(TNEnterprise()).Filter("member_id", memberID).One(&enterprise)
+	if err != nil {
+		logs.Error("Error get enterprise: ", err)
+		return Enterprise{}
+	}
+	return enterprise
+}
+
+// LoadJobs 加载企业对应的所有职位信息
+func (e *Enterprise) LoadJobs() {
+	o := orm.NewOrm()
+	_, err := o.LoadRelated(e, "Jobs")
+	if err != nil {
+		logs.Error("Error load jobs: ", err)
+	}
 }

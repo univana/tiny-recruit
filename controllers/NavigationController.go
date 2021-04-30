@@ -47,5 +47,9 @@ func (c *NavigationController) UserCenter() {
 // EnterpriseHome 企业中心导航
 func (c *NavigationController) EnterpriseHome() {
 	c.TplName = "navigation/enterprise-home.html"
+	enterprise := models.GetEnterpriseByMemberID(c.Member.MemberId)
+	//为企业加载对应的职位信息
+	enterprise.LoadJobs()
+	c.Data["Enterprise"] = enterprise
 	c.Data["Member"] = c.Member
 }

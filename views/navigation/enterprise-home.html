@@ -35,8 +35,27 @@
             return {
                 activeIndex: '4',
                 displayIndex: 0,
+                enterprise:{{.Enterprise}},
             }
         },
-        methods: {}
+        methods: {
+            getJobs(){
+                let self = this;
+                let myFormData = new FormData();
+                let memberID = this.member.member_id;
+                console.log(memberID);
+                myFormData.append("id", memberID);
+                $.ajax({
+                    url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.resume = res.data;
+                    }
+
+                });
+                console.log(this.resume);
+            }
+        },
+        delimiters: ['{[', ']}'],
     })
 </script>
