@@ -12,7 +12,7 @@
             <!-- 左侧导航栏 -->
             <el-col :span="3" style="height:100%;margin-top: 10px;">
                 <el-menu default-active="1">
-                    <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
+                    <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
                         <span>职位管理</span>
                     </el-menu-item>
                 </el-menu>
@@ -35,26 +35,20 @@
             return {
                 activeIndex: '4',
                 displayIndex: 0,
+                currentPage: 1,
+                pageSize: 8,
                 enterprise:{{.Enterprise}},
+                jobs: {{.Jobs}},
             }
         },
         methods: {
-            getJobs(){
-                let self = this;
-                let myFormData = new FormData();
-                let memberID = this.member.member_id;
-                console.log(memberID);
-                myFormData.append("id", memberID);
-                $.ajax({
-                    url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
-                    type: "POST",
-                    success: function (res) {
-                        self.resume = res.data;
-                    }
-
-                });
-                console.log(this.resume);
-            }
+            dateFormatYYYYMMDD(time) {
+                return moment(time).format("YYYY年MM月DD日")
+            },
+            handleCurrentChange: function (currentPage) {
+                this.currentPage = currentPage;
+                console.log(this.currentPage)  //点击第几页
+            },
         },
         delimiters: ['{[', ']}'],
     })

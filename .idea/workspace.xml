@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了企业版页面的导航逻辑">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了企业版页面获取企业所属职位信息的后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/7/d/7dffe7173abdc4543dc33b98460ec7c0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/c/4/c4cbdd7c9ed17941f38d48a74c878b00" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/enterprise-home/job-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
     </list>
@@ -121,7 +123,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="修改用户角色的相关设置" />
     <MESSAGE value="修改简历前端样式" />
     <MESSAGE value="修改头部菜单的实现" />
     <MESSAGE value="重写头部导航栏" />
@@ -146,7 +147,8 @@
     <MESSAGE value="添加了职位展示界面获取职位数据的后端逻辑" />
     <MESSAGE value="添加了职位展示界面前端样式" />
     <MESSAGE value="添加了企业版页面的导航逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了企业版页面的导航逻辑" />
+    <MESSAGE value="添加了企业版页面获取企业所属职位信息的后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了企业版页面获取企业所属职位信息的后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

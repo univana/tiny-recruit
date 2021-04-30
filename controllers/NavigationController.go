@@ -51,5 +51,6 @@ func (c *NavigationController) EnterpriseHome() {
 	//为企业加载对应的职位信息
 	enterprise.LoadJobs()
 	c.Data["Enterprise"] = enterprise
+	c.Data["Jobs"] = enterprise.Jobs
 	c.Data["Member"] = c.Member
 }

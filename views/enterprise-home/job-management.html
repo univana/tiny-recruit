@@ -2,7 +2,49 @@
     <el-card shadow="never" style="padding: 0;">
         <div slot="header" class="clearfix">
             <span>职位管理</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+            <el-button style="float: right; padding: 3px 0" icon="el-icon-plus" type="success">发布职位</el-button>
         </div>
+
+        {{/*职位管理表格*/}}
+        <el-table :data="jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+            {{/*发布日期*/}}
+            <el-table-column label="发布日期" width="200">
+                <template slot-scope="scope">
+                    <span>{[dateFormatYYYYMMDD(scope.row.create_time)]}</span>
+                </template>
+            </el-table-column>
+
+            {{/*职位标题*/}}
+            <el-table-column label="职位标题" width="200">
+                <template slot-scope="scope">
+                    <span><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + scope.row.job_id" target="_blank">{[scope.row.title]}</a></span>
+                </template>
+            </el-table-column>
+
+            {{/*操作*/}}
+            <el-table-column label="操作" width="200">
+                <template slot-scope="scope">
+                    <el-button-group>
+                        <el-button type="primary" icon="el-icon-edit" size="small" plain>编辑</el-button>
+                        <el-button type="danger" icon="el-icon-delete" size="small" plain>删除</el-button>
+                    </el-button-group>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        {{/*分页器*/}}
+        <el-row type="flex" justify="center">
+            <el-col :span="10" style="text-align: center;margin-top: 20px">
+                <el-pagination
+                        background
+                        layout="prev, pager, next"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-size="pageSize"
+                        :total=jobs.length>
+                </el-pagination>
+            </el-col>
+        </el-row>
+
     </el-card>
 </el-col>
