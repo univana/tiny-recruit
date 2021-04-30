@@ -90,9 +90,9 @@
                 {{/*职位展示卡片*/}}
                 <el-row style="margin-left: 50px">
                     <template v-for="job in jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-                        <el-col :span="22">
+                        <el-col :span="23">
                             <el-card shadow="never" style="height: 140px;margin: 5px 0">
-                                <el-col :span="14">
+                                <el-col :span="13">
                                     <el-card shadow="never" style="border: none">
                                         <p>
                                             <span ><a class="job-info-title" :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + job.job_id" target="_blank">{[job.title]}</a></span>
@@ -109,10 +109,10 @@
                                         </p>
                                     </el-card>
                                 </el-col>
-                                <el-col :span="10" style="float: right">
+                                <el-col :span="11" style="float: right">
                                     <el-card shadow="never" style="height: 100px">
                                         <el-row>
-                                            <el-col :span="16">
+                                            <el-col :span="18">
                                                 {{/*企业名称*/}}
                                                 <p class="enterprise-name">{[job.enterprise.name]}</p>
                                                 {{/*企业其他内容*/}}
@@ -125,7 +125,7 @@
                                                 </p>
                                             </el-col>
                                             {{/*企业封面*/}}
-                                            <el-avatar :size="60" shape="square"
+                                            <el-avatar :size="50" shape="square"
                                                        :src="job.enterprise.cover"
                                                        style="float: right;border-radius: 10px"></el-avatar>
                                         </el-row>
@@ -251,7 +251,7 @@
     }
 
     .enterprise-other {
-        font-size: 14px;
+        font-size: 10px;
         color: grey;
     }
 

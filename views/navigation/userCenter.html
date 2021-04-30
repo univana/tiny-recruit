@@ -5,22 +5,25 @@
 </head>
 
 <body style="background-color: #f6f6f6">
-<div id="app">
+<div id="app" >
     {{template "widgets/head-menu.html" .}}
 
-    <el-row>
-        <!-- 左侧导航栏 -->
-        <el-col :span="3" style="height:100%;margin:10px 10px">
-            <el-menu default-active="1">
-                <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
-                    <span>简历</span>
-                </el-menu-item>
-            </el-menu>
+    <el-row type="flex" justify="center">
+        <el-col :span="20">
+            <!-- 左侧导航栏 -->
+            <el-col :span="3" style="height:100%;margin-top: 10px;">
+                <el-menu default-active="1">
+                    <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
+                        <span>简历</span>
+                    </el-menu-item>
+                </el-menu>
+            </el-col>
+
+            <!-- 右侧内容 -->
+            {{/*简历展示*/}}
+            {{template "user-center/resume-display.html" .}}
         </el-col>
 
-        <!-- 右侧内容 -->
-        {{/*简历展示*/}}
-        {{template "user-center/resume-display.html" .}}
 
     </el-row>
 </div>

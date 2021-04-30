@@ -6,10 +6,89 @@
 <body style="background-color: #f6f6f6">
 <div id="app">
     {{template "widgets/head-menu.html" .}}
-    {[job]}
-</div>
 
+    {{/*头部banner*/}}
+    <el-row type="flex" justify="center">
+        <el-col :span="20">
+            <el-card shadow="never" style="padding: 0;height: 200px;margin: 5px 0">
+                <el-row>
+                    <el-col :span="12">
+                        <p class="banner-company-name">{[job.enterprise.name]}</p>
+                        <p class="banner-job-title">{[job.title]}</p>
+                        <p class="banner-job-salary">
+                            {[job.min_monthly_salary]}k-{[job.max_monthly_salary]}k·{[job.pay_times]}薪</p>
+                        <p class="banner-job-other">
+                            {[job.location]}
+                            <el-divider direction="vertical"></el-divider>
+                            {[job.require_education]}
+                            <el-divider direction="vertical"></el-divider>
+                            {[job.require_experience]}
+                            <el-divider direction="vertical"></el-divider>
+                            {[job.nature]}
+                        </p>
+                    </el-col>
+                    <el-col :span="12">
+                        <div class="banner-buttons">
+                            <el-button plain icon="el-icon-star-off">收藏</el-button>
+                            <el-button type="primary">投个简历</el-button>
+                        </div>
+
+                    </el-col>
+                </el-row>
+
+            </el-card>
+        </el-col>
+    </el-row>
+
+    <el-row type="flex" justify="center">
+        <el-col :span="14" style="">
+            <el-card shadow="never" style="padding: 0;margin-right: 5px">
+                <div class="job-detail">
+                    <p class="job-detail-title">职位描述</p>
+                    <p class="job-detail-description">{[job.description]}</p>
+                    <p class="job-detail-title">企业介绍</p>
+                    <p class="job-detail-description">{[job.enterprise.description]}</p>
+                </div>
+            </el-card>
+        </el-col>
+        <el-col :span="6" style="">
+            <el-card shadow="never" style="padding: 0;">
+                <p>企业基本信息</p>
+                <div>
+                    <el-row type="flex" justify="center">
+                        <el-col :span="6">
+                            <el-avatar :size="60" shape="square"
+                                       :src="job.enterprise.cover"
+                                       style="border-radius: 10px"></el-avatar>
+                        </el-col>
+                        <el-col :span="8">
+                            <div style="line-height: 60px;width: 100px;display: inline-block;font-size: 18px;color: #555555">{[job.enterprise.name]}
+                            </div>
+                        </el-col>
+                    </el-row>
+
+                    <el-row type="flex" justify="center">
+                        <el-col :span="10">
+                            <p style="margin-bottom: 20px"><i class="fa fa-industry"></i><span class="side-enterprise-feature">{[job.enterprise.type]}</span>
+                            </p>
+                            <p style="margin-bottom: 20px"><i class="fa fa-line-chart"><span class="side-enterprise-feature">{[job.enterprise.financing_stage]}</span></i>
+                            </p>
+                            <p style="margin-bottom: 20px"><i class="fa fa-user"><span
+                                            class="side-enterprise-feature">{[job.enterprise.scale]}</span></i></p>
+                        </el-col>
+                    </el-row>
+
+
+                </div>
+
+
+            </el-card>
+        </el-col>
+    </el-row>
+</div>
 </body>
+
+
 {{template "widgets/footer.html" .}}
 
 <script>
@@ -34,5 +113,38 @@
     })
 </script>
 <style>
+    .banner-company-name {
+        font-size: 14px;
+    }
 
+    .banner-job-title {
+        font-size: 36px;
+    }
+
+    .banner-job-salary {
+        font-size: 18px;
+        color: #FD5F39;
+    }
+
+    .banner-buttons {
+        margin-left: 230px;
+        margin-top: 50px;
+    }
+
+    .job-detail-title {
+        font-weight: bold;
+        font-size: 15px;
+        margin-bottom: 15px;
+    }
+
+    .job-detail-description {
+        white-space: pre;
+        font-size: 14px;
+        color: #61687C;
+    }
+
+    .side-enterprise-feature {
+        color: #737373;
+        margin-left: 20px;
+    }
 </style>
