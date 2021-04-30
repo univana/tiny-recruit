@@ -1,7 +1,7 @@
 package controllers
 
 import (
-	"fmt"
+	"myApp/models"
 	"strconv"
 )
 
@@ -10,7 +10,10 @@ type JobController struct {
 }
 
 func (c *JobController) ShowJob() {
-	jobID, _ := strconv.Atoi(c.Ctx.Input.Param(":key"))
-	fmt.Println(jobID)
-	c.TplName = "job/show.html"
+	jobID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+
+	//获取职位信息
+	job := models.GetJobByID(jobID)
+	c.Data["Job"] = job
+	c.TplName = "job/job-detail.html"
 }

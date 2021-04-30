@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -42,4 +43,23 @@ func GetAllJobs() ([]Job, error) {
 	}
 
 	return jobs, err
+}
+
+// GetJobByID 根据ID获取职位信息
+func GetJobByID(id int) Job {
+	o := orm.NewOrm()
+	var job Job
+	err := o.QueryTable(TNJob()).Filter("job_id", id).One(&job)
+	if err != nil {
+		logs.Error("Error get job: ", err)
+		return Job{}
+	}
+
+	//同步对应企业数据
+	_, err = o.LoadRelated(&job, "Enterprise")
+	if err != nil {
+		logs.Error("Error get enterprise for the job: ", err)
+		return Job{}
+	}
+	return job
 }

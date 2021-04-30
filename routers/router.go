@@ -28,6 +28,6 @@ func init() {
 	beego.Router("/enterprise/filter/filter", &controllers.EnterpriseController{}, "*:Filter")
 
 	//职位内容展示
-	beego.Router("/job/show/?:id", &controllers.JobController{}, "*:ShowJob")
+	beego.Router("/job/detail/?:id", &controllers.JobController{}, "*:ShowJob")
 
 }

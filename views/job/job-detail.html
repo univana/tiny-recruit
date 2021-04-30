@@ -6,7 +6,7 @@
 <body style="background-color: #f6f6f6">
 <div id="app">
     {{template "widgets/head-menu.html" .}}
-    job show
+    {[job]}
 </div>
 
 </body>
@@ -18,6 +18,7 @@
         data: function () {
             return {
                 activeIndex: '2',
+                job:{{.Job}},
 
             }
         },

@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位详情页跳转的后端逻辑并创建了前端页面">
-      <change afterPath="$PROJECT_DIR$/store/session/b/6/b69ef265c5055e22feb3e7eaa7c33e4d" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/job/show.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/5/4/547a07db5106b10f4bc45f8791a3850f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/b/6/b69ef265c5055e22feb3e7eaa7c33e4d" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/b/6/b69ef265c5055e22feb3e7eaa7c33e4d" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/show.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
