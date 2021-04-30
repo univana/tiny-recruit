@@ -31,4 +31,7 @@ func init() {
 	//职位内容展示
 	beego.Router("/job/detail/?:id", &controllers.JobController{}, "*:ShowJob")
 
+	//投递简历
+	beego.Router("/job/detail/deliver", &controllers.DeliveranceController{}, "*:Deliver")
+
 }

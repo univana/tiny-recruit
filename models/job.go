@@ -23,7 +23,6 @@ type Job struct {
 	ModifyTime        time.Time `orm:"type(datetime);null" json:"modify_time"`         //最后修改时间
 
 	Enterprise *Enterprise `orm:"rel(fk)" json:"enterprise"` //企业和职位的一对多关系
-
 }
 
 func (m *Job) TableName() string {
@@ -62,4 +61,17 @@ func GetJobByID(id int) Job {
 		return Job{}
 	}
 	return job
+}
+
+// IsDelivered 判断职位是否被投递
+func IsDelivered(jobID int, memberID int) int {
+	o := orm.NewOrm()
+	var deliverance Deliverance
+	err := o.QueryTable(TNDeliverance()).Filter("job_id", jobID).Filter("member_id", memberID).One(&deliverance)
+	if err == orm.ErrNoRows {
+		return 0
+	} else {
+		return 1
+	}
+
 }

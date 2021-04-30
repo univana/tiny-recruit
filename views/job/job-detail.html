@@ -29,8 +29,15 @@
                     </el-col>
                     <el-col :span="12">
                         <div class="banner-buttons">
-                            <el-button plain icon="el-icon-star-off">收藏</el-button>
-                            <el-button type="primary">投个简历</el-button>
+                            <template>
+                                <el-button plain icon="el-icon-star-off" v-if="collected==0">收藏</el-button>
+                                <el-button type="primary" disabled v-else>已收藏</el-button>
+                            </template>
+
+                            <template>
+                                <el-button type="primary" @click="handleDeliver" v-if="delivered==0">投个简历</el-button>
+                                <el-button type="primary" disabled v-else>已投递</el-button>
+                            </template>
                         </div>
 
                     </el-col>
@@ -62,16 +69,19 @@
                                        style="border-radius: 10px"></el-avatar>
                         </el-col>
                         <el-col :span="8">
-                            <div style="line-height: 60px;width: 100px;display: inline-block;font-size: 18px;color: #555555">{[job.enterprise.name]}
+                            <div style="line-height: 60px;width: 100px;display: inline-block;font-size: 18px;color: #555555">
+                                {[job.enterprise.name]}
                             </div>
                         </el-col>
                     </el-row>
 
                     <el-row type="flex" justify="center">
                         <el-col :span="10">
-                            <p style="margin-bottom: 20px"><i class="fa fa-industry"></i><span class="side-enterprise-feature">{[job.enterprise.type]}</span>
+                            <p style="margin-bottom: 20px"><i class="fa fa-industry"></i><span
+                                        class="side-enterprise-feature">{[job.enterprise.type]}</span>
                             </p>
-                            <p style="margin-bottom: 20px"><i class="fa fa-line-chart"><span class="side-enterprise-feature">{[job.enterprise.financing_stage]}</span></i>
+                            <p style="margin-bottom: 20px"><i class="fa fa-line-chart"><span
+                                            class="side-enterprise-feature">{[job.enterprise.financing_stage]}</span></i>
                             </p>
                             <p style="margin-bottom: 20px"><i class="fa fa-user"><span
                                             class="side-enterprise-feature">{[job.enterprise.scale]}</span></i></p>
@@ -98,6 +108,8 @@
             return {
                 activeIndex: '2',
                 job:{{.Job}},
+                delivered:{{.Delivered}},
+                collected: 0,
 
             }
         },
@@ -106,6 +118,35 @@
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
+            /*投递简历*/
+            handleDeliver() {
+                let self = this;
+                let myFormData = new FormData();
+                let jobID = this.job.job_id;
+                myFormData.append("job_id", jobID)
+                $.ajax({
+                    url: "{{urlfor "DeliveranceController.Deliver"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.delivered = 1;
+                            self.$notify({
+                                message: res.message,
+                                type: 'success',
+                            });
+                        }
+                    }
+
+                });
+            }
 
         },
         delimiters: ['{[', ']}'],
