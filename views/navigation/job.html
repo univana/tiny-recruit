@@ -95,7 +95,7 @@
                                 <el-col :span="14">
                                     <el-card shadow="never" style="border: none">
                                         <p>
-                                            <span class="job-info-title">{[job.title]}</span>
+                                            <span ><a class="job-info-title" :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + job.job_id" target="_blank">{[job.title]}</a></span>
                                             <span class="job-info-location">[{[job.location]}]</span>
                                             <span class="job-info-create-time">发布于{[dateFormatMMDD(job.create_time)]}</span>
                                         </p>
@@ -198,7 +198,7 @@
             },
             dateFormatMMDD(time) {
                 return moment(time).format("MM月DD日")
-            }
+            },
         },
         delimiters: ['{[', ']}'],
 
@@ -216,7 +216,11 @@
 
     .job-info-title {
         font-size: 16px;
-        color: #409EFF
+        color: #409EFF;
+    }
+    .job-info-title:hover{
+        text-decoration: none;
+        cursor: pointer;
     }
 
     .job-info-location {
@@ -239,6 +243,11 @@
     .enterprise-name {
         font-size: 16px;
         color: #409EFF
+    }
+
+    .enterprise-name:hover{
+        text-decoration: none;
+        cursor: pointer;
     }
 
     .enterprise-other {

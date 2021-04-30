@@ -1,0 +1,37 @@
+<head>
+    {{template "widgets/head.html" .}}
+    <title>tiny-recruit</title>
+</head>
+
+<body style="background-color: #f6f6f6">
+<div id="app">
+    {{template "widgets/head-menu.html" .}}
+    job show
+</div>
+
+</body>
+{{template "widgets/footer.html" .}}
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                activeIndex: '2',
+
+            }
+        },
+        methods: {
+            handleCurrentChange: function (currentPage) {
+                this.currentPage = currentPage;
+                console.log(this.currentPage)  //点击第几页
+            },
+
+        },
+        delimiters: ['{[', ']}'],
+
+    })
+</script>
+<style>
+
+</style>

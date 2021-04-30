@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位卡片的基本样式并对job.html进行了部分重写">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位详情页跳转的后端逻辑并创建了前端页面">
+      <change afterPath="$PROJECT_DIR$/store/session/b/6/b69ef265c5055e22feb3e7eaa7c33e4d" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/job/show.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/5/4/547a07db5106b10f4bc45f8791a3850f" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -141,7 +145,9 @@
     <MESSAGE value="添加了职位卡片的粗糙样式" />
     <MESSAGE value="添加了职位分页器并实现了前端分页逻辑" />
     <MESSAGE value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
+    <MESSAGE value="添加了搜索框的前端样式" />
+    <MESSAGE value="实现了职位详情页跳转的后端逻辑并创建了前端页面" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了职位详情页跳转的后端逻辑并创建了前端页面" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

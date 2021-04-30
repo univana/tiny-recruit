@@ -27,4 +27,7 @@ func init() {
 	//企业过滤
 	beego.Router("/enterprise/filter/filter", &controllers.EnterpriseController{}, "*:Filter")
 
+	//职位内容展示
+	beego.Router("/job/show/?:id", &controllers.JobController{}, "*:ShowJob")
+
 }
