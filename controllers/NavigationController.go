@@ -50,25 +50,6 @@ func (c *NavigationController) EnterpriseHome() {
 	enterprise := models.GetEnterpriseByMemberID(c.Member.MemberId)
 	//为企业加载对应的职位信息
 	enterprise.LoadJobs()
-
-	//获取所有的投递信息
-	type Deliver struct {
-		Job     *models.Job
-		Resumes []models.Resume
-	}
-	var delivers []Deliver
-	for _, job := range enterprise.Jobs {
-		resumes, err := models.GetAllResumesByJobID(job.JobID)
-		if err != nil {
-			logs.Error("Error EnterpriseHome: ", err)
-		}
-		delivers = append(delivers, Deliver{
-			Job:     job,
-			Resumes: resumes,
-		})
-	}
-	fmt.Println(delivers)
-	c.Data["Delivers"] = delivers
 	c.Data["Enterprise"] = enterprise
 	c.Data["Jobs"] = enterprise.Jobs
 	c.Data["Member"] = c.Member

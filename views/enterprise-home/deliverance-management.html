@@ -7,7 +7,7 @@
         <el-row>
             <el-col :span="20">
                 {{/*职位选择器*/}}
-                <el-select placeholder="请选择职位" v-model="value">
+                <el-select placeholder="请选择职位" v-model="jobQueryID">
                     <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title">
                         <span>{[dateFormatYMDDel(job.create_time)]}</span>
                         <el-divider direction="vertical"></el-divider>
@@ -20,8 +20,14 @@
                 <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
 
                 {{/*投递清单*/}}
-                <el-table>
+                <el-table v-if="deliverListVisible==1">
 
+                    {{/*投递时间*/}}
+                    <el-table-column label="投递时间" width="200">
+                        <template slot-scope="scope">
+                            <span></span>
+                        </template>
+                    </el-table-column>
                 </el-table>
 
             </el-col>

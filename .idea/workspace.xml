@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位管理页面获取所有职位及对应投递数据的后端逻辑">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修改了投递表的时间字段">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/deliverance.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/deliverance.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/session/4/e/4ed1938f62185d49c53022299d624807" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/4/e/4ed1938f62185d49c53022299d624807" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
@@ -122,7 +123,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="修改了 member 和 resume 的数据表设计" />
     <MESSAGE value="实现了简历展示的基本样式并对member和resume模型进行了重构" />
     <MESSAGE value="创建教育经历表 educationExperience.go" />
     <MESSAGE value="实现教育经历的后端逻辑" />
@@ -147,7 +147,8 @@
     <MESSAGE value="添加了企业版页面职位管理表格的前端样式" />
     <MESSAGE value="实现了用户投递职位的后端逻辑和前端部分响应" />
     <MESSAGE value="实现了职位管理页面获取所有职位及对应投递数据的后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了职位管理页面获取所有职位及对应投递数据的后端逻辑" />
+    <MESSAGE value="修改了投递表的时间字段" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了投递表的时间字段" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

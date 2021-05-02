@@ -34,4 +34,7 @@ func init() {
 	//投递简历
 	beego.Router("/job/detail/deliver", &controllers.DeliveranceController{}, "*:Deliver")
 
+	//查询职位对应的所有投递数据
+	beego.Router("enterprise/home/queryDeliverance", &controllers.JobController{}, "*:GetDeliverance")
+
 }

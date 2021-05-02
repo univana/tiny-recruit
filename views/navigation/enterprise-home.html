@@ -45,13 +45,13 @@
                 pageSize: 8,
                 enterprise:{{.Enterprise}},
                 jobs: {{.Jobs}},
-                resumes:{{.Resumes}},
-                delivers:{{.Delivers}},
-                value:'',
+                jobQueryID: '',
+                deliverList: [],
+                deliverListVisible: 0,
             }
         },
         methods: {
-            dateFormatYMDDel(time){
+            dateFormatYMDDel(time) {
                 return moment(time).format("YYYY-MM-DD")
             },
             dateFormatYYYYMMDD(time) {
@@ -61,7 +61,33 @@
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
-            handleQuery(){
+            handleQuery() {
+                let self = this;
+                let myFormData = new FormData();
+                let jobID = this.jobQueryID;
+                myFormData.append("job_id", jobID);
+                $.ajax({
+                    url: "{{urlfor "JobController.GetDeliverance"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.$notify({
+                                type: "success",
+                                message: "获取投递数据成功!"
+                            });
+                            self.deliverList=res.data;
+                            self.deliverListVisible = 1;
+                        }
+                    }
+                })
 
             }
         },
