@@ -1,6 +1,7 @@
 package models
 
 import (
+	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"time"
 )
@@ -28,7 +29,7 @@ type Resume struct {
 }
 
 //TableName :return-笔记本表名
-func (m *Resume) TableName() string {
+func (r *Resume) TableName() string {
 	return TNResume()
 }
 
@@ -39,4 +40,25 @@ func GetResumeByMemberID(memberID int) (Resume, error) {
 	//查找数据库
 	err := o.QueryTable(TNResume()).Filter("member_id", memberID).One(&resume)
 	return resume, err
+}
+
+// LoadExperiences 为简历加载经历
+func (r *Resume) LoadExperiences() {
+	o := orm.NewOrm()
+	//加载教育经历
+	_, err := o.LoadRelated(r, "EducationExperiences")
+	if err != nil {
+		logs.Error("Error load experiences: ", err)
+	}
+	//加载实习经历
+	_, err = o.LoadRelated(r, "InternshipExperiences")
+	if err != nil {
+		logs.Error("Error load experiences: ", err)
+	}
+	//加载项目经历
+	_, err = o.LoadRelated(r, "ProjectExperiences")
+	if err != nil {
+		logs.Error("Error load experiences: ", err)
+	}
+
 }

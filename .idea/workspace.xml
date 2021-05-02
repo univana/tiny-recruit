@@ -1,19 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了企业版页面职位管理表格的前端样式">
-      <change afterPath="$PROJECT_DIR$/controllers/DeliveranceController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/deliverance.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/3/a/3a5909050ec179d682d7eebfb8a1ee24" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了用户投递职位的后端逻辑和前端部分响应">
+      <change afterPath="$PROJECT_DIR$/store/session/4/e/4ed1938f62185d49c53022299d624807" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/7/d/7dffe7173abdc4543dc33b98460ec7c0" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/deliverance.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/deliverance.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/resume.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/resume.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/3/a/3a5909050ec179d682d7eebfb8a1ee24" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -129,7 +123,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="修改头部菜单的实现" />
     <MESSAGE value="重写头部导航栏" />
     <MESSAGE value="修改了 member 和 resume 的数据表设计" />
     <MESSAGE value="实现了简历展示的基本样式并对member和resume模型进行了重构" />
@@ -154,9 +147,21 @@
     <MESSAGE value="添加了企业版页面的导航逻辑" />
     <MESSAGE value="添加了企业版页面获取企业所属职位信息的后端逻辑" />
     <MESSAGE value="添加了企业版页面职位管理表格的前端样式" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了企业版页面职位管理表格的前端样式" />
+    <MESSAGE value="实现了用户投递职位的后端逻辑和前端部分响应" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了用户投递职位的后端逻辑和前端部分响应" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/models/deliverance.go</url>
+          <line>39</line>
+          <option name="timeStamp" value="8" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
