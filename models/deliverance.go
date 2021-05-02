@@ -3,13 +3,16 @@ package models
 import (
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
+	"time"
 )
 
 type Deliverance struct {
-	DeliveranceID int    `orm:"pk;auto;column(deliverance_id)" json:"deliverance_id"` //投递ID
-	MemberID      int    `orm:"column(member_id)" json:"member_id"`                   //用户ID
-	JobID         int    `orm:"column(job_id)" json:"job_id"`                         //职位ID
-	Status        string `orm:"default(待查看)" json:"status"`                           //投递状态
+	DeliveranceID int       `orm:"pk;auto;column(deliverance_id)" json:"deliverance_id"` //投递ID
+	MemberID      int       `orm:"column(member_id)" json:"member_id"`                   //用户ID
+	JobID         int       `orm:"column(job_id)" json:"job_id"`                         //职位ID
+	DeliverTime   time.Time `orm:"type(datetime);null" json:"deliver_time"`              //投递时间
+	ModifyTime    time.Time `orm:"type(datetime);null" json:"modify_time"`               //状态修改时间
+	Status        string    `orm:"default(待查看)" json:"status"`                           //投递状态
 }
 
 func (d *Deliverance) TableName() string {

@@ -4,18 +4,28 @@
             <span>投递管理</span>
         </div>
 
-       {{/* */}}{{/*投递管理表格*/}}{{/*
-        <el-table :data="resumes.slice((currentPage-1)*pageSize,currentPage*pageSize)">
-            */}}{{/*操作*/}}{{/*
-            <el-table-column label="操作" width="200">
-                <template slot-scope="scope">
-                    <el-button-group>
-                        <el-button type="primary" icon="el-icon-edit" size="small" plain>编辑</el-button>
-                        <el-button type="danger" icon="el-icon-delete" size="small" plain>删除</el-button>
-                    </el-button-group>
-                </template>
-            </el-table-column>
-        </el-table>*/}}
+        <el-row>
+            <el-col :span="20">
+                {{/*职位选择器*/}}
+                <el-select placeholder="请选择职位" v-model="value">
+                    <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title">
+                        <span>{[dateFormatYMDDel(job.create_time)]}</span>
+                        <el-divider direction="vertical"></el-divider>
+                        <span>{[job.location]}</span>
+                        <el-divider direction="vertical"></el-divider>
+                        <span>{[job.title]}</span>
+                    </el-option>
+                </el-select>
+                {{/*查询按钮*/}}
+                <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
+
+                {{/*投递清单*/}}
+                <el-table>
+
+                </el-table>
+
+            </el-col>
+        </el-row>
 
        {{/* */}}{{/*分页器*/}}{{/*
         <el-row type="flex" justify="center">

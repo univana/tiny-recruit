@@ -47,9 +47,13 @@
                 jobs: {{.Jobs}},
                 resumes:{{.Resumes}},
                 delivers:{{.Delivers}},
+                value:'',
             }
         },
         methods: {
+            dateFormatYMDDel(time){
+                return moment(time).format("YYYY-MM-DD")
+            },
             dateFormatYYYYMMDD(time) {
                 return moment(time).format("YYYY年MM月DD日")
             },
@@ -57,6 +61,9 @@
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
             },
+            handleQuery(){
+
+            }
         },
         delimiters: ['{[', ']}'],
     })
