@@ -35,9 +35,12 @@ func init() {
 	beego.Router("/job/detail/deliver", &controllers.DeliveranceController{}, "*:Deliver")
 
 	//查询职位对应的所有投递数据
-	beego.Router("enterprise/home/queryDeliverance", &controllers.JobController{}, "*:GetDeliverance")
+	beego.Router("/enterprise/home/queryDeliverance", &controllers.JobController{}, "*:GetDeliverance")
 
 	//修改投递状态
-	beego.Router("enterprise/home/changeStatus", &controllers.DeliveranceController{}, "*:ChangeStatus")
+	beego.Router("/enterprise/home/changeStatus", &controllers.DeliveranceController{}, "*:ChangeStatus")
+
+	//职位过滤器
+	beego.Router("/job/filter", &controllers.JobController{}, "*:Filter")
 
 }

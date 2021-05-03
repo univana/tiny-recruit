@@ -12,8 +12,8 @@
                 {{/*搜索框*/}}
                 <el-row style="margin-left: 60px">
                     <el-col :span="20">
-                        <el-input placeholder="请输入内容" v-model="input" class="search-bar"></el-input>
-                        <el-button icon="el-icon-search">搜索</el-button>
+                        <el-input placeholder="请输入内容" class="search-bar" v-model="search_content"></el-input>
+                        <el-button icon="el-icon-search" @click="handleFilter" >搜索</el-button>
 
                     </el-col>
                 </el-row>
@@ -186,6 +186,7 @@
                 radio_scale: '不限',
                 radio_require_experience: '不限',
                 radio_require_education: '不限',
+                search_content:'',
             }
         },
         methods: {
@@ -199,6 +200,38 @@
             dateFormatMMDD(time) {
                 return moment(time).format("MM月DD日")
             },
+            /*职位过滤器逻辑*/
+            handleFilter() {
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("search_content",this.search_content);
+                myFormData.append("city",this.radio_city);
+
+                $.ajax({
+                    url: "{{urlfor "JobController.Filter"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            console.log(res.data);
+                            self.jobs=res.data;
+                            self.$notify({
+                                message: res.message,
+                                type: 'success',
+                            });
+                        }
+                    }
+
+                });
+
+            }
         },
         delimiters: ['{[', ']}'],
 

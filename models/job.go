@@ -73,5 +73,25 @@ func IsDelivered(jobID int, memberID int) int {
 	} else {
 		return 1
 	}
+}
+
+// FilterJobs 过滤职位信息
+func FilterJobs(searchContent string, city string) ([]Job, error) {
+	o := orm.NewOrm()
+	var jobs []Job
+	var err error
+	qs := o.QueryTable(TNJob())
+	cond := orm.NewCondition()
+	if len(searchContent) != 0 {
+		cond = cond.And("title__icontains", searchContent)
+	}
+
+	_, err = qs.SetCond(cond).All(&jobs)
+
+	//同步对应企业数据
+	for i := 0; i < len(jobs); i++ {
+		_, err = o.LoadRelated(&jobs[i], "Enterprise")
+	}
+	return jobs, err
 
 }

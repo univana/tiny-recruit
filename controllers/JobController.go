@@ -54,5 +54,17 @@ func (c *JobController) GetDeliverance() {
 		deliverList = append(deliverList, Deliver{DeliveranceID: deliverance.DeliveranceID, DeliverTime: deliverance.DeliverTime, ModifyTime: deliverance.ModifyTime, Status: deliverance.Status, Resume: resume})
 	}
 	c.JsonResult(0, "ok", deliverList)
+}
+
+// Filter 职位过滤器后端逻辑
+func (c *JobController) Filter() {
+	searchContent := c.GetString("search_content")
+	jobs, err := models.FilterJobs(searchContent, "b")
+	if err != nil {
+		logs.Error("Error JobController Filter: ", err)
+		c.JsonResult(1, "职位过滤错误！")
+	} else {
+		c.JsonResult(0, "ok", jobs)
+	}
 
 }
