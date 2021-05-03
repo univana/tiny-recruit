@@ -13,7 +13,7 @@
                 <el-row style="margin-left: 60px">
                     <el-col :span="20">
                         <el-input placeholder="请输入内容" class="search-bar" v-model="search_content"></el-input>
-                        <el-button icon="el-icon-search" @click="handleFilter" >搜索</el-button>
+                        <el-button icon="el-icon-search" @click="handleFilter">搜索</el-button>
 
                     </el-col>
                 </el-row>
@@ -23,7 +23,7 @@
                     <el-col :span="20">
                         <p>
                             <span class="filter-box-title">工作地点：</span>
-                            <el-radio-group v-model="radio_city" size="small">
+                            <el-radio-group v-model="radio_city" size="small" @change="handleFilter">
                                 <template v-for="city in cities">
                                     <el-radio-button :label="city"></el-radio-button>
                                 </template>
@@ -32,7 +32,7 @@
 
                         <p>
                             <span class="filter-box-title">工作经验：</span>
-                            <el-radio-group v-model="radio_require_experience" size="small">
+                            <el-radio-group v-model="radio_require_experience" size="small" @change="handleFilter">
                                 <template v-for="experience in require_experiences">
                                     <el-radio-button :label="experience"></el-radio-button>
                                 </template>
@@ -41,7 +41,7 @@
 
                         <p>
                             <span class="filter-box-title">学历要求：</span>
-                            <el-radio-group v-model="radio_require_education" size="small">
+                            <el-radio-group v-model="radio_require_education" size="small" @change="handleFilter">
                                 <template v-for="education in require_educations">
                                     <el-radio-button :label="education"></el-radio-button>
                                 </template>
@@ -95,7 +95,9 @@
                                 <el-col :span="13">
                                     <el-card shadow="never" style="border: none">
                                         <p>
-                                            <span ><a class="job-info-title" :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + job.job_id" target="_blank">{[job.title]}</a></span>
+                                            <span><a class="job-info-title"
+                                                     :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + job.job_id"
+                                                     target="_blank">{[job.title]}</a></span>
                                             <span class="job-info-location">[{[job.location]}]</span>
                                             <span class="job-info-create-time">发布于{[dateFormatMMDD(job.create_time)]}</span>
                                         </p>
@@ -186,7 +188,7 @@
                 radio_scale: '不限',
                 radio_require_experience: '不限',
                 radio_require_education: '不限',
-                search_content:'',
+                search_content: '',
             }
         },
         methods: {
@@ -204,8 +206,10 @@
             handleFilter() {
                 let self = this;
                 let myFormData = new FormData();
-                myFormData.append("search_content",this.search_content);
-                myFormData.append("city",this.radio_city);
+                myFormData.append("search_content", this.search_content);
+                myFormData.append("city", this.radio_city);
+                myFormData.append("require_experience",this.radio_require_experience);
+                myFormData.append("require_education",this.radio_require_education);
 
                 $.ajax({
                     url: "{{urlfor "JobController.Filter"}}",
@@ -221,11 +225,7 @@
                             });
                         } else {
                             console.log(res.data);
-                            self.jobs=res.data;
-                            self.$notify({
-                                message: res.message,
-                                type: 'success',
-                            });
+                            self.jobs = res.data;
                         }
                     }
 
@@ -251,7 +251,8 @@
         font-size: 16px;
         color: #409EFF;
     }
-    .job-info-title:hover{
+
+    .job-info-title:hover {
         text-decoration: none;
         cursor: pointer;
     }
@@ -278,7 +279,7 @@
         color: #409EFF
     }
 
-    .enterprise-name:hover{
+    .enterprise-name:hover {
         text-decoration: none;
         cursor: pointer;
     }

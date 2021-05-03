@@ -1,13 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位管理页面的基本样式和修改投递状态的前后端逻辑">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位搜索的后端逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/a/9/a9ace3b6b669d70e5e1bad74b0d23044" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/a/9/a9ace3b6b669d70e5e1bad74b0d23044" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -123,7 +120,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现教育经历的后端逻辑" />
     <MESSAGE value="实现教育经历的前段基本显示" />
     <MESSAGE value="实现公司页面基本样式" />
     <MESSAGE value="实现了企业浏览界面的分页功能" />
@@ -148,7 +144,8 @@
     <MESSAGE value="修改了投递表的时间字段" />
     <MESSAGE value="重构获取职位对应的投递数据的后端逻辑，改为按请求获取" />
     <MESSAGE value="实现了职位管理页面的基本样式和修改投递状态的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了职位管理页面的基本样式和修改投递状态的前后端逻辑" />
+    <MESSAGE value="实现了职位搜索的后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了职位搜索的后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -163,7 +160,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/controllers/JobController.go</url>
-          <line>66</line>
+          <line>69</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>

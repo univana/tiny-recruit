@@ -59,7 +59,10 @@ func (c *JobController) GetDeliverance() {
 // Filter 职位过滤器后端逻辑
 func (c *JobController) Filter() {
 	searchContent := c.GetString("search_content")
-	jobs, err := models.FilterJobs(searchContent, "b")
+	city := c.GetString("city")
+	requireExp := c.GetString("require_experience")
+	requireEdu := c.GetString("require_education")
+	jobs, err := models.FilterJobs(searchContent, city, requireExp, requireEdu)
 	if err != nil {
 		logs.Error("Error JobController Filter: ", err)
 		c.JsonResult(1, "职位过滤错误！")

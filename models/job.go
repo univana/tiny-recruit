@@ -76,7 +76,7 @@ func IsDelivered(jobID int, memberID int) int {
 }
 
 // FilterJobs 过滤职位信息
-func FilterJobs(searchContent string, city string) ([]Job, error) {
+func FilterJobs(searchContent string, city string, requireExp string, requireEdu string) ([]Job, error) {
 	o := orm.NewOrm()
 	var jobs []Job
 	var err error
@@ -84,6 +84,21 @@ func FilterJobs(searchContent string, city string) ([]Job, error) {
 	cond := orm.NewCondition()
 	if len(searchContent) != 0 {
 		cond = cond.And("title__icontains", searchContent)
+	}
+
+	//按城市过滤
+	if city != "不限" {
+		cond = cond.And("location", city)
+	}
+
+	//工作经验过滤
+	if requireExp != "不限" {
+		cond = cond.And("require_experience", requireExp)
+	}
+
+	//按学历要求过滤
+	if requireEdu != "不限" {
+		cond = cond.And("require_education", requireEdu)
 	}
 
 	_, err = qs.SetCond(cond).All(&jobs)
