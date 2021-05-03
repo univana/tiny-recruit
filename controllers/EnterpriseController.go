@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego/logs"
 	"myApp/models"
+	"strconv"
 )
 
 type EnterpriseController struct {
@@ -23,4 +24,16 @@ func (c *EnterpriseController) Filter() {
 		c.JsonResult(0, "ok", enterprises)
 	}
 	c.TplName = "navigation/enterprise.html"
+}
+
+// ShowEnterprise 展示企业详情页
+func (c *EnterpriseController) ShowEnterprise() {
+	enterpriseID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	enterprise, err := models.GetEnterpriseByID(enterpriseID)
+	if err != nil {
+		logs.Error("Error EnterpriseController ShowEnterprise: ", err)
+	}
+	enterprise.LoadJobs()
+	c.Data["Enterprise"] = enterprise
+	c.TplName = "enterprise/enterprise-detail.html"
 }

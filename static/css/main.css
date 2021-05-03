@@ -15,11 +15,7 @@ a:hover{
 textarea{
     resize: none;
 }
-.text{
-    font-size: 12px;
-    color: #999999;
-    font-weight: 200;
-}
+
 .error-message{
     color: red;
     font-size: 12px;

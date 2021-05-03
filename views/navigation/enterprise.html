@@ -1,6 +1,5 @@
 <head>
     {{template "widgets/head.html" .}}
-    <link href="/static/css/enterprise.css" rel="stylesheet">
     <title>tiny-recruit</title>
 </head>
 
@@ -73,7 +72,7 @@
                                 <el-row>
                                     <el-col :span="17">
                                         {{/*企业名称*/}}
-                                        <p class="enterprise-name">{[enterprise.name]}</p>
+                                        <p class="enterprise-name"><a :href="'{{urlfor "EnterpriseController.ShowEnterprise" ":id" ""}}' + enterprise.enterprise_id" target="_blank">{[enterprise.name]}</a></p>
                                         {{/*企业其他内容*/}}
                                         <p class="enterprise-other">
                                             {[enterprise.type]}
@@ -167,3 +166,27 @@
         delimiters: ['{[', ']}'],
     })
 </script>
+
+<style>
+    .enterprise-name {
+        font-size: 16px;
+        color: #409EFF;
+        text-decoration: none;
+    }
+    a:hover{
+        text-decoration: none;
+    }
+
+    .enterprise-name:hover {
+        text-decoration: none;
+        cursor: pointer;
+    }
+
+    .enterprise-other {
+        font-size: 10px;
+        color: grey;
+    }
+    .filter-box-title{
+        font-weight: bold;
+    }
+</style>

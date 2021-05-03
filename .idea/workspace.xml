@@ -1,13 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位其他要求的筛选逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/3/6/36b0985d1ba4a97ef763abf14b2f1900" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位过滤器的整体逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/7/7/77782b69c0f362477e588946dac7dcd2" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/enterprise/enterprise-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/a/9/a9ace3b6b669d70e5e1bad74b0d23044" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/EnterpriseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EnterpriseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/static/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/static/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/3/6/36b0985d1ba4a97ef763abf14b2f1900" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现公司页面基本样式" />
     <MESSAGE value="实现了企业浏览界面的分页功能" />
     <MESSAGE value="实现了企业过滤器的基本样式" />
     <MESSAGE value="实现了根据所在城市过滤企业的前后端逻辑" />
@@ -147,7 +149,8 @@
     <MESSAGE value="实现了职位管理页面的基本样式和修改投递状态的前后端逻辑" />
     <MESSAGE value="实现了职位搜索的后端逻辑" />
     <MESSAGE value="实现了职位其他要求的筛选逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了职位其他要求的筛选逻辑" />
+    <MESSAGE value="实现了职位过滤器的整体逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了职位过滤器的整体逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

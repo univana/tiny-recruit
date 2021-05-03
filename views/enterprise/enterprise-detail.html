@@ -1,0 +1,192 @@
+<head>
+    {{template "widgets/head.html" .}}
+    <title>tiny-recruit</title>
+</head>
+
+<body style="background-color: #f6f6f6">
+<div id="app">
+    {{template "widgets/head-menu.html" .}}
+
+    {{/*头部banner*/}}
+    <el-row type="flex" justify="center">
+        <el-col :span="20">
+            <el-card shadow="never" style="padding: 0;height: 200px;margin: 5px 0">
+                <el-row>
+                    <el-col :span="5">
+                        <el-avatar :size="160" shape="square"
+                                   :src="enterprise.cover"
+                                   style="border-radius: 10px;"></el-avatar>
+                    </el-col>
+                    <el-col :span="12" style="height: 80px">
+                        <p>
+                            <span class="banner-enterprise-name">{[enterprise.name]}</span>
+                            <span class="banner-enterprise-verify-tag">
+                                <template>
+                                     <el-tag type="danger" v-if="enterprise.status==0">未认证</el-tag>
+                                     <el-tag type="success" v-else="">已认证</el-tag>
+                                </template>
+
+                            </span>
+                        </p>
+                    </el-col>
+                    <el-col :span="6" style="">
+                        <el-row style="">
+                            <el-col :span="12" style="text-align: center">
+                                <p style="font-size: 36px"> {[enterprise.jobs.length]}</p>
+                                <p>在招职位</p>
+                            </el-col>
+                            <el-col :span="12" style="">
+                                <template>
+                                    <el-button plain icon="el-icon-star-off" v-if="collected==0">收藏</el-button>
+                                    <el-button type="primary" disabled v-else>已收藏</el-button>
+                                </template>
+                            </el-col>
+                        </el-row>
+                    </el-col>
+                    <el-col :span="12" style="height: 80px">
+                        <p class="banner-enterprise-other">
+                            {[enterprise.financing_stage]}
+                            <el-divider direction="vertical"></el-divider>
+                            {[enterprise.scale]}
+                            <el-divider direction="vertical"></el-divider>
+                            {[enterprise.type]}
+                        </p>
+                    </el-col>
+
+                    {{/*   <el-col :span="12">
+                        <div class="banner-buttons">
+                            <template>
+                                <el-button plain icon="el-icon-star-off" v-if="collected==0">收藏</el-button>
+                                <el-button type="primary" disabled v-else>已收藏</el-button>
+                            </template>
+                        </div>
+
+                    </el-col>*/}}
+                </el-row>
+            </el-card>
+        </el-col>
+    </el-row>
+
+    {{/*公司详情*/}}
+    <el-row type="flex" justify="center">
+        <el-col :span="20" style="">
+            <el-card shadow="never" style="padding: 0;margin-right: 5px">
+                <el-tabs v-model="activeName">
+                    <el-tab-pane label="企业简介" name="first">
+                        {{/*企业简介*/}}
+                        <p class="description-title">{[enterprise.name]}简介</p>
+                        <div class="text">{[enterprise.description]}</div>
+                    </el-tab-pane>
+                    <el-tab-pane label="在招职位" name="second">
+                        {{/*职位展示卡片*/}}
+                        <el-row style="margin-left: 50px">
+                            <template
+                                    v-for="job in enterprise.jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                                <el-col :span="23">
+                                    <el-card shadow="never" style="margin: 5px 0">
+                                        <span class="job-title"><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + job.job_id"
+                                                 target="_blank">{[job.title]}</a></span>
+                                        <span class="job-title">[{[job.location]}]</span>
+                                        <span class="job-salary">{[job.min_monthly_salary]}-{[job.max_monthly_salary]}K*{[job.pay_times]}薪</span>
+                                        <span class="job-other">
+                                            {[job.require_education]}
+                                            <el-divider direction="vertical"></el-divider>
+                                            {[job.require_experience]}
+                                            <el-divider direction="vertical"></el-divider>
+                                            {[job.type]}
+                                            <el-divider direction="vertical"></el-divider>
+                                            {[job.nature]}
+                                        </span>
+                                        <span class="job-create-time">发布于{[dateFormatMMDD(job.create_time)]}</span>
+                                    </el-card>
+                                </el-col>
+                            </template>
+                        </el-row>
+
+                        {{/*分页器*/}}
+                        {{/*分页器*/}}
+                        <el-row type="flex" justify="center">
+                            <el-col :span="10" style="text-align: center;margin-top: 20px">
+                                <el-pagination
+                                        background
+                                        layout="prev, pager, next"
+                                        @current-change="handleCurrentChange"
+                                        :current-page="currentPage"
+                                        :page-size="pageSize"
+                                        :total=enterprise.jobs.length>
+                                </el-pagination>
+                            </el-col>
+                        </el-row>
+                    </el-tab-pane>
+                </el-tabs>
+            </el-card>
+
+        </el-col>
+    </el-row>
+
+</div>
+</body>
+
+{{template "widgets/footer.html" .}}
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                activeIndex: '3',
+                enterprise:{{.Enterprise}},
+                collected: 0,
+                activeName: 'first',
+                currentPage: 1,
+                pageSize: 8,
+            }
+        },
+        methods: {
+            dateFormatMMDD(d){
+                return moment(d).format("MM月DD日")
+            }
+        },
+        delimiters: ['{[', ']}'],
+    })
+
+</script>
+<style>
+    .banner-enterprise-name {
+        font-size: 36px;
+    }
+
+    .banner-enterprise-other {
+        color: #808080;
+    }
+
+    .banner-enterprise-verify-tag {
+        margin-left: 15px;
+    }
+
+    .text {
+        white-space: pre-wrap;
+        font-size: 14px;
+        color: #61687C;
+
+    }
+    .job-title{
+        font-size: 16px;
+        color: #409EFF;
+    }
+    .job-salary{
+        margin-left: 10px;
+        font-size: 16px;
+        color: #FD5F39;
+    }
+    .job-other{
+        margin-left: 10px;
+        color: grey;
+    }
+    .job-create-time{
+        float: right;
+        color: #8D92A1;
+        font-size: 13px;
+        margin-right: 5px;
+    }
+</style>
