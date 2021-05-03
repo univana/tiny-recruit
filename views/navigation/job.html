@@ -11,10 +11,10 @@
             <el-card shadow="never" style="padding: 0;">
                 {{/*搜索框*/}}
                 <el-row style="margin-left: 60px">
-                    <el-col :span="20">
+                    <el-col :span="22">
                         <el-input placeholder="请输入内容" class="search-bar" v-model="search_content"></el-input>
                         <el-button icon="el-icon-search" @click="handleFilter">搜索</el-button>
-
+                        <el-button style="" @click="handleClearFilter" type="primary">清空过滤器</el-button>
                     </el-col>
                 </el-row>
                 <el-divider></el-divider>
@@ -51,7 +51,7 @@
                         <p>
                             <span class="filter-box-title">融资阶段：</span>
                             <span>
-                                        <el-radio-group v-model="radio_financing_stage" size="small">
+                                        <el-radio-group v-model="radio_financing_stage" size="small"  @change="handleFilter">
                                             <template v-for="stage in stages">
                                                 <el-radio-button :label="stage"></el-radio-button>
                                             </template>
@@ -61,7 +61,7 @@
                         <p>
                             <span class="filter-box-title">公司规模： </span>
                             <span class="filter-box-rows">
-                               <el-radio-group v-model="radio_scale" size="small">
+                               <el-radio-group v-model="radio_scale" size="small"  @change="handleFilter">
                                     <template v-for="scale in scales">
                                         <el-radio-button :label="scale"></el-radio-button>
                                     </template>
@@ -71,7 +71,7 @@
                         <p>
                             <span class="filter-box-title">行业领域： </span>
                             <span class="filter-box-rows">
-                               <el-radio-group v-model="radio_type" size="small">
+                               <el-radio-group v-model="radio_type" size="small"  @change="handleFilter">
                                     <template v-for="type in types">
                                         <el-radio-button :label="type"></el-radio-button>
                                     </template>
@@ -202,6 +202,15 @@
             dateFormatMMDD(time) {
                 return moment(time).format("MM月DD日")
             },
+            handleClearFilter(){
+              this.search_content="";
+              this.radio_require_experience="不限";
+              this.radio_require_education="不限";
+              this.radio_city="不限";
+              this.radio_financing_stage="不限";
+              this.radio_scale="不限";
+              this.radio_type="不限";
+            },
             /*职位过滤器逻辑*/
             handleFilter() {
                 let self = this;
@@ -210,6 +219,9 @@
                 myFormData.append("city", this.radio_city);
                 myFormData.append("require_experience",this.radio_require_experience);
                 myFormData.append("require_education",this.radio_require_education);
+                myFormData.append("financing_stage",this.radio_financing_stage);
+                myFormData.append("scale",this.radio_scale);
+                myFormData.append("type",this.radio_type);
 
                 $.ajax({
                     url: "{{urlfor "JobController.Filter"}}",
@@ -219,7 +231,7 @@
                     processData: false,
                     success: function (res) {
                         if (res.errcode !== 0) {
-
+                            self.handleClearFilter();
                             self.$notify.error({
                                 message: res.message
                             });

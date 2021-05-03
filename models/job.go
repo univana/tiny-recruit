@@ -76,10 +76,11 @@ func IsDelivered(jobID int, memberID int) int {
 }
 
 // FilterJobs 过滤职位信息
-func FilterJobs(searchContent string, city string, requireExp string, requireEdu string) ([]Job, error) {
+func FilterJobs(searchContent string, city string, requireExp string, requireEdu string, financingStage string, scale string, enterpriseType string) ([]Job, error) {
 	o := orm.NewOrm()
 	var jobs []Job
 	var err error
+	var jobsFiltered []Job
 	qs := o.QueryTable(TNJob())
 	cond := orm.NewCondition()
 	if len(searchContent) != 0 {
@@ -103,10 +104,23 @@ func FilterJobs(searchContent string, city string, requireExp string, requireEdu
 
 	_, err = qs.SetCond(cond).All(&jobs)
 
+	//针对企业数据筛选职位
+	var enterpriseIDs = map[int]int{}
+	enterprises, err := FilterEnterprises("不限", financingStage, scale, enterpriseType)
+	if err != nil {
+		logs.Error("Error job filter enterprises: ", err)
+	}
+	for n, enterprise := range enterprises {
+		enterpriseIDs[enterprise.EnterpriseID] = n
+	}
+
 	//同步对应企业数据
 	for i := 0; i < len(jobs); i++ {
 		_, err = o.LoadRelated(&jobs[i], "Enterprise")
+		if _, ok := enterpriseIDs[jobs[i].Enterprise.EnterpriseID]; ok {
+			jobsFiltered = append(jobsFiltered, jobs[i])
+		}
 	}
-	return jobs, err
 
+	return jobsFiltered, err
 }

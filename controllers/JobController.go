@@ -62,11 +62,18 @@ func (c *JobController) Filter() {
 	city := c.GetString("city")
 	requireExp := c.GetString("require_experience")
 	requireEdu := c.GetString("require_education")
-	jobs, err := models.FilterJobs(searchContent, city, requireExp, requireEdu)
+	scale := c.GetString("scale")
+	financingStage := c.GetString("financing_stage")
+	enterpriseType := c.GetString("type")
+	jobs, err := models.FilterJobs(searchContent, city, requireExp, requireEdu, financingStage, scale, enterpriseType)
 	if err != nil {
 		logs.Error("Error JobController Filter: ", err)
 		c.JsonResult(1, "职位过滤错误！")
 	} else {
+		if len(jobs) == 0 {
+			//如果没有职位
+			c.JsonResult(1, "没有满足筛选条件的职位！")
+		}
 		c.JsonResult(0, "ok", jobs)
 	}
 
