@@ -48,6 +48,8 @@
                 jobQueryID: '',
                 deliverList: [],
                 deliverListVisible: 0,
+                deliverStatus: '',
+                deliverStatusList: ['已投递', '已查看', '邀约面试', '已录取', '已释放'],
             }
         },
         methods: {
@@ -83,14 +85,65 @@
                                 type: "success",
                                 message: "获取投递数据成功!"
                             });
-                            self.deliverList=res.data;
+                            self.deliverList = res.data;
                             self.deliverListVisible = 1;
                         }
                     }
                 })
+            },
+            dateFormatAge(birthday) {
+                let now = moment();
+                return now.diff(birthday, 'years')
+            },
+            handleSelectStatus(id, origin) {
+                let status = this.deliverStatus;
+                let self = this;
+                this.$confirm('确定修改该投递状态？', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    //修改投递状态
+                    let myFormData = new FormData();
+                    myFormData.append("status", status);
+                    myFormData.append("deliverance_id",id);
+                    $.ajax({
+                        url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
 
-            }
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.$notify({
+                                    type: "success",
+                                    message: "投递状态修改成功!"
+                                });
+
+                            }
+                        }
+                    })
+                }).catch(() => {
+                    this.deliverStatus = origin;
+                    this.$message({
+                        type: 'info',
+                        message: '已取消修改'
+                    })
+                })
+            },
         },
         delimiters: ['{[', ']}'],
     })
 </script>
+
+<style>
+    .el-table td, .el-table th {
+        text-align: center;
+    !important;
+    }
+</style>

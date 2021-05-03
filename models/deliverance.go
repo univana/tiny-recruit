@@ -12,7 +12,7 @@ type Deliverance struct {
 	JobID         int       `orm:"column(job_id)" json:"job_id"`                         //职位ID
 	DeliverTime   time.Time `orm:"type(datetime);null" json:"deliver_time"`              //投递时间
 	ModifyTime    time.Time `orm:"type(datetime);null" json:"modify_time"`               //状态修改时间
-	Status        string    `orm:"default(待查看)" json:"status"`                           //投递状态
+	Status        string    `orm:"default(已投递)" json:"status"`                           //投递状态
 }
 
 func (d *Deliverance) TableName() string {
