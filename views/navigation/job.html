@@ -116,7 +116,7 @@
                                         <el-row>
                                             <el-col :span="18">
                                                 {{/*企业名称*/}}
-                                                <p class="enterprise-name">{[job.enterprise.name]}</p>
+                                                <p class="enterprise-name"><a :href="'{{urlfor "EnterpriseController.ShowEnterprise" ":id" ""}}' + job.enterprise.enterprise_id" target="_blank">{[job.enterprise.name]}</a> </p>
                                                 {{/*企业其他内容*/}}
                                                 <p class="enterprise-other">
                                                     {[job.enterprise.type]}

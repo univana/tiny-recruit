@@ -31,7 +31,7 @@ func (d *Deliverance) InsertOrUpdate(fields ...string) error {
 	return err
 }
 
-// GetAllDeliveranceByMemberID 根据用户ID获取拥有企业对应的所有投递信息
+// GetAllDeliveranceByMemberID 根据用户ID获取求职者的所有投递信息
 func GetAllDeliveranceByMemberID(memberID int) []Deliverance {
 	o := orm.NewOrm()
 	var delivers []Deliverance

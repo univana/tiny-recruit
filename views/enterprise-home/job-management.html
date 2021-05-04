@@ -2,7 +2,9 @@
     <el-card shadow="never" style="padding: 0;">
         <div slot="header" class="clearfix">
             <span>职位管理</span>
-            <el-button style="float: right; padding: 3px 0" icon="el-icon-plus" type="success">发布职位</el-button>
+            <el-button style="float: right; padding: 3px 0" icon="el-icon-plus" type="success"
+                       @click="dialogNewJobVisible=true">发布职位
+            </el-button>
         </div>
 
         {{/*职位管理表格*/}}
@@ -48,3 +50,6 @@
 
     </el-card>
 </el-col>
+
+{{/*新建职位对话框*/}}
+{{template "job/dialog-new-job.html" .}}

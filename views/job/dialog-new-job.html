@@ -1,0 +1,59 @@
+<el-dialog title="新建职位" :visible.sync="dialogNewJobVisible" width="80%" v-model="formNewJob">
+    <el-form>
+
+        <el-form-item label="标题">
+            <el-input v-model="formNewJob.title" style="width: 500px"></el-input>
+        </el-form-item>
+        <el-form-item label="招聘类型">
+            <el-select v-model="formNewJob.nature">
+                <el-option v-for="nature in natures" :value="nature">
+                </el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="职位类别">
+            <el-select v-model="formNewJob.type">
+                <el-option v-for="type in types" :value="type">
+                </el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="城市">
+            <el-select v-model="formNewJob.location">
+                <el-option v-for="city in cities" :value="city">
+                </el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="薪资范围">
+            <el-input-number size="small" v-model="formNewJob.min_monthly_salary" controls-position="right" :min="1"
+                             :max="50" style="width: 100px"></el-input-number>
+            <span>K - </span>
+            <el-input-number size="small" v-model="formNewJob.max_monthly_salary" controls-position="right" :min="1"
+                             :max="50" style="width: 100px"></el-input-number>
+            <span>K</span>
+            <el-input-number size="small" v-model="formNewJob.pay_times" controls-position="right" :min="1" :max="30"
+                             style="width: 100px"></el-input-number>
+            <span>薪</span>
+        </el-form-item>
+        <el-form-item label="经验和学历">
+            <el-select v-model="formNewJob.require_experience">
+                <el-option v-for="exp in exps" :value="exp">
+                </el-option>
+            </el-select>
+            <el-select v-model="formNewJob.require_education">
+                <el-option v-for="edu in edus" :value="edu">
+                </el-option>
+            </el-select>
+        </el-form-item>
+        <el-form-item label="职位描述">
+            <el-input
+                    type="textarea"
+                    :rows="10"
+                    placeholder="请输入职位描述"
+                    v-model="formNewJob.description">
+            </el-input>
+        </el-form-item>
+    </el-form>
+    <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogNewJobVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleNewJob">确 定</el-button>
+    </div>
+</el-dialog>

@@ -16,12 +16,17 @@
                     <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
                         <span>简历</span>
                     </el-menu-item>
+                    <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
+                        <span>投递</span>
+                    </el-menu-item>
                 </el-menu>
             </el-col>
 
             <!-- 右侧内容 -->
             {{/*简历展示*/}}
             {{template "user-center/resume-display.html" .}}
+            {{/*投递管理*/}}
+            {{template "user-center/deliverance-management.html" .}}
         </el-col>
     </el-row>
 </div>
@@ -44,7 +49,7 @@
                 displayIndex: 0,
                 resume: '',
                 member:{{.Member}},
-                fit: 'fill'
+                delivers:[],
 
             }
         },
@@ -64,6 +69,20 @@
 
                 });
                 console.log(this.resume);
+            },
+            getDelivers(){
+                let self = this;
+                let myFormData = new FormData();
+                let memberID = this.member.member_id;
+                myFormData.append("id", memberID);
+                $.ajax({
+                    url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.resume = res.data;
+                    }
+
+                });
             },
             /*日期格式化工具*/
             dateFormat(date) {

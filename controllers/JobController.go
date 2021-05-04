@@ -76,5 +76,35 @@ func (c *JobController) Filter() {
 		}
 		c.JsonResult(0, "ok", jobs)
 	}
+}
 
+func (c *JobController) NewJob() {
+	var cstZone = time.FixedZone("CST", 8*3600)
+	minS, _ := strconv.Atoi(c.GetString("min_monthly_salary"))
+	maxS, _ := strconv.Atoi(c.GetString("max_monthly_salary"))
+	pt, _ := strconv.Atoi(c.GetString("pay_times"))
+	enterpriseID, _ := strconv.Atoi(c.GetString("enterprise_id"))
+	job := models.Job{
+		JobID:             0,
+		Title:             c.GetString("title"),
+		Description:       c.GetString("description"),
+		Location:          c.GetString("location"),
+		MinMonthlySalary:  minS,
+		MaxMonthlySalary:  maxS,
+		PayTimes:          pt,
+		RequireEducation:  c.GetString("require_education"),
+		RequireExperience: c.GetString("require_experience"),
+		Type:              c.GetString("type"),
+		Nature:            c.GetString("nature"),
+		Status:            0,
+		CreateTime:        time.Now().In(cstZone),
+		ModifyTime:        time.Now().In(cstZone),
+		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
+	}
+	err := job.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error JobController NewJob: ", err)
+		c.JsonResult(1, "添加职位失败！")
+	}
+	c.JsonResult(0, "ok")
 }

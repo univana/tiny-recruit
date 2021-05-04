@@ -50,6 +50,24 @@
                 deliverListVisible: 0,
                 deliverStatus: '',
                 deliverStatusList: ['已投递', '已查看', '邀约面试', '已录取', '已释放'],
+                dialogNewJobVisible:false,
+                cities:['北京','上海','广州','深圳'],
+                exps:['在校/应届', '3年及以下', '3-5年', '5-10年', '10年以上'],
+                edus: ['大专', '本科', '硕士', '博士'],
+                natures:['全职','实习'],
+                types:['互联网','电子商务'],
+                formNewJob:{
+                    title:'',
+                    location:'',
+                    description:'',
+                    min_monthly_salary:0,
+                    max_monthly_salary:0,
+                    pay_times:0,
+                    require_education:'',
+                    require_experience:'',
+                    type:'',
+                    nature:'',
+                },
             }
         },
         methods: {
@@ -136,6 +154,46 @@
                     })
                 })
             },
+            handleNewJob(){
+                //请求新建职位
+                let self=this;
+                let myFormData=new FormData();
+                myFormData.append("title",this.formNewJob.title)
+                myFormData.append("nature",this.formNewJob.nature)
+                myFormData.append("type",this.formNewJob.type)
+                myFormData.append("location",this.formNewJob.location)
+                myFormData.append("min_monthly_salary",this.formNewJob.min_monthly_salary)
+                myFormData.append("max_monthly_salary",this.formNewJob.max_monthly_salary)
+                myFormData.append("pay_times",this.formNewJob.pay_times)
+                myFormData.append("require_experience",this.formNewJob.require_experience)
+                myFormData.append("require_education",this.formNewJob.require_education)
+                myFormData.append("description",this.formNewJob.description)
+                myFormData.append("enterprise_id",this.enterprise.enterprise_id)
+
+                $.ajax({
+                    url: "{{urlfor "JobController.NewJob"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.dialogNewJobVisible=false;
+                            self.$notify({
+                                type: "success",
+                                message: "新建职位成功！"
+                            });
+
+                        }
+                    }
+                })
+
+            }
         },
         delimiters: ['{[', ']}'],
     })

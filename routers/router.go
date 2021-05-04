@@ -46,4 +46,7 @@ func init() {
 	//职位过滤器
 	beego.Router("/job/filter", &controllers.JobController{}, "*:Filter")
 
+	//新建职位
+	beego.Router("/enterprise/home/newJob", &controllers.JobController{}, "*:NewJob")
+
 }

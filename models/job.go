@@ -25,7 +25,7 @@ type Job struct {
 	Enterprise *Enterprise `orm:"rel(fk)" json:"enterprise"` //企业和职位的一对多关系
 }
 
-func (m *Job) TableName() string {
+func (j *Job) TableName() string {
 	return TNJob()
 }
 
@@ -121,6 +121,18 @@ func FilterJobs(searchContent string, city string, requireExp string, requireEdu
 			jobsFiltered = append(jobsFiltered, jobs[i])
 		}
 	}
-
 	return jobsFiltered, err
+}
+
+// InsertOrUpdate 添加或更新职位信息
+func (j *Job) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var job Job
+	err := o.QueryTable(TNJob()).Filter("job_id", j.JobID).One(&job)
+	if job.JobID > 0 {
+		_, err = o.Update(j, fields...)
+	} else {
+		_, err = o.Insert(j)
+	}
+	return err
 }
