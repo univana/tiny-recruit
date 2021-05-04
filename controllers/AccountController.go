@@ -3,6 +3,7 @@ package controllers
 import (
 	"errors"
 	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
 	"golang.org/x/crypto/bcrypt"
 	"myApp/common"
 	"myApp/models"
@@ -146,5 +147,26 @@ func (c *AccountController) Login() {
 		}
 		c.JsonResult(0, "ok")
 	}
+}
+
+func (c *AccountController) GetDelivers() {
+	type Deliver struct {
+		DeliveranceID int       `orm:"column(deliverance_id)" json:"deliverance_id"`
+		MemberID      int       `orm:"column(member_id)" json:"member_id"`
+		JobID         int       `orm:"column(job_id)" json:"job_id"`
+		Title         string    `json:"title"`
+		Status        string    `json:"status"`
+		DeliverTime   time.Time `json:"deliver_time"`
+		ModifyTime    time.Time `json:"modify_time"`
+	}
+	var delivers []Deliver
+	o := orm.NewOrm()
+	sql := "select deliverance_id,member_id,tj.title,tj.job_id,t_deliverance.status,deliver_time,t_deliverance.modify_time from t_deliverance join t_job tj on t_deliverance.job_id = tj.job_id where member_id=?"
+	_, err := o.Raw(sql, c.Member.MemberId).QueryRows(&delivers)
+	if err != nil {
+		logs.Error("Error AccountController GetDelivers: ", err)
+		c.JsonResult(1, "获取职位信息错误！")
+	}
+	c.JsonResult(0, "ok", delivers)
 
 }

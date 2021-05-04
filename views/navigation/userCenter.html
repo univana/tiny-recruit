@@ -5,7 +5,7 @@
 </head>
 
 <body style="background-color: #f6f6f6">
-<div id="app" >
+<div id="app">
     {{template "widgets/head-menu.html" .}}
 
     <el-row type="flex" justify="center">
@@ -16,7 +16,7 @@
                     <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
                         <span>简历</span>
                     </el-menu-item>
-                    <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
+                    <el-menu-item index="2" @click="displayIndex=2;getDelivers();" style="text-align: center">
                         <span>投递</span>
                     </el-menu-item>
                 </el-menu>
@@ -49,7 +49,8 @@
                 displayIndex: 0,
                 resume: '',
                 member:{{.Member}},
-                delivers:[],
+                delivers: [],
+                deliverTableVisible: false,
 
             }
         },
@@ -70,16 +71,15 @@
                 });
                 console.log(this.resume);
             },
-            getDelivers(){
+            getDelivers() {
                 let self = this;
-                let myFormData = new FormData();
-                let memberID = this.member.member_id;
-                myFormData.append("id", memberID);
                 $.ajax({
-                    url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
+                    url: "{{urlfor "AccountController.GetDelivers"}}",
                     type: "POST",
                     success: function (res) {
-                        self.resume = res.data;
+                        self.delivers = res.data;
+                        self.deliverTableVisible = true;
+
                     }
 
                 });
@@ -88,6 +88,49 @@
             dateFormat(date) {
                 return moment(date).format("YYYY-MM-DD");
             },
+            dateFormatYMDDel(time) {
+                return moment(time).format("YYYY-MM-DD")
+            },
+            /*撤销投递申请*/
+            handleCancel(id) {
+                let self = this;
+                this.$confirm('此操作将撤销投递申请, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    /*撤销申请逻辑*/
+                    //修改投递状态
+                    let myFormData = new FormData();
+                    myFormData.append("status", "已撤销");
+                    myFormData.append("deliverance_id", id);
+                    $.ajax({
+                        url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.$notify({
+                                    type: "success",
+                                    message: "该投递已成功撤销!"
+                                });
+                            }
+                        }
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消操作'
+                    });
+                });
+            }
 
         },
         delimiters: ['{[', ']}'],

@@ -54,4 +54,7 @@ func init() {
 
 	//编辑职位
 	beego.Router("/enterprise/home/editJob", &controllers.JobController{}, "*:EditJob")
+
+	//获取用户的投递数据
+	beego.Router("userCenter/getDelivers", &controllers.AccountController{}, "*:GetDelivers")
 }
