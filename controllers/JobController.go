@@ -108,3 +108,43 @@ func (c *JobController) NewJob() {
 	}
 	c.JsonResult(0, "ok")
 }
+
+// GetJob 根据职位ID返回给前端职位信息
+func (c *JobController) GetJob() {
+	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	job := models.GetJobByID(jobID)
+	c.JsonResult(0, "ok", job)
+}
+
+// EditJob 编辑职位信息
+func (c *JobController) EditJob() {
+	var cstZone = time.FixedZone("CST", 8*3600)
+	minS, _ := strconv.Atoi(c.GetString("min_monthly_salary"))
+	maxS, _ := strconv.Atoi(c.GetString("max_monthly_salary"))
+	pt, _ := strconv.Atoi(c.GetString("pay_times"))
+	enterpriseID, _ := strconv.Atoi(c.GetString("enterprise_id"))
+	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	job := models.Job{
+		JobID:             jobID,
+		Title:             c.GetString("title"),
+		Description:       c.GetString("description"),
+		Location:          c.GetString("location"),
+		MinMonthlySalary:  minS,
+		MaxMonthlySalary:  maxS,
+		PayTimes:          pt,
+		RequireEducation:  c.GetString("require_education"),
+		RequireExperience: c.GetString("require_experience"),
+		Type:              c.GetString("type"),
+		Nature:            c.GetString("nature"),
+		Status:            0,
+		ModifyTime:        time.Now().In(cstZone),
+		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
+	}
+	err := job.InsertOrUpdate("title", "description", "location", "min_monthly_salary",
+		"max_monthly_salary", "pay_times", "require_education", "require_experience", "type", "nature", "modify_time")
+	if err != nil {
+		logs.Error("Error JobController EditJob: ", err)
+		c.JsonResult(1, "修改职位失败！")
+	}
+	c.JsonResult(0, "ok")
+}

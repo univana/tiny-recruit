@@ -1,23 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了新建职位的对话框">
-      <change afterPath="$PROJECT_DIR$/store/session/d/1/d1873bb26b6726939bd3cd8f990d383c" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user-center/deliverance-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了新建职位的前后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/e/9/e9bcdc16d0de43a2645a55ae39565683" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/job/dialog-edit-job.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/deliverance.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/deliverance.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/7/7/77782b69c0f362477e588946dac7dcd2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/d/1/d1873bb26b6726939bd3cd8f990d383c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/regist.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/regist.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/enterprise-home/job-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -75,7 +69,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images/covers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/job" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -83,6 +77,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Go-Projects\tiny-recruit\views\job" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images\covers" />
       <recent name="F:\Go-Projects\tiny-recruit\models" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images" />
@@ -132,7 +127,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了企业过滤器的基本样式" />
     <MESSAGE value="实现了根据所在城市过滤企业的前后端逻辑" />
     <MESSAGE value="实现了根据规模过滤企业的前后端逻辑" />
     <MESSAGE value="实现了企业过滤器的所有逻辑并整合为一个函数" />
@@ -157,7 +151,8 @@
     <MESSAGE value="实现了职位其他要求的筛选逻辑" />
     <MESSAGE value="实现了职位过滤器的整体逻辑" />
     <MESSAGE value="添加并实现了企业展示页面的基本样式及逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加并实现了企业展示页面的基本样式及逻辑" />
+    <MESSAGE value="实现了新建职位的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了新建职位的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -169,6 +164,11 @@
           <url>file://$PROJECT_DIR$/models/deliverance.go</url>
           <line>42</line>
           <option name="timeStamp" value="8" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/JobController.go</url>
+          <line>142</line>
+          <option name="timeStamp" value="28" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
