@@ -19,6 +19,9 @@
                     <el-menu-item index="2" @click="displayIndex=2;getDelivers();" style="text-align: center">
                         <span>投递</span>
                     </el-menu-item>
+                    <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
+                        <span>收藏</span>
+                    </el-menu-item>
                 </el-menu>
             </el-col>
 
@@ -27,6 +30,8 @@
             {{template "user-center/resume-display.html" .}}
             {{/*投递管理*/}}
             {{template "user-center/deliverance-management.html" .}}
+            {{/*收藏管理*/}}
+            {{template "user-center/collection.html" .}}
         </el-col>
     </el-row>
 </div>

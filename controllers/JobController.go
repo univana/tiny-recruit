@@ -148,3 +148,15 @@ func (c *JobController) EditJob() {
 	}
 	c.JsonResult(0, "ok")
 }
+
+// DeleteJob 删除职位
+func (c *JobController) DeleteJob() {
+	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	job := models.Job{JobID: jobID, Status: 1}
+	err := job.InsertOrUpdate("Status")
+	if err != nil {
+		logs.Error("Error JobController DeleteJob: ", err)
+		c.JsonResult(1, "删除职位失败")
+	}
+	c.JsonResult(0, "ok")
+}

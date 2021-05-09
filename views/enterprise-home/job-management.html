@@ -28,7 +28,7 @@
                 <template slot-scope="scope">
                     <el-button-group>
                         <el-button type="primary" icon="el-icon-edit" size="small" plain @click="handleEditJob(scope.row.job_id)">编辑</el-button>
-                        <el-button type="danger" icon="el-icon-delete" size="small" plain>删除</el-button>
+                        <el-button type="danger" icon="el-icon-delete" size="small" plain @click="handleDeleteJob(scope.row.job_id)">删除</el-button>
                     </el-button-group>
                 </template>
             </el-table-column>

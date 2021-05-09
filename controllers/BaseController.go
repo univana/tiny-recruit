@@ -29,7 +29,6 @@ type CookieRemember struct {
 }
 
 //Prepare :每个子类Controller公用方法调用前，都执行一下Prepare方法
-//TODO :待了解
 func (c *BaseController) Prepare() {
 	c.Member = models.NewMember() //初始化
 	//从session中获取用户信息
@@ -57,7 +56,6 @@ func (c *BaseController) Prepare() {
 	c.Option["ENABLED_CAPTCHA"] = "false"
 }
 
-//TODO :待了解
 func (c *BaseController) BaseUrl() string {
 	host := beego.AppConfig.String("sitemap_host")
 	if len(host) > 0 {
@@ -70,7 +68,6 @@ func (c *BaseController) BaseUrl() string {
 }
 
 // 设置登录用户信息
-//TODO :待了解
 func (c *BaseController) SetMember(member models.Member) {
 	if member.MemberId <= 0 {
 		c.DelSession(common.SessionName)
@@ -83,7 +80,6 @@ func (c *BaseController) SetMember(member models.Member) {
 }
 
 // Ajax接口返回Json
-//TODO :待了解
 func (c *BaseController) JsonResult(errCode int, errMsg string, data ...interface{}) {
 	jsonData := make(map[string]interface{}, 3)
 	jsonData["errcode"] = errCode

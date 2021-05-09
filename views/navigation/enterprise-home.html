@@ -225,6 +225,45 @@
                 })
 
             },
+            /*删除职位*/
+            handleDeleteJob(id) {
+                let self = this;
+                this.$confirm('此操作将删除该职位, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    /*请求后端删除*/
+                    let fd = new FormData();
+                    fd.append("job_id", id);
+                    $.ajax({
+                        url:"{{urlfor "JobController.DeleteJob"}}",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        method:"POST",
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                /*删除成功*/
+                                self.$notify({
+                                    type: "success",
+                                    message: "职位删除成功！"
+                                });
+                            }
+                        }
+
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
             /*确定修改职位*/
             handleConfirmEditJob() {
                 let self = this;

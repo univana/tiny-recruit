@@ -2,14 +2,27 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了修改职位信息的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/4/0/40ad8cd4d3bb8bdb70400b130225c635" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/byd.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/huawei.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/ibm.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/meidi.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/oppo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/shopee.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/shunfeng.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/tcl.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/tencent.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/covers/vivo.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/e/c/ec319361b7736429f9e6d3ff98e05269" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/user-center/collection.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/AccountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/BaseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/e/9/e9bcdc16d0de43a2645a55ae39565683" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/4/0/40ad8cd4d3bb8bdb70400b130225c635" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/job-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/deliverance-management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -67,7 +80,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/job" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images/covers" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -75,8 +88,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="F:\Go-Projects\tiny-recruit\views\job" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images\covers" />
+      <recent name="F:\Go-Projects\tiny-recruit\views\job" />
       <recent name="F:\Go-Projects\tiny-recruit\models" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images" />
     </key>
@@ -105,6 +118,7 @@
       <option name="presentableId" value="Default" />
       <updated>1619142335142</updated>
       <workItem from="1619142336182" duration="6000" />
+      <workItem from="1620466373010" duration="218000" />
     </task>
     <servers />
   </component>
@@ -156,14 +170,10 @@
     <integration-enabled>true</integration-enabled>
   </component>
   <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/models/deliverance.go</url>
-          <line>42</line>
-          <option name="timeStamp" value="8" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="jobID" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

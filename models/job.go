@@ -18,7 +18,7 @@ type Job struct {
 	RequireExperience string    `json:"require_experience"`                            //经验要求
 	Type              string    `json:"type"`                                          //职位类型
 	Nature            string    `json:"nature"`                                        //职位性质
-	Status            int       `orm:"default(0)" json:"status"`                       //职位状态
+	Status            int       `orm:"default(0)" json:"status"`                       //职位状态 0:正常 1:删除 2:禁用
 	CreateTime        time.Time `orm:"type(datetime);auto_now_add" json:"create_time"` //职位创建时间
 	ModifyTime        time.Time `orm:"type(datetime);null" json:"modify_time"`         //最后修改时间
 
