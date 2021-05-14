@@ -57,6 +57,20 @@
                 delivers: [],
                 deliverTableVisible: false,
 
+                dialogEditResumeVisible: false,
+                formEditResume: {
+                    resumeID: 0,
+                    name: '',
+                    gender: 0,
+                    birthday: '',
+                    tel: '',
+                    email: '',
+                    advantage: '',
+                    hope_job: '',
+                    hope_salary: '',
+                    city: '',
+                },
+
             }
         },
         methods: {
@@ -71,6 +85,18 @@
                     type: "POST",
                     success: function (res) {
                         self.resume = res.data;
+                        self.formEditResume.resumeID = res.data.resume_id;
+                        self.formEditResume.name = res.data.name;
+                        self.formEditResume.gender = res.data.gender === 0 ? '男' : '女';
+                        self.formEditResume.birthday = res.data.birthday;
+                        self.formEditResume.tel = res.data.tel;
+                        self.formEditResume.email = res.data.email;
+                        self.formEditResume.hope_salary = res.data.hope_salary;
+                        self.formEditResume.city = res.data.city;
+                        self.formEditResume.advantage = res.data.advantage;
+
+
+
                     }
 
                 });
@@ -135,6 +161,49 @@
                         message: '已取消操作'
                     });
                 });
+            },
+            /*编辑简历*/
+            handleEditResume() {
+                this.dialogEditResumeVisible = true;
+
+            },
+            /*确定编辑简历*/
+            handleConfirmEditResume() {
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("resume_id",this.formEditResume.resumeID);
+                myFormData.append("name",this.formEditResume.name);
+                myFormData.append("gender",this.formEditResume.gender);
+                myFormData.append("birthday",this.formEditResume.birthday.slice(0,10));
+                myFormData.append("tel",this.formEditResume.tel);
+                myFormData.append("email",this.formEditResume.email);
+                myFormData.append("hope_salary",this.formEditResume.hope_salary);
+                myFormData.append("city",this.formEditResume.city);
+                myFormData.append("advantage",this.formEditResume.advantage);
+
+                $.ajax({
+                    url: "{{urlfor "ResumeController.EditResume"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.dialogEditResumeVisible = false;
+                            self.$notify({
+                                type: "success",
+                                message: "修改简历成功！"
+                            });
+
+                        }
+                    }
+                })
+
             }
 
         },

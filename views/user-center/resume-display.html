@@ -1,8 +1,13 @@
 <el-col :span="20" v-if="displayIndex===1" style="margin:10px 10px">
+
+    {{/*简历编辑对话框*/}}
+    {{template  "user-center/dialog-edit-resume.html" .}}
+
+
     <el-card shadow="never" style="padding: 0;">
         <div slot="header" class="clearfix">
             <span>我的在线简历</span>
-            <el-button style="float: right; padding: 3px 0" type="text">操作按钮</el-button>
+            <el-button style="float: right; padding: 3px 0" type="text" @click="handleEditResume">编辑简历</el-button>
         </div>
 
         {{/*div-个人简历内容*/}}

@@ -60,5 +60,17 @@ func (r *Resume) LoadExperiences() {
 	if err != nil {
 		logs.Error("Error load experiences: ", err)
 	}
+}
 
+// InsertOrUpdate 插入或更新简历
+func (r *Resume) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var resume Resume
+	err := o.QueryTable(TNResume()).Filter("resume_id", r.ResumeID).One(&resume)
+	if resume.ResumeID > 0 {
+		_, err = o.Update(r, fields...)
+	} else {
+		_, err = o.Insert(r)
+	}
+	return err
 }
