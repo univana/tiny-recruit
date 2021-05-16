@@ -92,9 +92,9 @@
                         self.formEditResume.tel = res.data.tel;
                         self.formEditResume.email = res.data.email;
                         self.formEditResume.hope_salary = res.data.hope_salary;
+                        self.formEditResume.hope_job = res.data.hope_job;
                         self.formEditResume.city = res.data.city;
                         self.formEditResume.advantage = res.data.advantage;
-
 
 
                     }
@@ -171,15 +171,16 @@
             handleConfirmEditResume() {
                 let self = this;
                 let myFormData = new FormData();
-                myFormData.append("resume_id",this.formEditResume.resumeID);
-                myFormData.append("name",this.formEditResume.name);
-                myFormData.append("gender",this.formEditResume.gender);
-                myFormData.append("birthday",this.formEditResume.birthday.slice(0,10));
-                myFormData.append("tel",this.formEditResume.tel);
-                myFormData.append("email",this.formEditResume.email);
-                myFormData.append("hope_salary",this.formEditResume.hope_salary);
-                myFormData.append("city",this.formEditResume.city);
-                myFormData.append("advantage",this.formEditResume.advantage);
+                myFormData.append("resume_id", this.formEditResume.resumeID);
+                myFormData.append("name", this.formEditResume.name);
+                myFormData.append("gender", this.formEditResume.gender);
+                myFormData.append("birthday", this.formEditResume.birthday);
+                myFormData.append("tel", this.formEditResume.tel);
+                myFormData.append("email", this.formEditResume.email);
+                myFormData.append("hope_salary", this.formEditResume.hope_salary);
+                myFormData.append("city", this.formEditResume.city);
+                myFormData.append("advantage", this.formEditResume.advantage);
+                myFormData.append("hope_job",this.formEditResume.hope_job);
 
                 $.ajax({
                     url: "{{urlfor "ResumeController.EditResume"}}",
@@ -194,6 +195,8 @@
                                 message: res.message
                             });
                         } else {
+                            //刷新简历
+                            self.getResume()
                             self.dialogEditResumeVisible = false;
                             self.$notify({
                                 type: "success",

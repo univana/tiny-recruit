@@ -54,12 +54,18 @@ func (c *ResumeController) EditResume() {
 	birthday := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
 
 	resume := models.Resume{
-		ResumeID: resumeID,
-		Name:     c.GetString("name"),
-		Gender:   gender,
-		Birthday: birthday,
+		ResumeID:   resumeID,
+		Name:       c.GetString("name"),
+		Gender:     gender,
+		Birthday:   birthday,
+		Advantage:  c.GetString("advantage"),
+		Tel:        c.GetString("tel"),
+		Email:      c.GetString("email"),
+		HopeSalary: c.GetString("hope_salary"),
+		HopeJob:    c.GetString("hope_job"),
+		City:       c.GetString("city"),
 	}
-	err := resume.InsertOrUpdate("name", "gender", "birthday")
+	err := resume.InsertOrUpdate("name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
 	if err != nil {
 		logs.Error("Error ResumeController EditResume: ", err)
 		c.JsonResult(1, "修改简历失败！")
