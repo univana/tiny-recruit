@@ -17,6 +17,7 @@ func init() {
 	beego.Router("/enterprise/home", &controllers.NavigationController{}, "*:EnterpriseHome")
 
 	beego.Router("/userCenter/getResume", &controllers.ResumeController{}, "*:GetResumeByMemberID")
+
 	//注册
 	beego.Router("/regist", &controllers.AccountController{}, "*:Regist")
 	beego.Router("/doregist", &controllers.AccountController{}, "post:DoRegist")
@@ -60,6 +61,12 @@ func init() {
 
 	//获取用户的投递数据
 	beego.Router("/userCenter/getDelivers", &controllers.AccountController{}, "*:GetDelivers")
+
+	//获取用户收藏信息
+	beego.Router("/userCenter/getCollections", &controllers.AccountController{}, "*:GetCollections")
+
+	//取消收藏
+	beego.Router("/userCenter/cancelCollection", &controllers.CollectionController{}, "*:Cancel")
 
 	//编辑简历
 	beego.Router("/userCenter/editResume", &controllers.ResumeController{}, "*:EditResume")

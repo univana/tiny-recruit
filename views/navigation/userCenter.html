@@ -19,7 +19,7 @@
                     <el-menu-item index="2" @click="displayIndex=2;getDelivers();" style="text-align: center">
                         <span>投递</span>
                     </el-menu-item>
-                    <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
+                    <el-menu-item index="3" @click="displayIndex=3;getCollections()" style="text-align: center">
                         <span>收藏</span>
                     </el-menu-item>
                 </el-menu>
@@ -56,6 +56,7 @@
                 resume: '',
                 member:{{.Member}},
                 delivers: [],
+                collections:[],
                 deliverTableVisible: false,
                 dialogAddEduVisible: false,
                 dialogAddProjectVisible: false,
@@ -139,9 +140,17 @@
                     success: function (res) {
                         self.delivers = res.data;
                         self.deliverTableVisible = true;
-
                     }
-
+                });
+            },
+            getCollections(){
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "AccountController.GetCollections"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.collections = res.data;
+                    }
                 });
             },
             /*日期格式化工具*/
@@ -331,6 +340,33 @@
                             self.$notify({
                                 type: "success",
                                 message: "添加实习经历成功！"
+                            });
+                        }
+                    }
+                })
+            },
+            /*取消收藏*/
+            handleCancelCollection(id){
+                let self = this;
+                let fd = new FormData();
+                fd.append("collection_id",id);
+
+                $.ajax({
+                    url: "{{urlfor "CollectionController.Cancel"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getCollections();
+                            self.$notify({
+                                type: "success",
+                                message: "取消收藏成功！"
                             });
                         }
                     }

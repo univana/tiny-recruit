@@ -4,5 +4,35 @@
             <span>我的收藏</span>
         </div>
 
+        {{/*投递管理表格*/}}
+        <el-row>
+            <el-col :span="20">
+                <el-table :data="collections" style="text-align: center">
+                    {{/*收藏时间*/}}
+                    <el-table-column label="收藏时间" width="110px">
+                        <template slot-scope="scope">
+                            <span>{[dateFormatYMDDel(scope.row.create_time)]}</span>
+                        </template>
+                    </el-table-column>
+                    {{/*职位标题*/}}
+                    <el-table-column label="职位标题" width="200px">
+                        <template slot-scope="scope">
+                            <span><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + scope.row.job.job_id"
+                                     target="_blank">{[scope.row.job.title]}</a></span>
+                        </template>
+                    </el-table-column>
+                    {{/*操作*/}}
+                    <el-table-column label="操作" width="100px">
+                        <template slot-scope="scope">
+                            <span>
+                                <el-button type="danger" size="small"
+                                           @click="handleCancelCollection(scope.row.collection_id)">取消收藏</el-button>
+                            </span>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-col>
+        </el-row>
+
     </el-card>
 </el-col>

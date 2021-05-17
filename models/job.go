@@ -141,7 +141,7 @@ func (j *Job) InsertOrUpdate(fields ...string) error {
 func IsCollected(jobID int, memberID int) int {
 	o := orm.NewOrm()
 	var collection Collection
-	err := o.QueryTable(TNCollection()).Filter("job_id", jobID).Filter("member_id", memberID).One(&collection)
+	err := o.QueryTable(TNCollection()).Filter("job_id", jobID).Filter("member_id", memberID).Filter("status", 0).One(&collection)
 	if err == orm.ErrNoRows {
 		return 0
 	} else {

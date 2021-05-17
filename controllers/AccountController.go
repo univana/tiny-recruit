@@ -170,3 +170,31 @@ func (c *AccountController) GetDelivers() {
 	c.JsonResult(0, "ok", delivers)
 
 }
+
+// GetCollections 获取用户的收藏信息
+func (c *AccountController) GetCollections() {
+	type Data struct {
+		CollectionID int        `json:"collection_id"`
+		Job          models.Job `json:"job"`
+		CreateTime   time.Time  `json:"create_time"`
+		Status       int        `json:"status"`
+	}
+	var res []Data
+	collections, err := models.GetAllCollectionsByMemberID(c.Member.MemberId)
+	if err != nil {
+		logs.Error("Error AccountController GetCollections: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		for _, collection := range collections {
+			job := models.GetJobByID(collection.JobID)
+			res = append(res, Data{
+				CollectionID: collection.CollectionID,
+				Job:          job,
+				CreateTime:   collection.CreateTime,
+				Status:       collection.Status,
+			})
+		}
+
+		c.JsonResult(0, "ok", res)
+	}
+}

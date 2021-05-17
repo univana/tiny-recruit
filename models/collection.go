@@ -28,5 +28,13 @@ func (c *Collection) InsertOrUpdate(fields ...string) error {
 		_, err = o.Insert(c)
 	}
 	return err
+}
+
+// GetAllCollectionsByMemberID 根据用户ID获取所有的收藏信息
+func GetAllCollectionsByMemberID(memberID int) ([]Collection, error) {
+	o := orm.NewOrm()
+	var collections []Collection
+	_, err := o.QueryTable(TNCollection()).Filter("member_id", memberID).Filter("status", 0).All(&collections)
+	return collections, err
 
 }
