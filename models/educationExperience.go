@@ -25,3 +25,16 @@ func GetEducationExperiencesByResumeID(resumeID int) ([]*EducationExperience, er
 	_, err := o.QueryTable(TNEducationExperience()).Filter("resume_id", resumeID).All(&educationExperiences)
 	return educationExperiences, err
 }
+
+// InsertOrUpdate 添加或更新教育经历
+func (e *EducationExperience) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var edu EducationExperience
+	err := o.QueryTable(TNEducationExperience()).Filter("edu_exp_id", e.EduExpID).One(&edu)
+	if edu.EduExpID > 0 {
+		_, err = o.Update(e, fields...)
+	} else {
+		_, err = o.Insert(e)
+	}
+	return err
+}

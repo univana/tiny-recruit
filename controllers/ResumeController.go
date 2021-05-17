@@ -4,6 +4,7 @@ import (
 	"github.com/astaxie/beego/logs"
 	"myApp/models"
 	"strconv"
+	"strings"
 	"time"
 )
 
@@ -72,5 +73,31 @@ func (c *ResumeController) EditResume() {
 	} else {
 		c.JsonResult(0, "ok")
 	}
+}
 
+// AddEdu 添加教育经历
+func (c *ResumeController) AddEdu() {
+
+	startYear, _ := strconv.Atoi(strings.Split(c.GetString("start_year"), " ")[3])
+	endYear, _ := strconv.Atoi(strings.Split(c.GetString("end_year"), " ")[3])
+	resume, err := models.GetResumeByMemberID(c.Member.MemberId)
+	if err != nil {
+		logs.Error("Error ResumeController AddEdu: ", err)
+	}
+	var edu = models.EducationExperience{
+		School:     c.GetString("school"),
+		Education:  c.GetString("education"),
+		Profession: c.GetString("profession"),
+		StartYear:  startYear,
+		EndYear:    endYear,
+		Experience: c.GetString("experience"),
+		Resume:     &models.Resume{ResumeID: resume.ResumeID},
+	}
+	err = edu.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error ResumeController AddEdu: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
 }

@@ -51,12 +51,13 @@
         el: '#app',
         data: function () {
             return {
+                activeIndex:"0",
                 displayIndex: 0,
                 resume: '',
                 member:{{.Member}},
                 delivers: [],
                 deliverTableVisible: false,
-
+                dialogAddEduVisible: false,
                 dialogEditResumeVisible: false,
                 formEditResume: {
                     resumeID: 0,
@@ -70,6 +71,16 @@
                     hope_salary: '',
                     city: '',
                 },
+                formEditEdu: {
+                    edu_exp_id: 0,
+                    school: '',
+                    education: '',
+                    profession: '',
+                    start_year: '',
+                    end_year: '',
+                    experience: "",
+
+                }
 
             }
         },
@@ -180,7 +191,7 @@
                 myFormData.append("hope_salary", this.formEditResume.hope_salary);
                 myFormData.append("city", this.formEditResume.city);
                 myFormData.append("advantage", this.formEditResume.advantage);
-                myFormData.append("hope_job",this.formEditResume.hope_job);
+                myFormData.append("hope_job", this.formEditResume.hope_job);
 
                 $.ajax({
                     url: "{{urlfor "ResumeController.EditResume"}}",
@@ -206,8 +217,42 @@
                         }
                     }
                 })
+            },
+            /*确定添加教育经历*/
+            handleConfirmAddEdu(){
+                let self = this;
+                let fd = new FormData();
+                fd.append("school",this.formEditEdu.school);
+                fd.append("education",this.formEditEdu.education);
+                fd.append("profession",this.formEditEdu.profession);
+                fd.append("start_year",this.formEditEdu.start_year);
+                fd.append("end_year",this.formEditEdu.end_year);
+                fd.append("experience",this.formEditEdu.experience);
 
-            }
+                $.ajax({
+                    url: "{{urlfor "ResumeController.AddEdu"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getResume();
+                            self.dialogAddEduVisible = false;
+                            self.$notify({
+                                type: "success",
+                                message: "添加教育经历成功！"
+                            });
+
+                        }
+                    }
+                })
+            },
 
         },
         delimiters: ['{[', ']}'],

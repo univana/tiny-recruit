@@ -63,4 +63,7 @@ func init() {
 
 	//编辑简历
 	beego.Router("/userCenter/editResume", &controllers.ResumeController{}, "*:EditResume")
+
+	//添加教育经历
+	beego.Router("/userCenter/addEdu", &controllers.ResumeController{}, "*:AddEdu")
 }
