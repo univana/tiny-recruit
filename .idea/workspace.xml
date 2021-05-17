@@ -1,14 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了新建项目经历的前端样式及逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/0/5/052532e343aa50dc4c6b5980c4a86bf9" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了添加项目经历的后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/9/b/9bd1bd94107576cd3203d70aa9cba2ad" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/user-center/dialog-add-internship.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/projectExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/internshipExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/0/5/052532e343aa50dc4c6b5980c4a86bf9" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -66,7 +69,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images/covers" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/user-center" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -74,6 +77,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Go-Projects\tiny-recruit\views\user-center" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images\covers" />
       <recent name="F:\Go-Projects\tiny-recruit\views\job" />
       <recent name="F:\Go-Projects\tiny-recruit\models" />
@@ -125,7 +129,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了职位分页器并实现了前端分页逻辑" />
     <MESSAGE value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
     <MESSAGE value="添加了搜索框的前端样式" />
     <MESSAGE value="实现了职位详情页跳转的后端逻辑并创建了前端页面" />
@@ -150,7 +153,8 @@
     <MESSAGE value="实现了修改简历其他信息的前后端逻辑" />
     <MESSAGE value="实现了添加教育经历的前后端逻辑" />
     <MESSAGE value="添加了新建项目经历的前端样式及逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了新建项目经历的前端样式及逻辑" />
+    <MESSAGE value="实现了添加项目经历的后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了添加项目经历的后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

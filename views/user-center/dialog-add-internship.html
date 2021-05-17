@@ -1,0 +1,54 @@
+<el-dialog title="添加实习经历" :visible.sync="dialogAddInternshipVisible" width="50%" v-model="formEditInternship" style="padding: 0">
+    <template>
+        <el-form>
+            <el-row>
+                <el-col :span="12">
+                    <el-form-item label="公司名称" style="width: 500px">
+                        <el-input v-model="formEditInternship.company_name" style="width: 300px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="所属部门" style="width: 500px">
+                        <el-input v-model="formEditInternship.department" style="width: 300px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="职位名称" style="width: 500px">
+                        <el-input v-model="formEditInternship.position" style="width: 300px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="在职时间" style="width: 600px">
+                        <el-date-picker
+                                v-model="formEditInternship.start_time"
+                                style="width: 200px"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="选择日期">
+                        </el-date-picker>
+                        至
+                        <el-date-picker
+                                v-model="formEditInternship.end_time"
+                                style="width: 200px"
+                                type="date"
+                                value-format="yyyy-MM-dd"
+                                placeholder="选择日期">
+                        </el-date-picker>
+                    </el-form-item>
+                    <el-form-item label="工作内容" style="width: 400px">
+                        <el-input
+                                type="textarea"
+                                :rows="6"
+                                placeholder="请输入内容"
+                                v-model="formEditInternship.work_content">
+                        </el-input>
+                    </el-form-item>
+                </el-col>
+            </el-row>
+        </el-form>
+    </template>
+
+
+
+
+
+
+    <div slot="footer" class="dialog-footer">
+        <el-button @click="dialogAddInternshipVisible = false">取 消</el-button>
+        <el-button type="primary" @click="handleConfirmAddInternship">确 定</el-button>
+    </div>
+</el-dialog>

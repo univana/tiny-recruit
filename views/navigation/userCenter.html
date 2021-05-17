@@ -59,6 +59,7 @@
                 deliverTableVisible: false,
                 dialogAddEduVisible: false,
                 dialogAddProjectVisible: false,
+                dialogAddInternshipVisible: false,
                 dialogEditResumeVisible: false,
                 formEditResume: {
                     resumeID: 0,
@@ -88,6 +89,15 @@
                     start_time: '',
                     end_time: '',
                     description: ''
+                },
+                formEditInternship: {
+                    int_exp_id: 0,
+                    company_name: '',
+                    department: '',
+                    position: '',
+                    start_time: '',
+                    end_time: '',
+                    work_content: '',
                 }
 
             }
@@ -291,9 +301,42 @@
                         }
                     }
                 })
-
-
             },
+            /*添加实习经历的后端逻辑*/
+            handleConfirmAddInternship(){
+                let self = this;
+                let fd = new FormData();
+                fd.append("company_name",this.formEditInternship.company_name);
+                fd.append("department",this.formEditInternship.department);
+                fd.append("position",this.formEditInternship.position);
+                fd.append("start_time",this.formEditInternship.start_time);
+                fd.append("end_time",this.formEditInternship.end_time);
+                fd.append("work_content",this.formEditInternship.work_content);
+
+                $.ajax({
+                    url: "{{urlfor "ResumeController.AddInternship"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getResume();
+                            self.dialogAddInternshipVisible = false;
+                            self.$notify({
+                                type: "success",
+                                message: "添加实习经历成功！"
+                            });
+                        }
+                    }
+                })
+
+            }
 
         },
         delimiters: ['{[', ']}'],

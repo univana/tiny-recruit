@@ -138,3 +138,41 @@ func (c *ResumeController) AddProject() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// AddInternship 添加实习经历
+func (c *ResumeController) AddInternship() {
+	s := strings.Split(c.GetString("start_time"), "-")
+	y, _ := strconv.Atoi(s[0])
+	m, _ := strconv.Atoi(s[1])
+	d, _ := strconv.Atoi(s[2])
+	startTime := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+
+	e := strings.Split(c.GetString("end_time"), "-")
+	y, _ = strconv.Atoi(e[0])
+	m, _ = strconv.Atoi(e[1])
+	d, _ = strconv.Atoi(e[2])
+	endTime := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+	resume, err := models.GetResumeByMemberID(c.Member.MemberId)
+	if err != nil {
+		logs.Error("Error ResumeController AddInternship: ", err)
+	}
+
+	var internship = models.InternshipExperience{
+		IntExpID:    0,
+		CompanyName: c.GetString("company_name"),
+		Department:  c.GetString("department"),
+		Position:    c.GetString("position"),
+		StartTime:   startTime,
+		EndTime:     endTime,
+		WorkContent: c.GetString("work_content"),
+		Resume:      &models.Resume{ResumeID: resume.ResumeID},
+	}
+
+	err = internship.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error ResumeController AddInternship: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

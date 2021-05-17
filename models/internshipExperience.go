@@ -28,3 +28,16 @@ func GetInternshipExperiencesByResumeID(resumeID int) ([]*InternshipExperience, 
 	_, err := o.QueryTable(TNInternshipExperience()).Filter("resume_id", resumeID).All(&internshipExperiences)
 	return internshipExperiences, err
 }
+
+// InsertOrUpdate 添加或更新实习经历
+func (e *InternshipExperience) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var internship InternshipExperience
+	err := o.QueryTable(TNInternshipExperience()).Filter("int_exp_id", e.IntExpID).One(&internship)
+	if internship.IntExpID > 0 {
+		_, err = o.Update(e, fields...)
+	} else {
+		_, err = o.Insert(e)
+	}
+	return err
+}
