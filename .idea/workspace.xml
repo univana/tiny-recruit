@@ -1,17 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了添加项目经历的后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/9/b/9bd1bd94107576cd3203d70aa9cba2ad" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/user-center/dialog-add-internship.html" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了添加实习经历的前后端逻辑">
+      <change afterPath="$PROJECT_DIR$/models/collection.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/internshipExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/0/5/052532e343aa50dc4c6b5980c4a86bf9" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +122,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
     <MESSAGE value="添加了搜索框的前端样式" />
     <MESSAGE value="实现了职位详情页跳转的后端逻辑并创建了前端页面" />
     <MESSAGE value="添加了职位展示界面获取职位数据的后端逻辑" />
@@ -154,7 +146,8 @@
     <MESSAGE value="实现了添加教育经历的前后端逻辑" />
     <MESSAGE value="添加了新建项目经历的前端样式及逻辑" />
     <MESSAGE value="实现了添加项目经历的后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了添加项目经历的后端逻辑" />
+    <MESSAGE value="实现了添加实习经历的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了添加实习经历的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

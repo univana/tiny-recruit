@@ -12,6 +12,7 @@ func init() {
 		new(Enterprise),
 		new(Job),
 		new(Deliverance),
+		new(Collection),
 	)
 }
 
@@ -48,4 +49,8 @@ func TNJob() string {
 
 func TNDeliverance() string {
 	return "t_deliverance"
+}
+
+func TNCollection() string {
+	return "t_collection"
 }
