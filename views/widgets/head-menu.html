@@ -11,6 +11,10 @@
             {{if gt .Member.MemberId 0}}
                 {{/*用户已登录*/}}
                 <el-menu-item index="4"><a href="{{urlfor "NavigationController.EnterpriseHome"}}">进入企业版</a></el-menu-item>
+                {{/*管理员面板*/}}
+                {{if .Member.Role}}
+                    <el-menu-item index="5"><a href="{{urlfor "NavigationController.Panel"}}">管理面板</a></el-menu-item>
+                {{end}}
                 <el-menu-item style="float: right;margin-right: 5px;">
                     <el-dropdown>
                 <span class="el-dropdown-link">

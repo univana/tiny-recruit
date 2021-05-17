@@ -53,3 +53,9 @@ func (c *NavigationController) EnterpriseHome() {
 	c.Data["Member"] = c.Member
 	c.TplName = "navigation/enterprise-home.html"
 }
+
+// Panel 控制面板
+func (c *NavigationController) Panel() {
+	c.TplName = "navigation/panel.html"
+
+}

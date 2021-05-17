@@ -15,7 +15,7 @@ func init() {
 	beego.Router("/enterprise", &controllers.NavigationController{}, "*:Enterprise")
 	beego.Router("/userCenter", &controllers.NavigationController{}, "*:UserCenter")
 	beego.Router("/enterprise/home", &controllers.NavigationController{}, "*:EnterpriseHome")
-
+	beego.Router("/panel", &controllers.NavigationController{}, "*:Panel")
 	beego.Router("/userCenter/getResume", &controllers.ResumeController{}, "*:GetResumeByMemberID")
 
 	//注册
