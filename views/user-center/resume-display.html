@@ -4,6 +4,8 @@
     {{template  "user-center/dialog-edit-resume.html" .}}
     {{/*添加教育经历对话框*/}}
     {{template  "user-center/dialog-add-edu.html" .}}
+    {{/*添加项目经历对话框*/}}
+    {{template  "user-center/dialog-add-project.html" .}}
 
 
     <el-card shadow="never" style="padding: 0;">
@@ -76,7 +78,10 @@
 
             {{/*项目经历*/}}
             <el-card id="project-experience" shadow="never" style="border: none">
-                <p class="user-info-title">项目经历</p>
+                <p class="user-info-title">
+                    项目经历
+                    <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right" @click="dialogAddProjectVisible=true"></el-button>
+                </p>
                 <template v-for="project_exp in resume.project_experiences">
                     <el-card shadow="hover" style="margin: 1px 20px" >
                         <p style="font-size: 10px">{[dateFormat(project_exp.start_time)]} - {[dateFormat(project_exp.end_time)]}</p>
