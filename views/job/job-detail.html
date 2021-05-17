@@ -30,13 +30,13 @@
                     <el-col :span="12">
                         <div class="banner-buttons">
                             <template>
-                                <el-button plain icon="el-icon-star-off" v-if="collected==0">收藏</el-button>
-                                <el-button type="primary" disabled v-else>已收藏</el-button>
+                                <el-button plain icon="el-icon-star-off" v-if="collected==0" @click="handleCollect">收藏</el-button>
+                                <el-button type="success" icon="el-icon-star-on" v-else>已收藏</el-button>
                             </template>
 
                             <template>
                                 <el-button type="primary" @click="handleDeliver" v-if="delivered==0">投个简历</el-button>
-                                <el-button type="primary" disabled v-else>已投递</el-button>
+                                <el-button type="success" disabled v-else>已投递</el-button>
                             </template>
                         </div>
 
@@ -109,7 +109,7 @@
                 activeIndex: '2',
                 job:{{.Job}},
                 delivered:{{.Delivered}},
-                collected: 0,
+                collected:{{.Collected}},
 
             }
         },
@@ -139,12 +139,39 @@
                         } else {
                             self.delivered = 1;
                             self.$notify({
-                                message: res.message,
+                                message: "收藏职位成功！",
                                 type: 'success',
                             });
                         }
                     }
 
+                });
+            },
+            handleCollect(){
+                let self = this;
+                let myFormData = new FormData();
+                let jobID = this.job.job_id;
+                myFormData.append("job_id", jobID)
+                $.ajax({
+                    url: "{{urlfor "CollectionController.Collect"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.collected = 1;
+                            self.$notify({
+                                message: '收藏职位成功',
+                                type: 'success',
+                            });
+                        }
+                    }
                 });
             }
 

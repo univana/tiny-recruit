@@ -21,6 +21,7 @@ func (c *JobController) ShowJob() {
 
 	//确定职位是否被投递
 	c.Data["Delivered"] = models.IsDelivered(job.JobID, c.Member.MemberId)
+	c.Data["Collected"] = models.IsCollected(job.JobID, c.Member.MemberId)
 	c.TplName = "job/job-detail.html"
 }
 
