@@ -101,3 +101,40 @@ func (c *ResumeController) AddEdu() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// AddProject 添加项目经历
+func (c *ResumeController) AddProject() {
+	s := strings.Split(c.GetString("start_time"), "-")
+	y, _ := strconv.Atoi(s[0])
+	m, _ := strconv.Atoi(s[1])
+	d, _ := strconv.Atoi(s[2])
+	startTime := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+
+	e := strings.Split(c.GetString("end_time"), "-")
+	y, _ = strconv.Atoi(e[0])
+	m, _ = strconv.Atoi(e[1])
+	d, _ = strconv.Atoi(e[2])
+	endTime := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+	resume, err := models.GetResumeByMemberID(c.Member.MemberId)
+	if err != nil {
+		logs.Error("Error ResumeController AddProject: ", err)
+	}
+
+	var pro = models.ProjectExperience{
+		ProExpID:    0,
+		Name:        c.GetString("name"),
+		Role:        c.GetString("role"),
+		StartTime:   startTime,
+		EndTime:     endTime,
+		Description: c.GetString("description"),
+		Resume:      &models.Resume{ResumeID: resume.ResumeID},
+	}
+
+	err = pro.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error ResumeController AddProject: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

@@ -27,3 +27,16 @@ func GetProjectExperiencesByResumeID(resumeID int) ([]*ProjectExperience, error)
 	_, err := o.QueryTable(TNProjectExperience()).Filter("resume_id", resumeID).All(&projectExperiences)
 	return projectExperiences, err
 }
+
+// InsertOrUpdate 添加或更新经历
+func (e *ProjectExperience) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var pro ProjectExperience
+	err := o.QueryTable(TNProjectExperience()).Filter("pro_exp_id", e.ProExpID).One(&pro)
+	if pro.ProExpID > 0 {
+		_, err = o.Update(e, fields...)
+	} else {
+		_, err = o.Insert(e)
+	}
+	return err
+}

@@ -1,12 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了添加教育经历的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/views/user-center/dialog-add-project.html" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了新建项目经历的前端样式及逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/0/5/052532e343aa50dc4c6b5980c4a86bf9" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/projectExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/9/4/9489be9cdbb73af53c89b18d75f419d2" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了职位卡片的粗糙样式" />
     <MESSAGE value="添加了职位分页器并实现了前端分页逻辑" />
     <MESSAGE value="添加了职位卡片的基本样式并对job.html进行了部分重写" />
     <MESSAGE value="添加了搜索框的前端样式" />
@@ -148,20 +149,10 @@
     <MESSAGE value="实现了修改简历基本信息的前后端逻辑" />
     <MESSAGE value="实现了修改简历其他信息的前后端逻辑" />
     <MESSAGE value="实现了添加教育经历的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了添加教育经历的前后端逻辑" />
+    <MESSAGE value="添加了新建项目经历的前端样式及逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了新建项目经历的前端样式及逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
-          <line>95</line>
-          <option name="timeStamp" value="5" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
   </component>
 </project>

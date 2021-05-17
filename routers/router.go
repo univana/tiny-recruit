@@ -66,4 +66,7 @@ func init() {
 
 	//添加教育经历
 	beego.Router("/userCenter/addEdu", &controllers.ResumeController{}, "*:AddEdu")
+
+	//添加项目经历
+	beego.Router("/userCenter/addProject", &controllers.ResumeController{}, "*:AddProject")
 }
