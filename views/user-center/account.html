@@ -1,0 +1,36 @@
+<el-col :span="20" v-if="displayIndex===4" style="margin:10px 10px">
+    <el-card shadow="never" style="padding: 0;">
+        <div slot="header" class="clearfix">
+            <span>账户设置</span>
+        </div>
+
+        <el-row>
+            <el-col :span="12">
+                <el-form ref="form" :model="formEditAccount">
+                    <el-form-item label="昵称" style="width: 400px">
+                        <el-input v-model="formEditAccount.nickname" style="width: 200px"></el-input>
+                    </el-form-item>
+                    <el-form-item label="求职状态" style="width: 400px">
+                        <el-select v-model="formEditAccount.hunt_status" style="width: 200px">
+                            <el-option label="离职-随时到岗" value="离职-随时到岗"></el-option>
+                            <el-option label="在校-暂不考虑" value="在校-暂不考虑"></el-option>
+                            <el-option label="在校-考虑机会" value="在校-考虑机会"></el-option>
+                            <el-option label="在校-月内到岗" value="在校-月内到岗"></el-option>
+                        </el-select>
+                    </el-form-item>
+                    <el-divider></el-divider>
+                    <el-form-item label="新密码" style="width: 400px">
+                        <el-input v-model="formEditAccount.password" style="width: 200px" show-password></el-input>
+                    </el-form-item>
+                    <el-form-item label="确认密码" style="width: 400px">
+                        <el-input v-model="formEditAccount.passwordConfirm" style="width: 200px" show-password></el-input>
+                    </el-form-item>
+                    <el-divider></el-divider>
+                    <el-form-item>
+                        <el-button type="primary" @click="handleEditAccount">更新</el-button>
+                    </el-form-item>
+                </el-form>
+            </el-col>
+        </el-row>
+    </el-card>
+</el-col>

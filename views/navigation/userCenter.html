@@ -13,6 +13,9 @@
             <!-- 左侧导航栏 -->
             <el-col :span="3" style="height:100%;margin-top: 10px;">
                 <el-menu default-active="1">
+                    <el-menu-item index="4" @click="displayIndex=4;getResume();" style="text-align: center">
+                        <span>账户</span>
+                    </el-menu-item>
                     <el-menu-item index="1" @click="displayIndex=1;getResume();" style="text-align: center">
                         <span>简历</span>
                     </el-menu-item>
@@ -32,6 +35,8 @@
             {{template "user-center/deliverance-management.html" .}}
             {{/*收藏管理*/}}
             {{template "user-center/collection.html" .}}
+            {{/*账户设置*/}}
+            {{template "user-center/account.html" .}}
         </el-col>
     </el-row>
 </div>
@@ -45,6 +50,34 @@
 <!-- import JavaScript -->
 <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+<style>
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
+    }
+</style>
 
 <script>
     new Vue({
@@ -56,7 +89,7 @@
                 resume: '',
                 member:{{.Member}},
                 delivers: [],
-                collections:[],
+                collections: [],
                 deliverTableVisible: false,
                 dialogAddEduVisible: false,
                 dialogAddProjectVisible: false,
@@ -99,6 +132,12 @@
                     start_time: '',
                     end_time: '',
                     work_content: '',
+                },
+                formEditAccount: {
+                    nickname: {{.Member.Nickname}},
+                    password: '',
+                    passwordConfirm: '',
+                    hunt_status: {{.Member.HuntStatus}},
                 }
 
             }
@@ -126,7 +165,6 @@
                         self.formEditResume.city = res.data.city;
                         self.formEditResume.advantage = res.data.advantage;
 
-
                     }
 
                 });
@@ -143,7 +181,7 @@
                     }
                 });
             },
-            getCollections(){
+            getCollections() {
                 let self = this;
                 $.ajax({
                     url: "{{urlfor "AccountController.GetCollections"}}",
@@ -312,15 +350,15 @@
                 })
             },
             /*添加实习经历的后端逻辑*/
-            handleConfirmAddInternship(){
+            handleConfirmAddInternship() {
                 let self = this;
                 let fd = new FormData();
-                fd.append("company_name",this.formEditInternship.company_name);
-                fd.append("department",this.formEditInternship.department);
-                fd.append("position",this.formEditInternship.position);
-                fd.append("start_time",this.formEditInternship.start_time);
-                fd.append("end_time",this.formEditInternship.end_time);
-                fd.append("work_content",this.formEditInternship.work_content);
+                fd.append("company_name", this.formEditInternship.company_name);
+                fd.append("department", this.formEditInternship.department);
+                fd.append("position", this.formEditInternship.position);
+                fd.append("start_time", this.formEditInternship.start_time);
+                fd.append("end_time", this.formEditInternship.end_time);
+                fd.append("work_content", this.formEditInternship.work_content);
 
                 $.ajax({
                     url: "{{urlfor "ResumeController.AddInternship"}}",
@@ -346,10 +384,10 @@
                 })
             },
             /*取消收藏*/
-            handleCancelCollection(id){
+            handleCancelCollection(id) {
                 let self = this;
                 let fd = new FormData();
-                fd.append("collection_id",id);
+                fd.append("collection_id", id);
 
                 $.ajax({
                     url: "{{urlfor "CollectionController.Cancel"}}",
@@ -371,7 +409,45 @@
                         }
                     }
                 })
+            },
+            /*账户信息编辑*/
+            handleEditAccount() {
+                if (this.formEditAccount.password !== this.formEditAccount.passwordConfirm) {
+                    this.formEditAccount.password = '';
+                    this.formEditAccount.passwordConfirm = '';
+                    self.$notify.error({
+                        message: "输入密码不一致！"
+                    });
+                } else {
+                    let self = this;
+                    let fd = new FormData();
+                    fd.append("nickname", this.formEditAccount.nickname);
+                    fd.append("hunt_status", this.formEditAccount.hunt_status);
+                    fd.append("password", this.formEditAccount.password);
 
+                    $.ajax({
+                        url: "{{urlfor "AccountController.Edit"}}",
+                        type: "POST",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.$notify({
+                                    type: "success",
+                                    message: "设置账户信息成功！"
+                                });
+                            }
+                        }
+                    })
+
+
+
+                }
             }
 
         },

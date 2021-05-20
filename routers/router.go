@@ -59,6 +59,9 @@ func init() {
 	//删除职位
 	beego.Router("/enterprise/home/deleteJob", &controllers.JobController{}, "*:DeleteJob")
 
+	//编辑用户基本信息
+	beego.Router("/userCenter/editAccount", &controllers.AccountController{}, "*:Edit")
+
 	//获取用户的投递数据
 	beego.Router("/userCenter/getDelivers", &controllers.AccountController{}, "*:GetDelivers")
 

@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"errors"
+	"fmt"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
 	"golang.org/x/crypto/bcrypt"
@@ -67,7 +68,6 @@ func (c *AccountController) DoRegist() {
 	}
 	encodePassword := string(hash)
 	member.Password = encodePassword
-	//TODO 设置注册时的角色类型
 	member.Avatar = common.DefaultAvatar()
 	member.Status = 0
 	if err := member.Add(); err != nil {
@@ -197,4 +197,47 @@ func (c *AccountController) GetCollections() {
 
 		c.JsonResult(0, "ok", res)
 	}
+}
+
+// Edit 编辑用户基本信息
+func (c *AccountController) Edit() {
+	nickname := c.GetString("nickname")
+	huntStatus := c.GetString("hunt_status")
+	password := c.GetString("password")
+	fmt.Println(nickname, huntStatus, password)
+
+	member := models.NewMember()
+	member.MemberId = c.Member.MemberId
+	member.Nickname = nickname
+	member.HuntStatus = huntStatus
+	if password != "" {
+		/*对密码进行加密*/
+		hash, err := bcrypt.GenerateFromPassword([]byte(password), bcrypt.DefaultCost)
+		if err != nil {
+			logs.Error("Error hash the password:", err)
+		}
+		encodePassword := string(hash)
+		member.Password = encodePassword
+		err = member.Update("nickname", "hunt_status", "password")
+		if err != nil {
+			logs.Error("Error AccountController Edit: ", err)
+			c.JsonResult(1, err.Error())
+		} else {
+			m, _ := models.NewMember().Find(c.Member.MemberId)
+			c.SetMember(*m)
+			c.JsonResult(0, "ok")
+		}
+
+	} else {
+		err := member.Update("nickname", "hunt_status")
+		if err != nil {
+			logs.Error("Error AccountController Edit: ", err)
+			c.JsonResult(1, err.Error())
+		} else {
+			m, _ := models.NewMember().Find(c.Member.MemberId)
+			c.SetMember(*m)
+			c.JsonResult(0, "ok")
+		}
+	}
+
 }
