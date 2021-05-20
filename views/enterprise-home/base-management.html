@@ -4,8 +4,43 @@
             <span>企业基本信息管理</span>
         </div>
 
-        <el-form>
-
+        <el-form enctype="multipart/form-data">
+            <el-form-item label="企业名称" style="width: 500px">
+                <el-input v-model="formEditEnterprise.name" style="width: 200px"></el-input>
+            </el-form-item>
+            <el-form-item label="企业logo" style="width: 500px">
+                <img  v-if="formEditEnterprise.cover" :src="formEditEnterprise.cover" alt="">
+                <input type="file" @change="getFiles($event)" />
+            </el-form-item>
+            <el-form-item label="行业" style="width: 500px">
+                <el-select v-model="formEditEnterprise.type">
+                    <el-option v-for="type in types" :value="type" :label="type"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="所在城市" style="width: 500px">
+                <el-select v-model="formEditEnterprise.location">
+                    <el-option v-for="city in cities" :value="city" :label="city"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="融资阶段" style="width: 500px">
+                <el-select v-model="formEditEnterprise.financing_stage">
+                    <el-option v-for="stage in stages" :value="stage" :label="stage"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="规模" style="width: 500px">
+                <el-select v-model="formEditEnterprise.scale">
+                    <el-option v-for="scale in scales" :value="scale" :label="scale"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="企业简介">
+                <el-input
+                        type="textarea"
+                        :rows="10"
+                        placeholder="请输入企业简介"
+                        v-model="formEditEnterprise.description">
+                </el-input>
+            </el-form-item>
+            <el-button type="primary" @click="handleEditEnterprise">更新</el-button>
         </el-form>
     </el-card>
 </el-col>

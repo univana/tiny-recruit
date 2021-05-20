@@ -62,7 +62,10 @@
                 exps: ['在校/应届', '3年及以下', '3-5年', '5-10年', '10年以上'],
                 edus: ['大专', '本科', '硕士', '博士'],
                 natures: ['全职', '实习'],
-                types: ['互联网', '电子商务'],
+                types: ['互联网', '电子商务', '游戏', '媒体', '广告营销', '数据服务', '医疗健康', '生活服务', 'O2O', '旅游',
+                    '分类信息', '音乐/视频/阅读', '在线教育', '社交网络', '人力资源服务', '信息安全', '智能硬件', '移动互联网', '计算机软件', '互联网金融', '物流/仓储', '其他行业'],
+                stages: ['未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
+                scales: ['0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人', '10000人以上'],
                 formNewJob: {
                     job_id: 0,
                     title: '',
@@ -76,17 +79,60 @@
                     type: '',
                     nature: '',
                 },
-                formEditEnterprise:{
+                formEditEnterprise: {
                     name:{{.Enterprise.Name}},
                     description:{{.Enterprise.Description}},
                     location:{{.Enterprise.Location}},
+                    type:{{.Enterprise.Type}},
                     financing_stage:{{.Enterprise.FinancingStage}},
                     scale:{{.Enterprise.Scale}},
-                    /*TODO 行业类型编辑*/
+                    cover:{{.Enterprise.Cover}},
+                    file:'',
                 }
             }
         },
         methods: {
+            /*编辑企业基本信息*/
+            getFiles(e){
+                this.formEditEnterprise.file = e.target.files[0];
+            },
+            handleEditEnterprise(){
+                let self = this;
+                let fd = new FormData();
+                fd.append("enterprise_id",this.enterprise.enterprise_id);
+                fd.append("file",this.formEditEnterprise.file);
+                fd.append("name",this.formEditEnterprise.name);
+                fd.append("description",this.formEditEnterprise.description);
+                fd.append("financing_stage",this.formEditEnterprise.financing_stage);
+                fd.append("scale",this.formEditEnterprise.scale);
+                fd.append("type",this.formEditEnterprise.type);
+                fd.append("location",this.formEditEnterprise.location);
+
+
+
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.Edit"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.$notify({
+                                type: "success",
+                                message: "更新企业基本信息成功!"
+                            });
+                        }
+                    }
+                })
+
+
+            },
             dateFormatYMDDel(time) {
                 return moment(time).format("YYYY-MM-DD")
             },
@@ -251,11 +297,11 @@
                     let fd = new FormData();
                     fd.append("job_id", id);
                     $.ajax({
-                        url:"{{urlfor "JobController.DeleteJob"}}",
+                        url: "{{urlfor "JobController.DeleteJob"}}",
                         data: fd,
                         contentType: false,
                         processData: false,
-                        method:"POST",
+                        method: "POST",
                         success: function (res) {
                             if (res.errcode !== 0) {
                                 self.$notify.error({
@@ -319,6 +365,24 @@
                 })
 
             },
+            /*上传封面相关*/
+
+            handleAvatarSuccess(res) {
+
+            },
+            beforeAvatarUpload(file) {
+                const isJPG = file.type === 'image/jpeg';
+                const isLt2M = file.size / 1024 / 1024 < 2;
+
+                if (!isJPG) {
+                    this.$message.error('上传头像图片只能是 JPG 格式!');
+                }
+                if (!isLt2M) {
+                    this.$message.error('上传头像图片大小不能超过 2MB!');
+                }
+                return isJPG && isLt2M;
+            }
+
         },
         delimiters: ['{[', ']}'],
     })
@@ -328,5 +392,28 @@
     .el-table td, .el-table th {
         text-align: center;
     !important;
+    }
+    .avatar-uploader .el-upload {
+        border: 1px dashed #d9d9d9;
+        border-radius: 6px;
+        cursor: pointer;
+        position: relative;
+        overflow: hidden;
+    }
+    .avatar-uploader .el-upload:hover {
+        border-color: #409EFF;
+    }
+    .avatar-uploader-icon {
+        font-size: 28px;
+        color: #8c939d;
+        width: 178px;
+        height: 178px;
+        line-height: 178px;
+        text-align: center;
+    }
+    .avatar {
+        width: 178px;
+        height: 178px;
+        display: block;
     }
 </style>

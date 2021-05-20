@@ -50,6 +50,9 @@ func init() {
 	//新建职位
 	beego.Router("/enterprise/home/newJob", &controllers.JobController{}, "*:NewJob")
 
+	//编辑企业基本信息
+	beego.Router("/enterprise/home/edit", &controllers.EnterpriseController{}, "*:Edit")
+
 	//获取职位
 	beego.Router("/enterprise/home/getJob", &controllers.JobController{}, "*:GetJob")
 

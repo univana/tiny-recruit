@@ -94,3 +94,16 @@ func (e *Enterprise) LoadJobs() {
 		logs.Error("Error load jobs: ", err)
 	}
 }
+
+// InsertOrUpdate 添加或更新企业信息
+func (e *Enterprise) InsertOrUpdate(fields ...string) error {
+	o := orm.NewOrm()
+	var enterprise Enterprise
+	err := o.QueryTable(TNEnterprise()).Filter("enterprise_id", e.EnterpriseID).One(&enterprise)
+	if enterprise.EnterpriseID > 0 {
+		_, err = o.Update(e, fields...)
+	} else {
+		_, err = o.Insert(e)
+	}
+	return err
+}
