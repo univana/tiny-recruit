@@ -11,12 +11,15 @@
         <el-col :span="20">
             <!-- 左侧导航栏 -->
             <el-col :span="3" style="height:100%;margin-top: 10px;">
-                <el-menu default-active="1">
+                <el-menu default-active="3">
+                    <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
+                        <span>基本信息</span>
+                    </el-menu-item>
                     <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
-                        <span>职位管理</span>
+                        <span>职位</span>
                     </el-menu-item>
                     <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
-                        <span>投递管理</span>
+                        <span>投递</span>
                     </el-menu-item>
                 </el-menu>
             </el-col>
@@ -27,6 +30,9 @@
 
             {{/*投递管理*/}}
             {{template "enterprise-home/deliverance-management.html" .}}
+
+            {{/*投递管理*/}}
+            {{template "enterprise-home/base-management.html" .}}
         </el-col>
     </el-row>
 </div>
@@ -70,6 +76,14 @@
                     type: '',
                     nature: '',
                 },
+                formEditEnterprise:{
+                    name:{{.Enterprise.Name}},
+                    description:{{.Enterprise.Description}},
+                    location:{{.Enterprise.Location}},
+                    financing_stage:{{.Enterprise.FinancingStage}},
+                    scale:{{.Enterprise.Scale}},
+                    /*TODO 行业类型编辑*/
+                }
             }
         },
         methods: {
