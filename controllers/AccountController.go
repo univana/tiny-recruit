@@ -241,3 +241,15 @@ func (c *AccountController) Edit() {
 	}
 
 }
+
+// GetMembers 获取所有用户信息
+func (c *AccountController) GetMembers() {
+	members, err := models.GetAllMembers()
+	if err != nil {
+		logs.Error("Error AccountController GetMembers: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok", members)
+	}
+
+}

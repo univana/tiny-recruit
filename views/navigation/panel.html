@@ -12,15 +12,17 @@
             <!-- 左侧导航栏 -->
             <el-col :span="3" style="height:100%;margin-top: 10px;">
                 <el-menu default-active="1">
-                    <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
-                        <span>用户管理</span>
+                    <el-menu-item index="1" @click="displayIndex=1;getMembers();" style="text-align: center">
+                        <span>用户</span>
                     </el-menu-item>
                     <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
-                        <span>标签管理</span>
+                        <span>职位</span>
                     </el-menu-item>
                 </el-menu>
             </el-col>
             <!-- 右侧内容 -->
+            {{/*用户管理*/}}
+            {{template "panel/member-management.html" .}}
 
         </el-col>
     </el-row>
@@ -34,9 +36,26 @@
         el: '#app',
         data: function () {
             return {
-                activeIndex: '5',
+                displayIndex:'1',
+                activeIndex: '1',
+                members:[],
             }
         },
-        methods: {}
+        methods: {
+            dateFormatYMDDel(time) {
+                return moment(time).format("YYYY-MM-DD")
+            },
+            getMembers(){
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "AccountController.GetMembers"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.members = res.data;
+                    }
+                });
+            }
+        },
+        delimiters: ['{[', ']}'],
     })
 </script>

@@ -88,4 +88,7 @@ func init() {
 
 	//收藏职位
 	beego.Router("/job/detail/collect", &controllers.CollectionController{}, "*:Collect")
+
+	//获取所有用户信息
+	beego.Router("/panel/getMembers", &controllers.AccountController{}, "*:GetMembers")
 }

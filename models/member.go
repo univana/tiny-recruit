@@ -101,3 +101,15 @@ func (m *Member) IsAdministrator() bool {
 	}
 	return m.Role == 0 || m.Role == 1
 }
+
+// GetAllMembers 获取所有用户数据
+func GetAllMembers() ([]Member, error) {
+	o := orm.NewOrm()
+	var members []Member
+	_, err := o.QueryTable(TNMembers()).All(&members)
+	if err != nil {
+		return nil, err
+	}
+	return members, err
+
+}
