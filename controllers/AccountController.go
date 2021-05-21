@@ -271,3 +271,21 @@ func (c *AccountController) SetMemberStatus() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// SetMemberRole 设置用户权限
+func (c *AccountController) SetMemberRole() {
+	memberID, _ := strconv.Atoi(c.GetString("member_id"))
+	role, _ := strconv.Atoi(c.GetString("role"))
+
+	var member = models.Member{
+		MemberId: memberID,
+		Role:     role,
+	}
+	err := member.Update("role")
+	if err != nil {
+		logs.Error("Error AccountController SetMemberRole: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

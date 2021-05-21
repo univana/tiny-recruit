@@ -81,6 +81,32 @@
                         }
                     }
                 })
+            },
+            handleSetMemberRole(id, role) {
+                let self = this;
+                let fd = new FormData();
+                fd.append("member_id", id);
+                fd.append("role",role);
+                $.ajax({
+                    url: "{{urlfor "AccountController.SetMemberRole"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getMembers();
+                            self.$notify({
+                                type: "success",
+                                message: "设置用户权限成功！"
+                            });
+                        }
+                    }
+                })
             }
         },
         delimiters: ['{[', ']}'],

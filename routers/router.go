@@ -95,4 +95,7 @@ func init() {
 	//设置用户状态
 	beego.Router("/panel/setMemberStatus", &controllers.AccountController{}, "*:SetMemberStatus")
 
+	//设置用户权限
+	beego.Router("/panel/setMemberRole", &controllers.AccountController{}, "*:SetMemberRole")
+
 }
