@@ -9,6 +9,7 @@ import (
 	"myApp/common"
 	"myApp/models"
 	"myApp/utils"
+	"strconv"
 	"strings"
 	"time"
 
@@ -251,5 +252,22 @@ func (c *AccountController) GetMembers() {
 	} else {
 		c.JsonResult(0, "ok", members)
 	}
+}
 
+// SetMemberStatus 设置用户状态
+func (c *AccountController) SetMemberStatus() {
+	memberID, _ := strconv.Atoi(c.GetString("member_id"))
+	status, _ := strconv.Atoi(c.GetString("status"))
+
+	var member = models.Member{
+		MemberId: memberID,
+		Status:   status,
+	}
+	err := member.Update("status")
+	if err != nil {
+		logs.Error("Error AccountController SetMemberStatus: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
 }

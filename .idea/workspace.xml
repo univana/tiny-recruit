@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了企业信息管理的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/4/d/4dacae255d685a4d0d111774c014a557" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/panel/member-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了用户管理的前端样式">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/AccountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/member.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/member.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/6/f/6f253e7e50525998393b60953db7f4aa" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/9/c/9c186949e136be2f7c137bc7dc1b7152" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/4/d/4dacae255d685a4d0d111774c014a557" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/4/d/4dacae255d685a4d0d111774c014a557" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/panel.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/panel/member-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/member-management.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了用户投递职位的后端逻辑和前端部分响应" />
     <MESSAGE value="实现了职位管理页面获取所有职位及对应投递数据的后端逻辑" />
     <MESSAGE value="修改了投递表的时间字段" />
     <MESSAGE value="重构获取职位对应的投递数据的后端逻辑，改为按请求获取" />
@@ -154,7 +149,8 @@
     <MESSAGE value="实现了账户信息管理的前后端逻辑" />
     <MESSAGE value="添加了企业基本信息管理的前端样式" />
     <MESSAGE value="实现了企业信息管理的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了企业信息管理的前后端逻辑" />
+    <MESSAGE value="添加了用户管理的前端样式" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了用户管理的前端样式" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

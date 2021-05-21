@@ -36,16 +36,16 @@
         el: '#app',
         data: function () {
             return {
-                displayIndex:'1',
+                displayIndex: '1',
                 activeIndex: '1',
-                members:[],
+                members: [],
             }
         },
         methods: {
             dateFormatYMDDel(time) {
                 return moment(time).format("YYYY-MM-DD")
             },
-            getMembers(){
+            getMembers() {
                 let self = this;
                 $.ajax({
                     url: "{{urlfor "AccountController.GetMembers"}}",
@@ -54,6 +54,33 @@
                         self.members = res.data;
                     }
                 });
+            },
+            /*禁用用户*/
+            handleSetMemberStatus(id, status) {
+                let self = this;
+                let fd = new FormData();
+                fd.append("member_id", id);
+                fd.append("status",status);
+                $.ajax({
+                    url: "{{urlfor "AccountController.SetMemberStatus"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getMembers();
+                            self.$notify({
+                                type: "success",
+                                message: "设置用户状态成功！"
+                            });
+                        }
+                    }
+                })
             }
         },
         delimiters: ['{[', ']}'],

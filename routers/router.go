@@ -91,4 +91,8 @@ func init() {
 
 	//获取所有用户信息
 	beego.Router("/panel/getMembers", &controllers.AccountController{}, "*:GetMembers")
+
+	//设置用户状态
+	beego.Router("/panel/setMemberStatus", &controllers.AccountController{}, "*:SetMemberStatus")
+
 }
