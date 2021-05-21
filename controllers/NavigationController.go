@@ -2,6 +2,7 @@ package controllers
 
 import (
 	"github.com/astaxie/beego/logs"
+	"myApp/common"
 	"myApp/models"
 )
 
@@ -20,6 +21,13 @@ func (c *NavigationController) Job() {
 		logs.Error("Error get jobs:", err)
 	}
 	c.Data["Jobs"] = jobs
+
+	//获取所有省份信息
+	provinces, err := common.GetAllProvinces()
+	if err != nil {
+		logs.Error("Error get provinces: ", err)
+	}
+	c.Data["Provinces"] = provinces
 
 	c.TplName = "navigation/job.html"
 }

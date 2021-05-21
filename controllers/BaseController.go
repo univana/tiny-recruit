@@ -3,6 +3,8 @@ package controllers
 import (
 	"compress/gzip"
 	"encoding/json"
+	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
 	"io"
 	"myApp/common"
 	"myApp/models"
@@ -104,4 +106,23 @@ func (c *BaseController) JsonResult(errCode int, errMsg string, data ...interfac
 		io.WriteString(c.Ctx.ResponseWriter, string(returnJSON))
 	}
 	c.StopRun()
+}
+
+// GetCities 获取省份对应的所有城市信息
+func (c *BaseController) GetCities() {
+	provinceName := c.GetString("province_name")
+	sql := "select city_id,city_name from t_city join t_province tp on t_city.pro_id = tp.pro_id where pro_name= ?"
+	o := orm.NewOrm()
+	type City struct {
+		CityID   string `orm:"column(city_id)" json:"city_id"`
+		CityName string `orm:"column(city_name)" json:"city_name"`
+	}
+	var cities []City
+	_, err := o.Raw(sql, provinceName).QueryRows(&cities)
+	if err != nil {
+		logs.Error("Error BaseController GetCities: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok", cities)
+	}
 }

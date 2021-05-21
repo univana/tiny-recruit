@@ -1,15 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了设置用户权限的后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/2/5/2533034fafac4b51f5e92cf23c5d70bd" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/panel/job-management.html" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了职位管理的前后端逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/common.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/common.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/BaseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/4/d/4dacae255d685a4d0d111774c014a557" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/panel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/panel/member-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/member-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="重构获取职位对应的投递数据的后端逻辑，改为按请求获取" />
     <MESSAGE value="实现了职位管理页面的基本样式和修改投递状态的前后端逻辑" />
     <MESSAGE value="实现了职位搜索的后端逻辑" />
     <MESSAGE value="实现了职位其他要求的筛选逻辑" />
@@ -152,7 +149,8 @@
     <MESSAGE value="添加了用户管理的前端样式" />
     <MESSAGE value="实现了设置用户状态的后端逻辑" />
     <MESSAGE value="实现了设置用户权限的后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了设置用户权限的后端逻辑" />
+    <MESSAGE value="实现了职位管理的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了职位管理的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

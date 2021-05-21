@@ -23,11 +23,23 @@
                     <el-col :span="20">
                         <p>
                             <span class="filter-box-title">工作地点：</span>
-                            <el-radio-group v-model="radio_city" size="small" @change="handleFilter">
-                                <template v-for="city in cities">
-                                    <el-radio-button :label="city"></el-radio-button>
-                                </template>
-                            </el-radio-group>
+                            <el-select v-model="provinceSelected" @change="handleProvinceSelected">
+                                <el-option
+                                        v-for="province in provinces"
+                                        :key="province.pro_id"
+                                        :label="province.pro_name"
+                                        :value="province.pro_name"
+                                ></el-option>
+                            </el-select>
+                            <el-select v-if="citySelectVisible" v-model="citySelected" @change="handleFilter">
+                                <el-option
+                                        v-for="city in cities"
+                                        :key="city.city_name"
+                                        :label="city.city_name"
+                                        :value="city.city_name"
+                                ></el-option>
+
+                            </el-select>
                         </p>
 
                         <p>
@@ -51,7 +63,8 @@
                         <p>
                             <span class="filter-box-title">融资阶段：</span>
                             <span>
-                                        <el-radio-group v-model="radio_financing_stage" size="small"  @change="handleFilter">
+                                        <el-radio-group v-model="radio_financing_stage" size="small"
+                                                        @change="handleFilter">
                                             <template v-for="stage in stages">
                                                 <el-radio-button :label="stage"></el-radio-button>
                                             </template>
@@ -61,7 +74,7 @@
                         <p>
                             <span class="filter-box-title">公司规模： </span>
                             <span class="filter-box-rows">
-                               <el-radio-group v-model="radio_scale" size="small"  @change="handleFilter">
+                               <el-radio-group v-model="radio_scale" size="small" @change="handleFilter">
                                     <template v-for="scale in scales">
                                         <el-radio-button :label="scale"></el-radio-button>
                                     </template>
@@ -71,7 +84,7 @@
                         <p>
                             <span class="filter-box-title">行业领域： </span>
                             <span class="filter-box-rows">
-                               <el-radio-group v-model="radio_type" size="small"  @change="handleFilter">
+                               <el-radio-group v-model="radio_type" size="small" @change="handleFilter">
                                     <template v-for="type in types">
                                         <el-radio-button :label="type"></el-radio-button>
                                     </template>
@@ -116,7 +129,9 @@
                                         <el-row>
                                             <el-col :span="18">
                                                 {{/*企业名称*/}}
-                                                <p class="enterprise-name"><a :href="'{{urlfor "EnterpriseController.ShowEnterprise" ":id" ""}}' + job.enterprise.enterprise_id" target="_blank">{[job.enterprise.name]}</a> </p>
+                                                <p class="enterprise-name"><a
+                                                            :href="'{{urlfor "EnterpriseController.ShowEnterprise" ":id" ""}}' + job.enterprise.enterprise_id"
+                                                            target="_blank">{[job.enterprise.name]}</a></p>
                                                 {{/*企业其他内容*/}}
                                                 <p class="enterprise-other">
                                                     {[job.enterprise.type]}
@@ -176,7 +191,7 @@
                 currentPage: 1,
                 pageSize: 8,
                 jobs:{{.Jobs}},
-                cities: ['不限', '北京', '上海', '广州', '深圳'],
+
                 stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
                 scales: ['不限', '0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人', '10000人以上'],
                 types: ['不限', '互联网', '电子商务', '更多'],
@@ -189,9 +204,50 @@
                 radio_require_experience: '不限',
                 radio_require_education: '不限',
                 search_content: '',
+                provinces:{{.Provinces}},
+                provinceSelected: '不限',
+                citySelected: '',
+                cities: [],
+                citySelectVisible: false,
             }
         },
         methods: {
+            /*省被选中后获取对应市区信息*/
+            handleProvinceSelected() {
+                /*如果是直辖市*/
+                if (this.provinceSelected === "北京市" || this.provinceSelected === "天津市" || this.provinceSelected === "上海市" || this.provinceSelected === "重庆市") {
+                    this.citySelected = this.provinceSelected;
+                    this.handleFilter();
+                } else {
+                    /*查询省对应的市数据*/
+                    let self = this;
+                    let myFormData = new FormData();
+                    myFormData.append("province_name", this.provinceSelected);
+
+                    $.ajax({
+                        url: "{{urlfor "BaseController.GetCities"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.handleClearFilter();
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.cities = res.data;
+                                self.citySelected = "不限";
+                                self.citySelectVisible = true;
+                            }
+                        }
+
+                    });
+                }
+
+
+            },
             handleCurrentChange: function (currentPage) {
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
@@ -202,26 +258,27 @@
             dateFormatMMDD(time) {
                 return moment(time).format("MM月DD日")
             },
-            handleClearFilter(){
-              this.search_content="";
-              this.radio_require_experience="不限";
-              this.radio_require_education="不限";
-              this.radio_city="不限";
-              this.radio_financing_stage="不限";
-              this.radio_scale="不限";
-              this.radio_type="不限";
+            handleClearFilter() {
+                this.search_content = "";
+                this.radio_require_experience = "不限";
+                this.radio_require_education = "不限";
+                this.citySelected = "不限";
+                this.provinceSelected = "不限";
+                this.radio_financing_stage = "不限";
+                this.radio_scale = "不限";
+                this.radio_type = "不限";
             },
             /*职位过滤器逻辑*/
             handleFilter() {
                 let self = this;
                 let myFormData = new FormData();
                 myFormData.append("search_content", this.search_content);
-                myFormData.append("city", this.radio_city);
-                myFormData.append("require_experience",this.radio_require_experience);
-                myFormData.append("require_education",this.radio_require_education);
-                myFormData.append("financing_stage",this.radio_financing_stage);
-                myFormData.append("scale",this.radio_scale);
-                myFormData.append("type",this.radio_type);
+                myFormData.append("city", this.citySelected);
+                myFormData.append("require_experience", this.radio_require_experience);
+                myFormData.append("require_education", this.radio_require_education);
+                myFormData.append("financing_stage", this.radio_financing_stage);
+                myFormData.append("scale", this.radio_scale);
+                myFormData.append("type", this.radio_type);
 
                 $.ajax({
                     url: "{{urlfor "JobController.Filter"}}",
@@ -240,7 +297,6 @@
                             self.jobs = res.data;
                         }
                     }
-
                 });
 
             }

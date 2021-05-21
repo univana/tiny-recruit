@@ -104,4 +104,7 @@ func init() {
 	//设置职位状态
 	beego.Router("/panel/setJobStatus", &controllers.JobController{}, "*:SetJobStatus")
 
+	//获取省份对应的城市信息
+	beego.Router("/common/getCities", &controllers.BaseController{}, "*:GetCities")
+
 }

@@ -1,6 +1,9 @@
 package common
 
-import "github.com/astaxie/beego"
+import (
+	"github.com/astaxie/beego"
+	"github.com/astaxie/beego/orm"
+)
 
 // SessionName session 名称
 const SessionName = "__tiny-recruit_session__"
@@ -36,9 +39,19 @@ func DefaultAvatar() string {
 	return beego.AppConfig.DefaultString("avatar", "/static/images/avatar.jpg")
 }
 
-/*//TODO :fix
-//默认封面
-func DefaultCover() string {
-	return beego.AppConfig.DefaultString("cover", "/static/images/book.png")
+type Province struct {
+	ProvinceID   string `orm:"column(pro_id)" json:"pro_id"`
+	ProvinceName string `orm:"column(pro_name)" json:"pro_name"`
 }
-*/
+
+// GetAllProvinces 获取所有的省
+func GetAllProvinces() ([]Province, error) {
+	o := orm.NewOrm()
+	var provinces []Province
+	sql := "select * from t_province"
+	_, err := o.Raw(sql).QueryRows(&provinces)
+	if err != nil {
+		return nil, err
+	}
+	return provinces, err
+}
