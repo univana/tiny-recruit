@@ -41,6 +41,13 @@ func (c *NavigationController) Enterprise() {
 	}
 	c.Data["Enterprises"] = enterprises
 
+	//获取所有省份信息
+	provinces, err := common.GetAllProvinces()
+	if err != nil {
+		logs.Error("Error get provinces: ", err)
+	}
+	c.Data["Provinces"] = provinces
+
 	c.TplName = "navigation/enterprise.html"
 }
 

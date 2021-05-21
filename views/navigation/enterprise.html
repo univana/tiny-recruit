@@ -19,13 +19,23 @@
                             <div class="filter-box">
                                 <p>
                                     <span class="filter-box-title">公司地点</span>
-                                    <span class="filter-box-rows">
-                                       <el-radio-group v-model="radio_city" @change="handleFilter" size="small">
-                                                <template v-for="city in cities">
-                                                    <el-radio-button :label="city"></el-radio-button>
-                                                </template>
-                                            </el-radio-group>
-                                    </span>
+                                    <el-select v-model="provinceSelected" @change="handleProvinceSelected">
+                                        <el-option
+                                                v-for="province in provinces"
+                                                :key="province.pro_id"
+                                                :label="province.pro_name"
+                                                :value="province.pro_name"
+                                        ></el-option>
+                                    </el-select>
+                                    <el-select v-if="citySelectVisible" v-model="citySelected" @change="handleFilter">
+                                        <el-option
+                                                v-for="city in cities"
+                                                :key="city.city_name"
+                                                :label="city.city_name"
+                                                :value="city.city_name"
+                                        ></el-option>
+
+                                    </el-select>
                                 </p>
                                 <p>
                                     <span class="filter-box-title">融资阶段</span>
@@ -125,7 +135,6 @@
                 currentPage: 1,
                 pageSize: 12,
                 enterprises:{{.Enterprises}},
-                cities: ['不限', '北京', '上海', '广州', '深圳'],
                 stages: ['不限', '未融资', 'A轮', 'B轮', 'C轮', 'D轮及以上', '已上市', '不需要融资',],
                 scales: ['不限', '0-20人', '20-99人', '100-499人', '500-999人', '1000-9999人', '10000人以上'],
                 types: ['不限', '互联网', '电子商务', '更多'],
@@ -133,9 +142,50 @@
                 radio_type: '不限',
                 radio_city: '不限',
                 radio_scale: '不限',
+                provinces:{{.Provinces}},
+                provinceSelected: '不限',
+                citySelected: '',
+                cities: [],
+                citySelectVisible: false,
             }
         },
         methods: {
+            /*省被选中后获取对应市区信息*/
+            handleProvinceSelected() {
+                /*如果是直辖市*/
+                if (this.provinceSelected === "北京市" || this.provinceSelected === "天津市" || this.provinceSelected === "上海市" || this.provinceSelected === "重庆市") {
+                    this.citySelected = this.provinceSelected;
+                    this.handleFilter();
+                } else {
+                    /*查询省对应的市数据*/
+                    let self = this;
+                    let myFormData = new FormData();
+                    myFormData.append("province_name", this.provinceSelected);
+
+                    $.ajax({
+                        url: "{{urlfor "BaseController.GetCities"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.handleClearFilter();
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.cities = res.data;
+                                self.citySelected = "不限";
+                                self.citySelectVisible = true;
+                            }
+                        }
+
+                    });
+                }
+
+
+            },
             handleCurrentChange: function (currentPage) {
                 this.currentPage = currentPage;
                 console.log(this.currentPage)  //点击第几页
@@ -144,7 +194,7 @@
             handleFilter() {
                 let myFormData = new FormData();
                 let self = this;
-                myFormData.append("city", this.radio_city);
+                myFormData.append("city", this.citySelected);
                 myFormData.append("financing_stage", this.radio_financing_stage);
                 myFormData.append("scale", this.radio_scale);
                 myFormData.append("type", this.radio_type);
