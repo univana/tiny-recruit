@@ -1,0 +1,66 @@
+<el-col :span="20" v-if="displayIndex===2" style="margin:10px 10px">
+    <el-card shadow="never" style="padding: 0;">
+        <div slot="header" class="clearfix">
+            <span>职位管理</span>
+        </div>
+
+        {{/*职位管理表格*/}}
+        <el-table :data="jobs.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+            {{/*发布日期*/}}
+            <el-table-column label="发布日期" width="200">
+                <template slot-scope="scope">
+                    <span>{[dateFormatYMDDel(scope.row.create_time)]}</span>
+                </template>
+            </el-table-column>
+
+            {{/*职位标题*/}}
+            <el-table-column label="职位标题" width="200">
+                <template slot-scope="scope">
+                    <span><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + scope.row.job_id" target="_blank">{[scope.row.title]}</a></span>
+                </template>
+            </el-table-column>
+            {{/*所属企业*/}}
+            <el-table-column label="所属企业" width="100">
+                <template slot-scope="scope">
+                    <span>{[scope.row.enterprise.name]}</span>
+                </template>
+            </el-table-column>
+            {{/*性质*/}}
+            <el-table-column label="性质" width="100">
+                <template slot-scope="scope">
+                    <span>{[scope.row.nature]}</span>
+                </template>
+            </el-table-column>
+            {{/*状态*/}}
+            <el-table-column label="状态" width="100">
+                <template slot-scope="scope">
+                    <span v-if="scope.row.status==0">正常</span>
+                    <span v-if="scope.row.status==2">已禁用</span>
+                </template>
+            </el-table-column>
+
+            {{/*操作*/}}
+            <el-table-column label="操作" width="200">
+                <template slot-scope="scope">
+                    <el-button v-if="scope.row.status==0" type="danger" size="small" @click="handleSetJobStatus(scope.row.job_id,2)">禁用</el-button>
+                    <el-button v-if="scope.row.status==2" type="success" size="small" @click="handleSetJobStatus(scope.row.job_id,0)">解禁</el-button>
+                </template>
+            </el-table-column>
+        </el-table>
+
+        {{/*分页器*/}}
+        <el-row type="flex" justify="center">
+            <el-col :span="10" style="text-align: center;margin-top: 20px">
+                <el-pagination
+                        background
+                        layout="prev, pager, next"
+                        @current-change="handleCurrentChange"
+                        :current-page="currentPage"
+                        :page-size="pageSize"
+                        :total=jobs.length>
+                </el-pagination>
+            </el-col>
+        </el-row>
+
+    </el-card>
+</el-col>

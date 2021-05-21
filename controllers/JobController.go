@@ -161,3 +161,31 @@ func (c *JobController) DeleteJob() {
 	}
 	c.JsonResult(0, "ok")
 }
+
+// GetJobs 获取所有职位信息
+func (c *JobController) GetJobs() {
+	jobs, err := models.GetAllJobs()
+	if err != nil {
+		logs.Error("Error JobController GetJobs: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok", jobs)
+	}
+}
+
+// SetJobStatus 设置职位状态
+func (c *JobController) SetJobStatus() {
+	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	status, _ := strconv.Atoi(c.GetString("status"))
+	var job = models.Job{
+		JobID:  jobID,
+		Status: status,
+	}
+	err := job.InsertOrUpdate("status")
+	if err != nil {
+		logs.Error("Error JobController SetJobStatus:", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

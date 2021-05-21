@@ -98,4 +98,10 @@ func init() {
 	//设置用户权限
 	beego.Router("/panel/setMemberRole", &controllers.AccountController{}, "*:SetMemberRole")
 
+	//获取所有职位
+	beego.Router("/panel/getJobs", &controllers.JobController{}, "*:GetJobs")
+
+	//设置职位状态
+	beego.Router("/panel/setJobStatus", &controllers.JobController{}, "*:SetJobStatus")
+
 }

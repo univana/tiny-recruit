@@ -15,7 +15,7 @@
                     <el-menu-item index="1" @click="displayIndex=1;getMembers();" style="text-align: center">
                         <span>用户</span>
                     </el-menu-item>
-                    <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
+                    <el-menu-item index="2" @click="displayIndex=2;getJobs()" style="text-align: center">
                         <span>职位</span>
                     </el-menu-item>
                 </el-menu>
@@ -23,6 +23,8 @@
             <!-- 右侧内容 -->
             {{/*用户管理*/}}
             {{template "panel/member-management.html" .}}
+            {{/*职位管理*/}}
+            {{template "panel/job-management.html" .}}
 
         </el-col>
     </el-row>
@@ -38,12 +40,22 @@
             return {
                 displayIndex: '1',
                 activeIndex: '1',
+                currentPage: 1,
+                pageSize: 8,
                 members: [],
+                jobs: [],
             }
         },
         methods: {
             dateFormatYMDDel(time) {
                 return moment(time).format("YYYY-MM-DD")
+            },
+            dateFormatYYYYMMDD(time) {
+                return moment(time).format("YYYY年MM月DD日")
+            },
+            handleCurrentChange: function (currentPage) {
+                this.currentPage = currentPage;
+                console.log(this.currentPage)  //点击第几页
             },
             getMembers() {
                 let self = this;
@@ -55,12 +67,22 @@
                     }
                 });
             },
+            getJobs() {
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "JobController.GetJobs"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.jobs = res.data;
+                    }
+                });
+            },
             /*禁用用户*/
             handleSetMemberStatus(id, status) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("member_id", id);
-                fd.append("status",status);
+                fd.append("status", status);
                 $.ajax({
                     url: "{{urlfor "AccountController.SetMemberStatus"}}",
                     type: "POST",
@@ -86,7 +108,7 @@
                 let self = this;
                 let fd = new FormData();
                 fd.append("member_id", id);
-                fd.append("role",role);
+                fd.append("role", role);
                 $.ajax({
                     url: "{{urlfor "AccountController.SetMemberRole"}}",
                     type: "POST",
@@ -107,6 +129,34 @@
                         }
                     }
                 })
+            },
+            /*s设置职位状态*/
+            handleSetJobStatus(id, status){
+                let self = this;
+                let fd = new FormData();
+                fd.append("job_id", id);
+                fd.append("status", status);
+                $.ajax({
+                    url: "{{urlfor "JobController.SetJobStatus"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getJobs();
+                            self.$notify({
+                                type: "success",
+                                message: "设置职位状态成功！"
+                            });
+                        }
+                    }
+                })
+
             }
         },
         delimiters: ['{[', ']}'],
