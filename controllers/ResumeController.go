@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"fmt"
 	"github.com/astaxie/beego/logs"
+	uuid "github.com/iris-contrib/go.uuid"
 	"myApp/models"
+	"path"
 	"strconv"
 	"strings"
 	"time"
@@ -46,32 +49,77 @@ func (c *ResumeController) GetResumeByMemberID() {
 
 func (c *ResumeController) EditResume() {
 	c.TplName = "navigation/userCenter.html"
-	resumeID, _ := strconv.Atoi(c.GetString("resume_id"))
-	gender, _ := strconv.Atoi(c.GetString("gender"))
-	b := c.GetString("birthday")
-	y, _ := strconv.Atoi(b[0:4])
-	m, _ := strconv.Atoi(b[5:7])
-	d, _ := strconv.Atoi(b[8:10])
-	birthday := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
 
-	resume := models.Resume{
-		ResumeID:   resumeID,
-		Name:       c.GetString("name"),
-		Gender:     gender,
-		Birthday:   birthday,
-		Advantage:  c.GetString("advantage"),
-		Tel:        c.GetString("tel"),
-		Email:      c.GetString("email"),
-		HopeSalary: c.GetString("hope_salary"),
-		HopeJob:    c.GetString("hope_job"),
-		City:       c.GetString("city"),
-	}
-	err := resume.InsertOrUpdate("name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
-	if err != nil {
-		logs.Error("Error ResumeController EditResume: ", err)
-		c.JsonResult(1, "修改简历失败！")
+	_, info, err := c.GetFile("file")
+	if info != nil {
+		//获取文件后缀
+		//保存图片
+		ext := strings.ToLower(path.Ext(info.Filename))
+		v4, _ := uuid.NewV4()
+
+		fileName := fmt.Sprintf("%s%s", v4, ext)
+		filePath := fmt.Sprintf("static/images/photos/%s", fileName)
+		err = c.SaveToFile("file", filePath)
+		if err != nil {
+			logs.Error("Error ResumeController Edit: ", err)
+		}
+
+		resumeID, _ := strconv.Atoi(c.GetString("resume_id"))
+		gender, _ := strconv.Atoi(c.GetString("gender"))
+		b := c.GetString("birthday")
+		y, _ := strconv.Atoi(b[0:4])
+		m, _ := strconv.Atoi(b[5:7])
+		d, _ := strconv.Atoi(b[8:10])
+		birthday := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+
+		resume := models.Resume{
+			ResumeID:   resumeID,
+			Name:       c.GetString("name"),
+			Gender:     gender,
+			Birthday:   birthday,
+			Advantage:  c.GetString("advantage"),
+			Tel:        c.GetString("tel"),
+			Email:      c.GetString("email"),
+			HopeSalary: c.GetString("hope_salary"),
+			HopeJob:    c.GetString("hope_job"),
+			City:       c.GetString("city"),
+			Photo:      "/" + filePath,
+		}
+		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
+		if err != nil {
+			logs.Error("Error ResumeController EditResume: ", err)
+			c.JsonResult(1, "修改简历失败！")
+		} else {
+			c.JsonResult(0, "ok")
+		}
 	} else {
-		c.JsonResult(0, "ok")
+		resumeID, _ := strconv.Atoi(c.GetString("resume_id"))
+		gender, _ := strconv.Atoi(c.GetString("gender"))
+		b := c.GetString("birthday")
+		y, _ := strconv.Atoi(b[0:4])
+		m, _ := strconv.Atoi(b[5:7])
+		d, _ := strconv.Atoi(b[8:10])
+		birthday := time.Date(y, time.Month(m), d, 0, 0, 0, 0, time.Local)
+
+		resume := models.Resume{
+			ResumeID:   resumeID,
+			Name:       c.GetString("name"),
+			Gender:     gender,
+			Birthday:   birthday,
+			Advantage:  c.GetString("advantage"),
+			Tel:        c.GetString("tel"),
+			Email:      c.GetString("email"),
+			HopeSalary: c.GetString("hope_salary"),
+			HopeJob:    c.GetString("hope_job"),
+			City:       c.GetString("city"),
+		}
+		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
+		if err != nil {
+			logs.Error("Error ResumeController EditResume: ", err)
+			c.JsonResult(1, "修改简历失败！")
+		} else {
+			c.JsonResult(0, "ok")
+		}
 	}
 }
 

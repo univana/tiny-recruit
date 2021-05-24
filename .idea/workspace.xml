@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="重构了职位过滤器的工作地点的结构">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="重构了企业过滤器的工作地点的结构">
+      <change afterPath="$PROJECT_DIR$/store/session/0/b/0bffd394b621f438e73214421fed683a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/2/5/2533034fafac4b51f5e92cf23c5d70bd" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了职位搜索的后端逻辑" />
     <MESSAGE value="实现了职位其他要求的筛选逻辑" />
     <MESSAGE value="实现了职位过滤器的整体逻辑" />
     <MESSAGE value="添加并实现了企业展示页面的基本样式及逻辑" />
@@ -148,9 +149,21 @@
     <MESSAGE value="实现了设置用户权限的后端逻辑" />
     <MESSAGE value="实现了职位管理的前后端逻辑" />
     <MESSAGE value="重构了职位过滤器的工作地点的结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构了职位过滤器的工作地点的结构" />
+    <MESSAGE value="重构了企业过滤器的工作地点的结构" />
+    <option name="LAST_COMMIT_MESSAGE" value="重构了企业过滤器的工作地点的结构" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>53</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

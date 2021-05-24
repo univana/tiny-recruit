@@ -106,6 +106,8 @@
                     hope_job: '',
                     hope_salary: '',
                     city: '',
+                    photo:'',
+                    file:'',
                 },
                 formEditEdu: {
                     edu_exp_id: 0,
@@ -143,6 +145,9 @@
             }
         },
         methods: {
+            getFiles(e){
+                this.formEditResume.file = e.target.files[0];
+            },
             getResume() {
                 let self = this;
                 let myFormData = new FormData();
@@ -164,6 +169,7 @@
                         self.formEditResume.hope_job = res.data.hope_job;
                         self.formEditResume.city = res.data.city;
                         self.formEditResume.advantage = res.data.advantage;
+                        self.formEditResume.photo = res.data.photo;
 
                     }
 
@@ -256,6 +262,7 @@
                 myFormData.append("city", this.formEditResume.city);
                 myFormData.append("advantage", this.formEditResume.advantage);
                 myFormData.append("hope_job", this.formEditResume.hope_job);
+                myFormData.append("file",this.formEditResume.file);
 
                 $.ajax({
                     url: "{{urlfor "ResumeController.EditResume"}}",
