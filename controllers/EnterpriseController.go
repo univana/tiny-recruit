@@ -156,3 +156,31 @@ func (c *EnterpriseController) Add() {
 	}
 
 }
+
+// GetEnterprises 获取所有企业数据
+func (c *EnterpriseController) GetEnterprises() {
+	enterprises, err := models.GetAllEnterprises()
+	if err != nil {
+		logs.Error("Error EnterpriseController GetEnterprises: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok", enterprises)
+	}
+}
+
+// SetEnterpriseStatus 设置企业的状态
+func (c *EnterpriseController) SetEnterpriseStatus() {
+	enterpriseID, _ := strconv.Atoi(c.GetString("enterprise_id"))
+	status, _ := strconv.Atoi(c.GetString("status"))
+	var enterprise = models.Enterprise{
+		EnterpriseID: enterpriseID,
+		Status:       status,
+	}
+	err := enterprise.InsertOrUpdate("status")
+	if err != nil {
+		logs.Error("Error EnterpriseController SetEnterpriseStatus:", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

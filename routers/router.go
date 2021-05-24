@@ -107,6 +107,12 @@ func init() {
 	//设置职位状态
 	beego.Router("/panel/setJobStatus", &controllers.JobController{}, "*:SetJobStatus")
 
+	//获取所有企业信息
+	beego.Router("/panel/getEnterprises", &controllers.EnterpriseController{}, "*:GetEnterprises")
+
+	//设置企业状态
+	beego.Router("/panel/setEnterpriseStatus", &controllers.EnterpriseController{}, "*:SetEnterpriseStatus")
+
 	//获取省份对应的城市信息
 	beego.Router("/common/getCities", &controllers.BaseController{}, "*:GetCities")
 

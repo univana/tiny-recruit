@@ -11,10 +11,11 @@ type Enterprise struct {
 	Name           string    `json:"name"`                                                         //企业名称
 	Description    string    `orm:"type(text)" json:"description"`                                 //企业简介
 	Location       string    `json:"location"`                                                     //企业所在地址
-	Status         int       `orm:"default(0)" json:"status"`                                      //企业状态
+	Status         int       `orm:"default(0)" json:"status"`                                      //企业状态 0:正常 1:禁用 2:删除
 	Cover          string    `orm:"default(/static/images/covers/default-cover.jpg)" json:"cover"` //企业封面
 	Licence        string    `json:"licence"`                                                      //企业营业执照
 	Type           string    `json:"type"`                                                         //行业类型
+	Verified       int       `orm:"default(0)" json:"verified"`                                    //是否认证
 	FinancingStage string    `json:"financing_stage"`                                              //融资阶段
 	Scale          string    `json:"scale"`                                                        //企业规模
 	CreateTime     time.Time `orm:"type(datetime);auto_now_add" json:"create_time"`                //创建时间

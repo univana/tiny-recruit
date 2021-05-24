@@ -15,7 +15,11 @@
                     <el-menu-item index="1" @click="displayIndex=1;getMembers();" style="text-align: center">
                         <span>用户</span>
                     </el-menu-item>
-                    <el-menu-item index="2" @click="displayIndex=2;getJobs()" style="text-align: center">
+
+                    <el-menu-item index="2" @click="displayIndex=2;getEnterprises()" style="text-align: center">
+                        <span>企业</span>
+                    </el-menu-item>
+                    <el-menu-item index="3" @click="displayIndex=3;getJobs()" style="text-align: center">
                         <span>职位</span>
                     </el-menu-item>
                 </el-menu>
@@ -25,6 +29,9 @@
             {{template "panel/member-management.html" .}}
             {{/*职位管理*/}}
             {{template "panel/job-management.html" .}}
+            {{/*企业管理*/}}
+            {{template "panel/enterprise-management.html" .}}
+
 
         </el-col>
     </el-row>
@@ -39,11 +46,12 @@
         data: function () {
             return {
                 displayIndex: '1',
-                activeIndex: '1',
+                activeIndex: '5',
                 currentPage: 1,
                 pageSize: 8,
                 members: [],
                 jobs: [],
+                enterprises:[],
             }
         },
         methods: {
@@ -74,6 +82,16 @@
                     type: "POST",
                     success: function (res) {
                         self.jobs = res.data;
+                    }
+                });
+            },
+            getEnterprises(){
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.GetEnterprises"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.enterprises = res.data;
                     }
                 });
             },
@@ -157,6 +175,32 @@
                     }
                 })
 
+            },
+            handleSetEnterpriseStatus(id, status){
+                let self = this;
+                let fd = new FormData();
+                fd.append("enterprise_id", id);
+                fd.append("status", status);
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.SetEnterpriseStatus"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getEnterprises();
+                            self.$notify({
+                                type: "success",
+                                message: "设置企业状态成功！"
+                            });
+                        }
+                    }
+                })
             }
         },
         delimiters: ['{[', ']}'],
