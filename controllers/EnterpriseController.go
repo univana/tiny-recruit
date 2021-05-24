@@ -101,3 +101,58 @@ func (c *EnterpriseController) Edit() {
 	}
 
 }
+
+func (c *EnterpriseController) Add() {
+	//获取logo
+	_, info, err := c.GetFile("file")
+
+	//获取文件后缀
+	//保存图片
+	ext := strings.ToLower(path.Ext(info.Filename))
+	v4, _ := uuid.NewV4()
+
+	logoName := fmt.Sprintf("%s%s", v4, ext)
+	logoPath := fmt.Sprintf("static/images/covers/%s", logoName)
+	err = c.SaveToFile("file", logoPath)
+	if err != nil {
+		logs.Error("Error EnterpriseController Add: ", err)
+	}
+
+	//获取licence
+	_, info, err = c.GetFile("file-licence")
+
+	//获取文件后缀
+	//保存图片
+	ext = strings.ToLower(path.Ext(info.Filename))
+	v4, _ = uuid.NewV4()
+
+	licenceName := fmt.Sprintf("%s%s", v4, ext)
+	licencePath := fmt.Sprintf("static/images/licences/%s", licenceName)
+	err = c.SaveToFile("file", licencePath)
+	if err != nil {
+		logs.Error("Error EnterpriseController Add: ", err)
+	}
+
+	//更新企业信息
+	enterpriseID, _ := strconv.Atoi(c.GetString("enterprise_id"))
+	var enterprise = models.Enterprise{
+		Member:         &models.Member{MemberId: c.Member.MemberId},
+		EnterpriseID:   enterpriseID,
+		Name:           c.GetString("name"),
+		Type:           c.GetString("type"),
+		FinancingStage: c.GetString("financing_stage"),
+		Scale:          c.GetString("scale"),
+		Description:    c.GetString("description"),
+		Location:       c.GetString("location"),
+		Cover:          "/" + logoPath,
+		Licence:        "/" + licencePath,
+	}
+	err = enterprise.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error EnterpriseController Add: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+
+}

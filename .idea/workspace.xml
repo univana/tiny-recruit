@@ -1,13 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="重构了企业过滤器的工作地点的结构">
-      <change afterPath="$PROJECT_DIR$/store/session/0/b/0bffd394b621f438e73214421fed683a" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了上传简历头像的后端逻辑">
+      <change afterPath="$PROJECT_DIR$/static/images/covers/479abcfc-dbe2-4233-a9d7-302eb5710c22.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/licence-example.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/licences/16ca4e53-7ea7-4384-956f-75d2f73d3cac.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/7/6/76389c98cabfbda6adf847a5bbe4c054" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/2/5/2533034fafac4b51f5e92cf23c5d70bd" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/EnterpriseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EnterpriseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/0/b/0bffd394b621f438e73214421fed683a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -65,7 +71,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/user-center" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -73,11 +79,11 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Go-Projects\tiny-recruit\static\images" />
       <recent name="F:\Go-Projects\tiny-recruit\views\user-center" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images\covers" />
       <recent name="F:\Go-Projects\tiny-recruit\views\job" />
       <recent name="F:\Go-Projects\tiny-recruit\models" />
-      <recent name="F:\Go-Projects\tiny-recruit\static\images" />
     </key>
   </component>
   <component name="RunManager">
@@ -125,7 +131,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了职位其他要求的筛选逻辑" />
     <MESSAGE value="实现了职位过滤器的整体逻辑" />
     <MESSAGE value="添加并实现了企业展示页面的基本样式及逻辑" />
     <MESSAGE value="实现了新建职位的前后端逻辑" />
@@ -150,7 +155,8 @@
     <MESSAGE value="实现了职位管理的前后端逻辑" />
     <MESSAGE value="重构了职位过滤器的工作地点的结构" />
     <MESSAGE value="重构了企业过滤器的工作地点的结构" />
-    <option name="LAST_COMMIT_MESSAGE" value="重构了企业过滤器的工作地点的结构" />
+    <MESSAGE value="实现了上传简历头像的后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了上传简历头像的后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -162,6 +168,16 @@
           <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
           <line>53</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/EnterpriseController.go</url>
+          <line>149</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/EnterpriseController.go</url>
+          <line>150</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

@@ -13,6 +13,7 @@ type Enterprise struct {
 	Location       string    `json:"location"`                                                     //企业所在地址
 	Status         int       `orm:"default(0)" json:"status"`                                      //企业状态
 	Cover          string    `orm:"default(/static/images/covers/default-cover.jpg)" json:"cover"` //企业封面
+	Licence        string    `json:"licence"`                                                      //企业营业执照
 	Type           string    `json:"type"`                                                         //行业类型
 	FinancingStage string    `json:"financing_stage"`                                              //融资阶段
 	Scale          string    `json:"scale"`                                                        //企业规模

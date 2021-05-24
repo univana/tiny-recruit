@@ -8,32 +8,125 @@
     {{template "widgets/head-menu.html" .}}
 
     <el-row type="flex" justify="center">
-        <el-col :span="20">
-            <!-- 左侧导航栏 -->
-            <el-col :span="3" style="height:100%;margin-top: 10px;">
-                <el-menu default-active="3">
-                    <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
-                        <span>基本信息</span>
-                    </el-menu-item>
-                    <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
-                        <span>职位</span>
-                    </el-menu-item>
-                    <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
-                        <span>投递</span>
-                    </el-menu-item>
-                </el-menu>
+
+        {{if gt .Enterprise.EnterpriseID 0}}
+            <el-col :span="20">
+                <!-- 左侧导航栏 -->
+                <el-col :span="3" style="height:100%;margin-top: 10px;">
+                    <el-menu default-active="3">
+                        <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
+                            <span>基本信息</span>
+                        </el-menu-item>
+                        <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
+                            <span>职位</span>
+                        </el-menu-item>
+                        <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
+                            <span>投递</span>
+                        </el-menu-item>
+                    </el-menu>
+                </el-col>
+
+                <!-- 右侧内容 -->
+                {{/*职位管理*/}}
+                {{template "enterprise-home/job-management.html" .}}
+
+                {{/*投递管理*/}}
+                {{template "enterprise-home/deliverance-management.html" .}}
+
+                {{/*投递管理*/}}
+                {{template "enterprise-home/base-management.html" .}}
             </el-col>
+        {{else}}
+            <el-col :span="18">
+                <el-card>
+                    <div slot="header" class="clearfix">
+                        <el-steps :active="activeStep" align-center>
+                            <el-step title="基本信息" description="完善企业基本信息"></el-step>
+                            <el-step title="工商信息" description="完善企业工商信息"></el-step>
+                        </el-steps>
+                    </div>
 
-            <!-- 右侧内容 -->
-            {{/*职位管理*/}}
-            {{template "enterprise-home/job-management.html" .}}
+                    <div>
+                        <el-form enctype="multipart/form-data" v-if="step1">
+                            <el-form-item label="企业名称" style="width: 500px">
+                                <el-input v-model="formEditEnterprise.name" style="width: 200px"></el-input>
+                            </el-form-item>
+                            <el-form-item label="企业logo" style="width: 500px">
+                                <img v-if="formEditEnterprise.cover" :src="formEditEnterprise.cover" alt="">
+                                <input type="file" @change="getFiles($event)"/>
+                            </el-form-item>
+                            <el-form-item label="行业" style="width: 500px">
+                                <el-select v-model="formEditEnterprise.type">
+                                    <el-option v-for="type in types" :value="type" :label="type"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="所在城市" style="width: 500px">
+                                <el-select v-model="provinceSelected" @change="handleProvinceSelected">
+                                    <el-option
+                                            v-for="province in provinces"
+                                            :key="province.pro_id"
+                                            :label="province.pro_name"
+                                            :value="province.pro_name"
+                                    ></el-option>
+                                </el-select>
+                                <el-select v-if="citySelectVisible" v-model="citySelected" @change="handleCitySelected">
+                                    <el-option
+                                            v-for="city in cities"
+                                            :key="city.city_name"
+                                            :label="city.city_name"
+                                            :value="city.city_name"
+                                    ></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="融资阶段" style="width: 500px">
+                                <el-select v-model="formEditEnterprise.financing_stage">
+                                    <el-option v-for="stage in stages" :value="stage" :label="stage"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="规模" style="width: 500px">
+                                <el-select v-model="formEditEnterprise.scale">
+                                    <el-option v-for="scale in scales" :value="scale" :label="scale"></el-option>
+                                </el-select>
+                            </el-form-item>
+                            <el-form-item label="企业简介">
+                                <el-input
+                                        type="textarea"
+                                        :rows="10"
+                                        placeholder="请输入企业简介"
+                                        v-model="formEditEnterprise.description">
+                                </el-input>
+                            </el-form-item>
+                            <el-button type="primary" @click="handleNextStep">下一步</el-button>
+                        </el-form>
+                        <el-form enctype="multipart/form-data" v-if="step2">
+                            <el-row>
+                                <el-col :span="6" style="margin-left: 250px">
+                                    <h5>示例</h5>
+                                    <div style="width: 200px;height: 200px;">
+                                        <img src="/static/images/licence-example.png" alt="">
+                                    </div>
+                                </el-col>
+                                <el-col :span="6">
+                                    <p>营业执照清晰完整，不能裁剪</p>
+                                    <p>不支持手机屏幕截图和电脑翻拍图片</p>
+                                    <p>营业执照的黑白复印件、扫描件,需加盖红色公司公章</p>
+                                    <p>营业执照二维码能识别出本公司信息</p>
+                                    <p>如公司信息已变更，请上传最新营业执照</p>
+                                    <p>营业执照与公司全称一致</p>
+                                </el-col>
+                            </el-row>
+                            <el-form-item label="营业执照" style="width: 500px;margin-left: 350px">
+                                <input type="file" @change="getLicense($event)"/>
+                                <el-button type="primary" @click="handleAddEnterprise">确定</el-button>
+                            </el-form-item>
+                        </el-form>
+                    </div>
 
-            {{/*投递管理*/}}
-            {{template "enterprise-home/deliverance-management.html" .}}
+                </el-card>
+            </el-col>
+        {{end}}
 
-            {{/*投递管理*/}}
-            {{template "enterprise-home/base-management.html" .}}
-        </el-col>
+
     </el-row>
 </div>
 
@@ -45,12 +138,20 @@
         el: '#app',
         data: function () {
             return {
+                activeStep: '1',
+                step1: true,
+                step2: false,
                 activeIndex: '4',
                 displayIndex: 0,
                 currentPage: 1,
                 pageSize: 8,
                 enterprise:{{.Enterprise}},
                 jobs: {{.Jobs}},
+                provinces:{{.Provinces}},
+                provinceSelected: '不限',
+                citySelected: '',
+                cities: [],
+                citySelectVisible: false,
                 jobQueryID: '',
                 deliverList: [],
                 deliverListVisible: 0,
@@ -58,7 +159,6 @@
                 deliverStatusList: ['已投递', '已查看', '邀约面试', '已录取', '已释放'],
                 dialogNewJobVisible: false,
                 dialogEditJobVisible: false,
-                cities: ['北京', '上海', '广州', '深圳'],
                 exps: ['在校/应届', '3年及以下', '3-5年', '5-10年', '10年以上'],
                 edus: ['大专', '本科', '硕士', '博士'],
                 natures: ['全职', '实习'],
@@ -87,27 +187,71 @@
                     financing_stage:{{.Enterprise.FinancingStage}},
                     scale:{{.Enterprise.Scale}},
                     cover:{{.Enterprise.Cover}},
-                    file:'',
+                    file: '',
+                    fileLicense: '',
                 }
             }
         },
         methods: {
+            handleProvinceSelected() {
+                /*如果是直辖市*/
+                if (this.provinceSelected === "北京市" || this.provinceSelected === "天津市" || this.provinceSelected === "上海市" || this.provinceSelected === "重庆市") {
+                    this.formEditEnterprise.location = this.provinceSelected;
+                } else {
+                    /*查询省对应的市数据*/
+                    let self = this;
+                    let myFormData = new FormData();
+                    myFormData.append("province_name", this.provinceSelected);
+
+                    $.ajax({
+                        url: "{{urlfor "BaseController.GetCities"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.cities = res.data;
+                                self.citySelectVisible = true;
+                            }
+                        }
+
+                    });
+                }
+
+
+            },
+            handleCitySelected() {
+                this.formEditEnterprise.location = this.citySelected;
+            },
+            handleNextStep() {
+                this.step1 = false;
+                this.step2 = true;
+                this.activeStep = 2;
+            },
             /*编辑企业基本信息*/
-            getFiles(e){
+            getFiles(e) {
                 this.formEditEnterprise.file = e.target.files[0];
             },
-            handleEditEnterprise(){
+            getLicense(e) {
+                this.formEditEnterprise.fileLicense = e.target.files[0];
+            },
+            handleEditEnterprise() {
                 let self = this;
                 let fd = new FormData();
-                fd.append("enterprise_id",this.enterprise.enterprise_id);
-                fd.append("file",this.formEditEnterprise.file);
-                fd.append("name",this.formEditEnterprise.name);
-                fd.append("description",this.formEditEnterprise.description);
-                fd.append("financing_stage",this.formEditEnterprise.financing_stage);
-                fd.append("scale",this.formEditEnterprise.scale);
-                fd.append("type",this.formEditEnterprise.type);
-                fd.append("location",this.formEditEnterprise.location);
-
+                fd.append("enterprise_id", this.enterprise.enterprise_id);
+                fd.append("file", this.formEditEnterprise.file);
+                fd.append("name", this.formEditEnterprise.name);
+                fd.append("description", this.formEditEnterprise.description);
+                fd.append("financing_stage", this.formEditEnterprise.financing_stage);
+                fd.append("scale", this.formEditEnterprise.scale);
+                fd.append("type", this.formEditEnterprise.type);
+                fd.append("location", this.formEditEnterprise.location);
+                fd.append("file-license", this.formEditEnterprise.fileLicense);
 
 
                 $.ajax({
@@ -131,6 +275,42 @@
                     }
                 })
 
+
+            },
+            handleAddEnterprise() {
+                let self = this;
+                let fd = new FormData();
+                fd.append("enterprise_id", this.enterprise.enterprise_id);
+                fd.append("file", this.formEditEnterprise.file);
+                fd.append("name", this.formEditEnterprise.name);
+                fd.append("description", this.formEditEnterprise.description);
+                fd.append("financing_stage", this.formEditEnterprise.financing_stage);
+                fd.append("scale", this.formEditEnterprise.scale);
+                fd.append("type", this.formEditEnterprise.type);
+                fd.append("location", this.formEditEnterprise.location);
+                fd.append("file-licence", this.formEditEnterprise.fileLicense);
+
+
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.Add"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.$notify({
+                                type: "success",
+                                message: "新建企业信息成功!"
+                            });
+                        }
+                    }
+                })
 
             },
             dateFormatYMDDel(time) {
@@ -393,6 +573,7 @@
         text-align: center;
     !important;
     }
+
     .avatar-uploader .el-upload {
         border: 1px dashed #d9d9d9;
         border-radius: 6px;
@@ -400,9 +581,11 @@
         position: relative;
         overflow: hidden;
     }
+
     .avatar-uploader .el-upload:hover {
         border-color: #409EFF;
     }
+
     .avatar-uploader-icon {
         font-size: 28px;
         color: #8c939d;
@@ -411,9 +594,17 @@
         line-height: 178px;
         text-align: center;
     }
+
     .avatar {
         width: 178px;
         height: 178px;
         display: block;
+    }
+
+    img {
+        width: auto;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
     }
 </style>
