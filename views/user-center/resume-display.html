@@ -90,7 +90,8 @@
             </el-card>
 
             {{/*项目经历*/}}
-            <el-card id="project-experience" shadow="never" style="border: none">
+            <el-card id="project-experience" shadow="never" style="border: none" @mouseover.native="handleMouseOverPro"
+                     @mouseleave.native="handleMouseLeavePro">
                 <p class="user-info-title">
                     项目经历
                     <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right"
@@ -98,6 +99,11 @@
                 </p>
                 <template v-for="project_exp in resume.project_experiences">
                     <el-card shadow="hover" style="margin: 1px 20px">
+                        <div v-if="deleteProVisible">
+                            <el-button size="small" icon="el-icon-delete"
+                                       style="float: right;"
+                                       @click="handleDelExp(2,project_exp.pro_exp_id)"></el-button>
+                        </div>
                         <p style="font-size: 10px">{[dateFormat(project_exp.start_time)]} -
                             {[dateFormat(project_exp.end_time)]}</p>
                         <p style="font-weight: bold">{[project_exp.name]}</p>
@@ -107,7 +113,8 @@
             </el-card>
 
             {{/*实习经历*/}}
-            <el-card id="internship-experience" shadow="never" style="border: none">
+            <el-card id="internship-experience" shadow="never" style="border: none" @mouseover.native="handleMouseOverInt"
+                     @mouseleave.native="handleMouseLeaveInt">
                 <p class="user-info-title">
                     实习经历
                     <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right"
@@ -115,6 +122,11 @@
                 </p>
                 <template v-for="int_exp in resume.internship_experiences">
                     <el-card shadow="hover" style="margin: 1px 20px">
+                        <div v-if="deleteIntVisible">
+                            <el-button size="small" icon="el-icon-delete"
+                                       style="float: right;"
+                                       @click="handleDelExp(3,int_exp.int_exp_id)"></el-button>
+                        </div>
                         <p style="font-size: 10px">{[dateFormat(int_exp.start_time)]} -
                             {[dateFormat(int_exp.end_time)]}</p>
                         <p style="font-weight: bold">{[int_exp.company_name]}</p>

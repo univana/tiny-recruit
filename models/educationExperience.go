@@ -23,7 +23,7 @@ func (e *EducationExperience) TableName() string {
 func GetEducationExperiencesByResumeID(resumeID int) ([]*EducationExperience, error) {
 	o := orm.NewOrm()
 	var educationExperiences []*EducationExperience
-	_, err := o.QueryTable(TNEducationExperience()).Filter("resume_id", resumeID).All(&educationExperiences)
+	_, err := o.QueryTable(TNEducationExperience()).Filter("resume_id", resumeID).Filter("deleted", 0).All(&educationExperiences)
 	return educationExperiences, err
 }
 

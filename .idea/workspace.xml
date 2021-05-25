@@ -1,16 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了企业管理的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/1/b/1b43992635df21145c79ae3d2873dcd4" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了删除教育经历的前后端逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/educationExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/educationExperience.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/internshipExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/models/projectExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/d/f/df225341c079f2bc03a4dfb05cec1609" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
@@ -130,7 +126,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了删除职位的前后端逻辑" />
     <MESSAGE value="实现了修改简历基本信息的前后端逻辑" />
     <MESSAGE value="实现了修改简历其他信息的前后端逻辑" />
     <MESSAGE value="实现了添加教育经历的前后端逻辑" />
@@ -155,9 +150,21 @@
     <MESSAGE value="实现了设置企业状态的前后端逻辑" />
     <MESSAGE value="实现了下载营业执照的前后端逻辑" />
     <MESSAGE value="实现了企业管理的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了企业管理的前后端逻辑" />
+    <MESSAGE value="实现了删除教育经历的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了删除教育经历的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>30</line>
+          <option name="timeStamp" value="12" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

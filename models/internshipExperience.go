@@ -25,7 +25,7 @@ func (e *InternshipExperience) TableName() string {
 func GetInternshipExperiencesByResumeID(resumeID int) ([]*InternshipExperience, error) {
 	o := orm.NewOrm()
 	var internshipExperiences []*InternshipExperience
-	_, err := o.QueryTable(TNInternshipExperience()).Filter("resume_id", resumeID).All(&internshipExperiences)
+	_, err := o.QueryTable(TNInternshipExperience()).Filter("resume_id", resumeID).Filter("deleted", 0).All(&internshipExperiences)
 	return internshipExperiences, err
 }
 

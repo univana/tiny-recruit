@@ -24,7 +24,7 @@ func (e *ProjectExperience) TableName() string {
 func GetProjectExperiencesByResumeID(resumeID int) ([]*ProjectExperience, error) {
 	o := orm.NewOrm()
 	var projectExperiences []*ProjectExperience
-	_, err := o.QueryTable(TNProjectExperience()).Filter("resume_id", resumeID).All(&projectExperiences)
+	_, err := o.QueryTable(TNProjectExperience()).Filter("resume_id", resumeID).Filter("deleted", 0).All(&projectExperiences)
 	return projectExperiences, err
 }
 

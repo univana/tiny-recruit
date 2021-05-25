@@ -84,6 +84,8 @@
         el: '#app',
         data: function () {
             return {
+                deleteIntVisible:false,
+                deleteProVisible:false,
                 deleteEduVisible: false,
                 activeIndex: "0",
                 displayIndex: 0,
@@ -146,6 +148,18 @@
             }
         },
         methods: {
+            handleMouseOverInt() {
+                this.deleteIntVisible = true;
+            },
+            handleMouseLeaveInt() {
+                this.deleteIntVisible = false;
+            },
+            handleMouseOverPro() {
+                this.deleteProVisible = true;
+            },
+            handleMouseLeavePro() {
+                this.deleteProVisible = false;
+            },
             handleMouseOverEdu() {
                 this.deleteEduVisible = true;
             },

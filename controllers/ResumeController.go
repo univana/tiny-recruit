@@ -238,8 +238,17 @@ func (c *ResumeController) DeleteExperience() {
 		err = eduExp.InsertOrUpdate("deleted")
 
 	} else if expType == "2" {
-
+		var proExp = models.ProjectExperience{
+			ProExpID: id,
+			Deleted:  1,
+		}
+		err = proExp.InsertOrUpdate("deleted")
 	} else {
+		var intExp = models.InternshipExperience{
+			IntExpID: id,
+			Deleted:  1,
+		}
+		err = intExp.InsertOrUpdate("deleted")
 
 	}
 	if err != nil {
