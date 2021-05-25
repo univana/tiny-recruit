@@ -109,3 +109,15 @@ func (e *Enterprise) InsertOrUpdate(fields ...string) error {
 	}
 	return err
 }
+
+// GetLicencePath 获取营业执照地址
+func GetLicencePath(id int) (string, error) {
+	o := orm.NewOrm()
+	sql := "select licence from t_enterprise where enterprise_id = ?"
+	var path string
+	err := o.Raw(sql, id).QueryRow(&path)
+	if err != nil {
+		return "", err
+	}
+	return path, nil
+}

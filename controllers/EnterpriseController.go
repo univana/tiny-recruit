@@ -184,3 +184,15 @@ func (c *EnterpriseController) SetEnterpriseStatus() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// GetLicence 获取营业执照
+func (c *EnterpriseController) GetLicence() {
+	enterpriseID, _ := strconv.Atoi(c.Ctx.Input.Param(":id"))
+	licencePath, err := models.GetLicencePath(enterpriseID)
+	if err != nil {
+		logs.Error("Error EnterpriseController GetLicence: ", err)
+	} else {
+		licencePath = licencePath[1:]
+		c.Ctx.Output.Download(licencePath)
+	}
+}

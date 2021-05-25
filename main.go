@@ -2,18 +2,13 @@ package main
 
 import (
 	"encoding/gob"
+	"github.com/astaxie/beego"
 	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
+	_ "github.com/go-sql-driver/mysql"
 	"myApp/models"
 	_ "myApp/models"
 	_ "myApp/routers"
-	"myApp/utils"
-	"path/filepath"
-
-	conf "myApp/common"
-
-	"github.com/astaxie/beego"
-	"github.com/astaxie/beego/orm"
-	_ "github.com/go-sql-driver/mysql"
 )
 
 func main() {
@@ -26,14 +21,6 @@ func main() {
 //sysInit :系统初始化
 func sysInit() {
 	gob.Register(models.Member{}) //序列化Member对象,必须在encoding/gob编码解码前进行注册
-
-	//uploads静态路径
-	uploads := filepath.Join(conf.WorkingDirectory, "uploads")
-	//os.MkdirAll(uploads, 0666)
-	beego.BConfig.WebConfig.StaticDir["/uploads"] = uploads
-
-	//注册前端使用函数
-	beego.AddFuncMap("showImg", utils.ShowImg)
 }
 
 //dbInit :数据库初始化

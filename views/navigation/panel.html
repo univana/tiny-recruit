@@ -201,6 +201,25 @@
                         }
                     }
                 })
+            },
+            /*下载营业执照*/
+            handleGetLicence(id){
+                let self = this;
+                let fd = new FormData();
+                fd.append("enterprise_id", id);
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.GetLicence"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function () {
+                        self.$notify({
+                            message: '开始下载！',
+                            type:'success',
+                        });
+                    }
+                })
             }
         },
         delimiters: ['{[', ']}'],

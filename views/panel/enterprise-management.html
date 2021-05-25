@@ -55,6 +55,7 @@
                 <template slot-scope="scope">
                     <el-button v-if="scope.row.status==0" type="danger" size="small" @click="handleSetEnterpriseStatus(scope.row.enterprise_id,2)">禁用</el-button>
                     <el-button v-if="scope.row.status==2" type="success" size="small" @click="handleSetEnterpriseStatus(scope.row.enterprise_id,0)">解禁</el-button>
+                    <a :href="'/panel/getLicence/' + scope.row.enterprise_id" v-if="scope.row.licence!=''"><el-button type="primary" size="small">下载营业执照</el-button></a>
                 </template>
             </el-table-column>
         </el-table>
