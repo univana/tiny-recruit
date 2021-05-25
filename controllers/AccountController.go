@@ -162,7 +162,7 @@ func (c *AccountController) GetDelivers() {
 	}
 	var delivers []Deliver
 	o := orm.NewOrm()
-	sql := "select deliverance_id,member_id,tj.title,tj.job_id,t_deliverance.status,deliver_time,t_deliverance.modify_time from t_deliverance join t_job tj on t_deliverance.job_id = tj.job_id where member_id=?"
+	sql := "select deliverance_id,member_id,tj.title,tj.job_id,t_deliverance.status,deliver_time,t_deliverance.modify_time from t_deliverance join t_job tj on t_deliverance.job_id = tj.job_id where t_deliverance.status <> '已撤销' and member_id=?"
 	_, err := o.Raw(sql, c.Member.MemberId).QueryRows(&delivers)
 	if err != nil {
 		logs.Error("Error AccountController GetDelivers: ", err)

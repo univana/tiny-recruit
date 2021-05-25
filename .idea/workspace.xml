@@ -1,14 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了删除教育经历的前后端逻辑">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/educationExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/educationExperience.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/internshipExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/internshipExperience.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/projectExperience.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/projectExperience.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了所有删除经历的前后端逻辑">
+      <change beforePath="$PROJECT_DIR$/controllers/AccountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.go" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +120,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了修改简历基本信息的前后端逻辑" />
     <MESSAGE value="实现了修改简历其他信息的前后端逻辑" />
     <MESSAGE value="实现了添加教育经历的前后端逻辑" />
     <MESSAGE value="添加了新建项目经历的前端样式及逻辑" />
@@ -151,7 +144,8 @@
     <MESSAGE value="实现了下载营业执照的前后端逻辑" />
     <MESSAGE value="实现了企业管理的前后端逻辑" />
     <MESSAGE value="实现了删除教育经历的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了删除教育经历的前后端逻辑" />
+    <MESSAGE value="实现了所有删除经历的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了所有删除经历的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
