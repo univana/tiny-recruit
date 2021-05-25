@@ -196,3 +196,20 @@ func (c *EnterpriseController) GetLicence() {
 		c.Ctx.Output.Download(licencePath)
 	}
 }
+
+// SetVerify 设置企业认证状态
+func (c *EnterpriseController) SetVerify() {
+	enterpriseID, _ := strconv.Atoi(c.GetString("enterprise_id"))
+	verify, _ := strconv.Atoi(c.GetString("verify"))
+	var enterprise = models.Enterprise{
+		EnterpriseID: enterpriseID,
+		Verified:     verify,
+	}
+	err := enterprise.InsertOrUpdate("verified")
+	if err != nil {
+		logs.Error("Error EnterpriseController SetVerify:", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

@@ -220,6 +220,33 @@
                         });
                     }
                 })
+            },
+            /*设置认证*/
+            handleSetVerify(id, verify){
+                let self = this;
+                let fd = new FormData();
+                fd.append("enterprise_id", id);
+                fd.append("verify", verify);
+                $.ajax({
+                    url: "{{urlfor "EnterpriseController.SetVerify"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getEnterprises();
+                            self.$notify({
+                                type: "success",
+                                message: "设置企业认证成功！"
+                            });
+                        }
+                    }
+                })
             }
         },
         delimiters: ['{[', ']}'],

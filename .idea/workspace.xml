@@ -1,18 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了设置企业状态的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/static/js/html2pdf.bundle.min.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/d/f/df225341c079f2bc03a4dfb05cec1609" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了下载营业执照的前后端逻辑">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/EnterpriseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/EnterpriseController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/main.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/5/4/542076c52655923c25f85dc19fa6dd62" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/panel.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/panel/enterprise-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/enterprise-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/head.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -130,7 +124,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了新建职位的前后端逻辑" />
     <MESSAGE value="实现了修改职位信息的前后端逻辑" />
     <MESSAGE value="实现了删除职位的前后端逻辑" />
     <MESSAGE value="实现了修改简历基本信息的前后端逻辑" />
@@ -155,7 +148,8 @@
     <MESSAGE value="实现了上传简历头像的后端逻辑" />
     <MESSAGE value="实现了新建企业的前后端逻辑" />
     <MESSAGE value="实现了设置企业状态的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了设置企业状态的前后端逻辑" />
+    <MESSAGE value="实现了下载营业执照的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了下载营业执照的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

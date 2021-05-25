@@ -116,6 +116,9 @@ func init() {
 	//获取营业执照
 	beego.Router("/panel/getLicence/:id", &controllers.EnterpriseController{}, "*:GetLicence")
 
+	//设置企业认证状态
+	beego.Router("/panel/setVerify", &controllers.EnterpriseController{}, "*:SetVerify")
+
 	//获取省份对应的城市信息
 	beego.Router("/common/getCities", &controllers.BaseController{}, "*:GetCities")
 

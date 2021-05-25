@@ -38,24 +38,26 @@
                 </template>
             </el-table-column>
             {{/*是否认证*/}}
-            <el-table-column label="是否认证" width="100">
+            <el-table-column label="是否认证" width="80">
                 <template slot-scope="scope">
                     <span>{[scope.row.verified==1?'已认证':'待认证']}</span>
                 </template>
             </el-table-column>
             {{/*状态*/}}
-            <el-table-column label="状态" width="100">
+            <el-table-column label="状态" width="80">
                 <template slot-scope="scope">
                     <span v-if="scope.row.status==0">正常</span>
                     <span v-if="scope.row.status==2">已禁用</span>
                 </template>
             </el-table-column>
             {{/*操作*/}}
-            <el-table-column label="操作" width="200">
+            <el-table-column label="操作" width="250">
                 <template slot-scope="scope">
                     <el-button v-if="scope.row.status==0" type="danger" size="small" @click="handleSetEnterpriseStatus(scope.row.enterprise_id,2)">禁用</el-button>
                     <el-button v-if="scope.row.status==2" type="success" size="small" @click="handleSetEnterpriseStatus(scope.row.enterprise_id,0)">解禁</el-button>
                     <a :href="'/panel/getLicence/' + scope.row.enterprise_id" v-if="scope.row.licence!=''"><el-button type="primary" size="small">下载营业执照</el-button></a>
+                    <el-button v-if="scope.row.verified==0" type="success" size="small" @click="handleSetVerify(scope.row.enterprise_id,1)">认证</el-button>
+                    <el-button v-if="scope.row.verified==1" type="danger" size="small" @click="handleSetVerify(scope.row.enterprise_id,0)">取消认证</el-button>
                 </template>
             </el-table-column>
         </el-table>
