@@ -10,6 +10,7 @@ type EducationExperience struct {
 	StartYear  int    `json:"start_year"`                                  //开始年份
 	EndYear    int    `json:"end_year"`                                    //结束年份
 	Experience string `orm:"type(text)" json:"experience"`                 //教育经历内容
+	Deleted    int    `orm:"default(0)" json:"deleted"`                    //删除标记
 
 	Resume *Resume `orm:"rel(fk)" json:"resume"` //简历与教育经历的一对多关系
 }

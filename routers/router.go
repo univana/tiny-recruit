@@ -89,6 +89,9 @@ func init() {
 	//添加实习经历
 	beego.Router("/userCenter/addInternship", &controllers.ResumeController{}, "*:AddInternship")
 
+	//删除经历
+	beego.Router("/userCener/deleteExperience", &controllers.ResumeController{}, "*:DeleteExperience")
+
 	//收藏职位
 	beego.Router("/job/detail/collect", &controllers.CollectionController{}, "*:Collect")
 

@@ -224,3 +224,29 @@ func (c *ResumeController) AddInternship() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// DeleteExperience 删除经历
+func (c *ResumeController) DeleteExperience() {
+	id, _ := strconv.Atoi(c.GetString("id"))
+	expType := c.GetString("type")
+	var err error
+	if expType == "1" {
+		var eduExp = models.EducationExperience{
+			EduExpID: id,
+			Deleted:  1,
+		}
+		err = eduExp.InsertOrUpdate("deleted")
+
+	} else if expType == "2" {
+
+	} else {
+
+	}
+	if err != nil {
+		logs.Error("Error ResumeController DeleteExperience: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+
+}

@@ -84,6 +84,7 @@
         el: '#app',
         data: function () {
             return {
+                deleteEduVisible: false,
                 activeIndex: "0",
                 displayIndex: 0,
                 resume: '',
@@ -106,8 +107,8 @@
                     hope_job: '',
                     hope_salary: '',
                     city: '',
-                    photo:'',
-                    file:'',
+                    photo: '',
+                    file: '',
                 },
                 formEditEdu: {
                     edu_exp_id: 0,
@@ -145,7 +146,62 @@
             }
         },
         methods: {
-            getFiles(e){
+            handleMouseOverEdu() {
+                this.deleteEduVisible = true;
+            },
+            handleMouseLeaveEdu() {
+                this.deleteEduVisible = false;
+            },
+            handleDelExp(type, id) {
+                let self = this;
+
+                this.$confirm('此操作将永久删除该经历, 是否继续?', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                    type: 'warning'
+                }).then(() => {
+                    let myFormData = new FormData();
+                    myFormData.append("id", id);
+                    myFormData.append("type", type);
+                    $.ajax({
+                        url: "{{urlfor "ResumeController.DeleteExperience"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.getResume();
+                                self.$notify({
+                                    type: "success",
+                                    message: "该经历已成功删除!"
+                                });
+                            }
+
+                        }
+                    })
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '已取消删除'
+                    });
+                });
+            },
+            test() {
+                let element = document.getElementById('resume-box');
+                let opt = {
+                    image: {type: 'jpeg', quality: 1},
+                    pagebreak: {avoid: 'el-card'},
+                };
+                html2pdf().set(opt);
+                html2pdf(element);
+            },
+            getFiles(e) {
                 this.formEditResume.file = e.target.files[0];
             },
             getResume() {
@@ -262,7 +318,7 @@
                 myFormData.append("city", this.formEditResume.city);
                 myFormData.append("advantage", this.formEditResume.advantage);
                 myFormData.append("hope_job", this.formEditResume.hope_job);
-                myFormData.append("file",this.formEditResume.file);
+                myFormData.append("file", this.formEditResume.file);
 
                 $.ajax({
                     url: "{{urlfor "ResumeController.EditResume"}}",
@@ -451,7 +507,6 @@
                             }
                         }
                     })
-
 
 
                 }

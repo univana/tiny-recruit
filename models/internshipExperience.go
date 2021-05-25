@@ -13,8 +13,8 @@ type InternshipExperience struct {
 	StartTime   time.Time `orm:"type(datetime)" json:"start_time"`             //实习开始时间                                 //开始年份
 	EndTime     time.Time `orm:"type(datetime)" json:"end_time"`               //实习结束时间                        //结束年份
 	WorkContent string    `orm:"type(text)" json:"work_content"`               //实习经历内容
-
-	Resume *Resume `orm:"rel(fk)"` //简历与实习经历的一对多关系
+	Deleted     int       `orm:"default(0)" json:"deleted"`                    //删除标记
+	Resume      *Resume   `orm:"rel(fk)"`                                      //简历与实习经历的一对多关系
 }
 
 func (e *InternshipExperience) TableName() string {
