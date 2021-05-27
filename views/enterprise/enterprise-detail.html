@@ -20,13 +20,6 @@
                     <el-col :span="12" style="height: 80px">
                         <p>
                             <span class="banner-enterprise-name">{[enterprise.name]}</span>
-                            <span class="banner-enterprise-verify-tag">
-                                <template>
-                                     <el-tag type="danger" v-if="enterprise.status==0">未认证</el-tag>
-                                     <el-tag type="success" v-else="">已认证</el-tag>
-                                </template>
-
-                            </span>
                         </p>
                     </el-col>
                     <el-col :span="6" style="">
@@ -34,12 +27,6 @@
                             <el-col :span="12" style="text-align: center">
                                 <p style="font-size: 36px"> {[enterprise.jobs.length]}</p>
                                 <p>在招职位</p>
-                            </el-col>
-                            <el-col :span="12" style="">
-                                <template>
-                                    <el-button plain icon="el-icon-star-off" v-if="collected==0">收藏</el-button>
-                                    <el-button type="primary" disabled v-else>已收藏</el-button>
-                                </template>
                             </el-col>
                         </el-row>
                     </el-col>
