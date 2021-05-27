@@ -16,6 +16,9 @@
                 </el-option>
             </el-select>
         </el-form-item>
+        <el-form-item label="所属部门">
+            <el-input v-model="formNewJob.department" style="width: 200px"></el-input>
+        </el-form-item>
         <el-form-item label="城市">
             <el-select v-model="formNewJob.location">
                 <el-option v-for="city in cities" :value="city">

@@ -16,6 +16,7 @@ type Job struct {
 	PayTimes          int       `json:"pay_times"`                                     //每年发薪次数
 	RequireEducation  string    `json:"require_education"`                             //学历要求
 	RequireExperience string    `json:"require_experience"`                            //经验要求
+	Department        string    `json:"department"`                                    //职位所属部门
 	Type              string    `json:"type"`                                          //职位类型
 	Nature            string    `json:"nature"`                                        //职位性质
 	Status            int       `orm:"default(0)" json:"status"`                       //职位状态 0:正常 1:删除 2:禁用

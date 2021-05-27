@@ -98,6 +98,7 @@ func (c *JobController) NewJob() {
 		Type:              c.GetString("type"),
 		Nature:            c.GetString("nature"),
 		Status:            0,
+		Department:        c.GetString("department"),
 		CreateTime:        time.Now().In(cstZone),
 		ModifyTime:        time.Now().In(cstZone),
 		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
@@ -133,6 +134,7 @@ func (c *JobController) EditJob() {
 		MinMonthlySalary:  minS,
 		MaxMonthlySalary:  maxS,
 		PayTimes:          pt,
+		Department:        c.GetString("department"),
 		RequireEducation:  c.GetString("require_education"),
 		RequireExperience: c.GetString("require_experience"),
 		Type:              c.GetString("type"),
@@ -141,7 +143,7 @@ func (c *JobController) EditJob() {
 		ModifyTime:        time.Now().In(cstZone),
 		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
 	}
-	err := job.InsertOrUpdate("title", "description", "location", "min_monthly_salary",
+	err := job.InsertOrUpdate("department", "title", "description", "location", "min_monthly_salary",
 		"max_monthly_salary", "pay_times", "require_education", "require_experience", "type", "nature", "modify_time")
 	if err != nil {
 		logs.Error("Error JobController EditJob: ", err)

@@ -178,6 +178,7 @@
                     require_experience: '',
                     type: '',
                     nature: '',
+                    department:'',
                 },
                 formEditEnterprise: {
                     name:{{.Enterprise.Name}},
@@ -410,7 +411,8 @@
                 myFormData.append("require_experience", this.formNewJob.require_experience)
                 myFormData.append("require_education", this.formNewJob.require_education)
                 myFormData.append("description", this.formNewJob.description)
-                myFormData.append("enterprise_id", this.enterprise.enterprise_id)
+                myFormData.append("enterprise_id", this.enterprise.enterprise_id);
+                myFormData.append("department",this.formNewJob.department);
 
                 $.ajax({
                     url: "{{urlfor "JobController.NewJob"}}",
@@ -460,6 +462,7 @@
                         self.formNewJob.require_education = res.data.require_education;
                         self.formNewJob.require_experience = res.data.require_experience;
                         self.formNewJob.description = res.data.description;
+                        self.formNewJob.department = res.data.department;
                         self.dialogEditJobVisible = true;
                     }
                 })
@@ -519,6 +522,7 @@
                 myFormData.append("require_experience", this.formNewJob.require_experience)
                 myFormData.append("require_education", this.formNewJob.require_education)
                 myFormData.append("description", this.formNewJob.description)
+                myFormData.append("department",this.formNewJob.department);
                 myFormData.append("enterprise_id", this.enterprise.enterprise_id)
 
                 $.ajax({
