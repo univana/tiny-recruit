@@ -3,8 +3,10 @@ package controllers
 import (
 	"errors"
 	"fmt"
+	"github.com/astaxie/beego/cache"
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
+	"github.com/astaxie/beego/utils/captcha"
 	"golang.org/x/crypto/bcrypt"
 	"myApp/common"
 	"myApp/models"
@@ -18,6 +20,13 @@ import (
 
 type AccountController struct {
 	BaseController
+}
+
+var cpt *captcha.Captcha
+
+func init() {
+	store := cache.NewMemoryCache()
+	cpt = captcha.NewWithFilter("/captcha/", store)
 }
 
 //注册
@@ -130,23 +139,31 @@ func (c *AccountController) Login() {
 	c.TplName = "account/login.html"
 
 	if c.Ctx.Input.IsPost() {
-		account := c.GetString("account")
-		password := c.GetString("password")
-		member, err := models.NewMember().Login(account, password)
-		if err != nil {
-			c.JsonResult(1, "登录失败", nil)
+
+		//检查验证码是否正确
+		res := cpt.VerifyReq(c.Ctx.Request)
+		if res == false {
+			c.JsonResult(1, "验证码错误！")
+		} else {
+			account := c.GetString("account")
+			password := c.GetString("password")
+			member, err := models.NewMember().Login(account, password)
+			if err != nil {
+				c.JsonResult(1, "登录失败", nil)
+			}
+			member.LastLoginTime = time.Now()
+			member.Update()
+			c.SetMember(*member)
+			remember.MemberId = member.MemberId
+			remember.Account = member.Account
+			remember.Time = time.Now()
+			v, err := utils.Encode(remember)
+			if err == nil {
+				c.SetSecureCookie(common.AppKey(), "login", v, 24*3600*365)
+			}
+			c.JsonResult(0, "ok")
 		}
-		member.LastLoginTime = time.Now()
-		member.Update()
-		c.SetMember(*member)
-		remember.MemberId = member.MemberId
-		remember.Account = member.Account
-		remember.Time = time.Now()
-		v, err := utils.Encode(remember)
-		if err == nil {
-			c.SetSecureCookie(common.AppKey(), "login", v, 24*3600*365)
-		}
-		c.JsonResult(0, "ok")
+
 	}
 }
 

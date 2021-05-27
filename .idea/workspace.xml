@@ -1,17 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了投递撤销的筛选样式">
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修复了一些bug">
+      <change afterPath="$PROJECT_DIR$/store/session/f/b/fb31235a9d352711074c4cc75fd24be0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/deliverance.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/deliverance.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/job.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/job.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/1/b/1b43992635df21145c79ae3d2873dcd4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enterprise-home/job-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/AccountController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/AccountController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/6/e/6e557b576595686ac68faf59ad85b05f" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/login.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +124,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了添加教育经历的前后端逻辑" />
     <MESSAGE value="添加了新建项目经历的前端样式及逻辑" />
     <MESSAGE value="实现了添加项目经历的后端逻辑" />
     <MESSAGE value="实现了添加实习经历的前后端逻辑" />
@@ -154,7 +148,8 @@
     <MESSAGE value="实现了删除教育经历的前后端逻辑" />
     <MESSAGE value="实现了所有删除经历的前后端逻辑" />
     <MESSAGE value="添加了投递撤销的筛选样式" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了投递撤销的筛选样式" />
+    <MESSAGE value="修复了一些bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了一些bug" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
