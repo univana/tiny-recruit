@@ -34,7 +34,7 @@ func GetAllJobs() ([]Job, error) {
 	var jobs []Job
 	var err error
 	o := orm.NewOrm()
-	_, err = o.QueryTable(TNJob()).All(&jobs)
+	_, err = o.QueryTable(TNJob()).Exclude("status", 1).All(&jobs)
 
 	//同步对应企业数据
 	for i := 0; i < len(jobs); i++ {
@@ -67,7 +67,7 @@ func GetJobByID(id int) Job {
 func IsDelivered(jobID int, memberID int) int {
 	o := orm.NewOrm()
 	var deliverance Deliverance
-	err := o.QueryTable(TNDeliverance()).Filter("job_id", jobID).Filter("member_id", memberID).One(&deliverance)
+	err := o.QueryTable(TNDeliverance()).Filter("job_id", jobID).Filter("member_id", memberID).Exclude("status", "已撤销").One(&deliverance)
 	if err == orm.ErrNoRows {
 		return 0
 	} else {
@@ -102,7 +102,7 @@ func FilterJobs(searchContent string, city string, requireExp string, requireEdu
 		cond = cond.And("require_education", requireEdu)
 	}
 
-	_, err = qs.SetCond(cond).All(&jobs)
+	_, err = qs.SetCond(cond).Exclude("status", 1).All(&jobs)
 
 	//针对企业数据筛选职位
 	var enterpriseIDs = map[int]int{}

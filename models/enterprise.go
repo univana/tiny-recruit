@@ -33,7 +33,7 @@ func (e *Enterprise) TableName() string {
 func GetAllEnterprises() ([]*Enterprise, error) {
 	o := orm.NewOrm()
 	var enterprises []*Enterprise
-	_, err := o.QueryTable(TNEnterprise()).All(&enterprises)
+	_, err := o.QueryTable(TNEnterprise()).Exclude("status", 1).All(&enterprises)
 	return enterprises, err
 }
 
@@ -71,7 +71,7 @@ func FilterEnterprises(city string, stage string, scale string, enterpriseType s
 	if enterpriseType != "不限" {
 		cond = cond.And("type", enterpriseType)
 	}
-	_, err = qs.SetCond(cond).All(&enterprises)
+	_, err = qs.SetCond(cond).Exclude("status", 1).All(&enterprises)
 
 	return enterprises, err
 }

@@ -12,8 +12,8 @@
     <el-card shadow="never" style="padding: 0;">
         <div slot="header" class="clearfix">
             <span>我的在线简历</span>
-            <el-button style="float: right; padding: 3px 0" type="text" @click="handleEditResume">编辑简历</el-button>
-            <el-button @click="test">test</el-button>
+            <el-button style="float: right" icon="el-icon-edit" @click="handleEditResume"></el-button>
+            <el-button style="float: right;margin-right: 5px;" @click="test" icon="el-icon-download"></el-button>
         </div>
 
         {{/*div-个人简历内容*/}}
@@ -31,7 +31,7 @@
                             <span><i class="fa fa-birthday-cake"></i>{[dateFormat(resume.birthday)]}</span>
                             <el-divider direction="vertical"></el-divider>
                             {{/*招聘状态*/}}
-                            <span class="user-info-tel"><i class="el-icon-phone"></i>{[member.hunt_status]}</span>
+                            <span class="user-info-tel"><i class="el-icon-menu"></i>{[member.hunt_status]}</span>
                         </span>
 
 
@@ -44,7 +44,7 @@
             </el-card>
             {{/*个人优势*/}}
             <el-card id="advantage" shadow="hover" style="border: none">
-                <p class="user-info-title">个人优势</p>
+                <p class="user-info-title">个人优势与获奖经历</p>
                 {[resume.advantage]}
             </el-card>
 
@@ -63,13 +63,13 @@
 
             {{/*教育经历*/}}
             <el-card id="education-experience" shadow="never" style="border: none">
-                <p class="user-info-title">
+                <p class="user-info-title" @mouseover="handleMouseOverCard" @mouseleave="handleMouseLeaveCard">
                     教育经历
                     <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right"
-                               @click="dialogAddEduVisible=true"></el-button>
+                               @click="dialogAddEduVisible=true" v-if="addButtonVisible"></el-button>
                 </p>
                 <template v-for="edu_exp in resume.education_experiences">
-                    <el-card shadow="hover" style="margin: 1px 20px" @mouseover.native="handleMouseOverEdu"
+                    <el-card shadow="hover" style="margin: 5px 20px;border: none" @mouseover.native="handleMouseOverEdu"
                              @mouseleave.native="handleMouseLeaveEdu">
                         <div v-if="deleteEduVisible">
                             <el-button size="small" icon="el-icon-delete"
@@ -92,13 +92,13 @@
             {{/*项目经历*/}}
             <el-card id="project-experience" shadow="never" style="border: none" @mouseover.native="handleMouseOverPro"
                      @mouseleave.native="handleMouseLeavePro">
-                <p class="user-info-title">
+                <p class="user-info-title" @mouseover="handleMouseOverCard" @mouseleave="handleMouseLeaveCard">
                     项目经历
                     <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right"
-                               @click="dialogAddProjectVisible=true"></el-button>
+                               @click="dialogAddProjectVisible=true" v-if="addButtonVisible"></el-button>
                 </p>
                 <template v-for="project_exp in resume.project_experiences">
-                    <el-card shadow="hover" style="margin: 1px 20px">
+                    <el-card shadow="hover" style="margin: 5px 20px;border: none">
                         <div v-if="deleteProVisible">
                             <el-button size="small" icon="el-icon-delete"
                                        style="float: right;"
@@ -113,15 +113,16 @@
             </el-card>
 
             {{/*实习经历*/}}
-            <el-card id="internship-experience" shadow="never" style="border: none" @mouseover.native="handleMouseOverInt"
+            <el-card id="internship-experience" shadow="never" style="border: none"
+                     @mouseover.native="handleMouseOverInt"
                      @mouseleave.native="handleMouseLeaveInt">
-                <p class="user-info-title">
+                <p class="user-info-title" @mouseover="handleMouseOverCard" @mouseleave="handleMouseLeaveCard">
                     实习经历
                     <el-button type="primary" icon="el-icon-plus" circle size="mini" style="float: right"
-                               @click="dialogAddInternshipVisible=true"></el-button>
+                               @click="dialogAddInternshipVisible=true" v-if="addButtonVisible"></el-button>
                 </p>
                 <template v-for="int_exp in resume.internship_experiences">
-                    <el-card shadow="hover" style="margin: 1px 20px">
+                    <el-card shadow="hover" style="margin: 5px 20px;border: none">
                         <div v-if="deleteIntVisible">
                             <el-button size="small" icon="el-icon-delete"
                                        style="float: right;"

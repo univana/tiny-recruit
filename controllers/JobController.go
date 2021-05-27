@@ -47,7 +47,7 @@ func (c *JobController) GetDeliverance() {
 		memberID := resume.Member.MemberId
 		var deliverance models.Deliverance
 		o := orm.NewOrm()
-		err := o.QueryTable(models.TNDeliverance()).Filter("member_id", memberID).Filter("job_id", jobID).One(&deliverance)
+		err := o.QueryTable(models.TNDeliverance()).Filter("member_id", memberID).Filter("job_id", jobID).Exclude("status", "已撤销").One(&deliverance)
 		if err != nil {
 			logs.Error("Error JobController query t_deliverance: ", err)
 			c.JsonResult(1, "获取投递数据错误")

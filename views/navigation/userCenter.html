@@ -84,6 +84,7 @@
         el: '#app',
         data: function () {
             return {
+                addButtonVisible:false,
                 deleteIntVisible:false,
                 deleteProVisible:false,
                 deleteEduVisible: false,
@@ -148,6 +149,12 @@
             }
         },
         methods: {
+            handleMouseOverCard(){
+                this.addButtonVisible = true;
+            },
+            handleMouseLeaveCard(){
+                this.addButtonVisible = false;
+            },
             handleMouseOverInt() {
                 this.deleteIntVisible = true;
             },
@@ -210,10 +217,9 @@
                 let element = document.getElementById('resume-box');
                 let opt = {
                     image: {type: 'jpeg', quality: 1},
-                    pagebreak: {avoid: 'el-card'},
+                    pagebreak: {mode:'avoid-all'},
                 };
-                html2pdf().set(opt);
-                html2pdf(element);
+                html2pdf().set(opt).from(element).save();
             },
             getFiles(e) {
                 this.formEditResume.file = e.target.files[0];

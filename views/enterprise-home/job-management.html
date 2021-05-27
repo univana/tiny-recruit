@@ -12,21 +12,21 @@
             {{/*发布日期*/}}
             <el-table-column label="发布日期" width="200">
                 <template slot-scope="scope">
-                    <span>{[dateFormatYYYYMMDD(scope.row.create_time)]}</span>
+                    <span v-if="scope.row.status==0">{[dateFormatYYYYMMDD(scope.row.create_time)]}</span>
                 </template>
             </el-table-column>
 
             {{/*职位标题*/}}
             <el-table-column label="职位标题" width="200">
                 <template slot-scope="scope">
-                    <span><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + scope.row.job_id" target="_blank">{[scope.row.title]}</a></span>
+                    <span v-if="scope.row.status==0"><a :href="'{{urlfor "JobController.ShowJob" ":id" ""}}' + scope.row.job_id" target="_blank">{[scope.row.title]}</a></span>
                 </template>
             </el-table-column>
 
             {{/*操作*/}}
             <el-table-column label="操作" width="200">
                 <template slot-scope="scope">
-                    <el-button-group>
+                    <el-button-group v-if="scope.row.status==0">
                         <el-button type="primary" icon="el-icon-edit" size="small" plain @click="handleEditJob(scope.row.job_id)">编辑</el-button>
                         <el-button type="danger" icon="el-icon-delete" size="small" plain @click="handleDeleteJob(scope.row.job_id)">删除</el-button>
                     </el-button-group>

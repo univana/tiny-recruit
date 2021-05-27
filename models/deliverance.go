@@ -48,7 +48,7 @@ func GetAllDeliveranceByMemberID(memberID int) []Deliverance {
 func GetAllResumesByJobID(jobID int) ([]Resume, error) {
 	o := orm.NewOrm()
 	//查询该职位投递的所有用户ID
-	sql := "select member_id from t_deliverance join t_job tj on t_deliverance.job_id = tj.job_id where tj.job_id = ?"
+	sql := "select member_id from t_deliverance join t_job tj on t_deliverance.job_id = tj.job_id where t_deliverance.status <> '已撤销' and tj.job_id = ?"
 	var ids []int
 	_, err := o.Raw(sql, jobID).QueryRows(&ids)
 	if err != nil {
