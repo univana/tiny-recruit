@@ -35,6 +35,9 @@
 
                 {{/*投递管理*/}}
                 {{template "enterprise-home/base-management.html" .}}
+
+                {{/*预览简历对话框*/}}
+                {{template "enterprise-home/dialog-preview-resume.html" .}}
             </el-col>
         {{else}}
             <el-col :span="18">
@@ -138,6 +141,7 @@
         el: '#app',
         data: function () {
             return {
+                dialogPreviewResumeVisible: false,
                 activeStep: '1',
                 step1: true,
                 step2: false,
@@ -145,6 +149,7 @@
                 displayIndex: 0,
                 currentPage: 1,
                 pageSize: 8,
+                resume: '',
                 enterprise:{{.Enterprise}},
                 jobs: {{.Jobs}},
                 provinces:{{.Provinces}},
@@ -178,7 +183,7 @@
                     require_experience: '',
                     type: '',
                     nature: '',
-                    department:'',
+                    department: '',
                 },
                 formEditEnterprise: {
                     name:{{.Enterprise.Name}},
@@ -194,6 +199,44 @@
             }
         },
         methods: {
+            /*下载用户简历*/
+            handleDownloadResume(id) {
+                this.getResume(id);
+                let element = document.getElementById('resume-box');
+                alert(element);
+                let opt = {
+                    image: {type: 'jpeg', quality: 1},
+                    pagebreak: {mode:'avoid-all'},
+                };
+                html2pdf().set(opt).from(element).save();
+            },
+            /*日期格式化工具*/
+            dateFormat(date) {
+                return moment(date).format("YYYY-MM-DD");
+            },
+            handlePreviewResume(id) {
+                //获取简历信息
+                this.getResume(id);
+                this.dialogPreviewResumeVisible = true;
+
+            },
+            /*获取预览简历的信息*/
+            getResume(id) {
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("id", id);
+                $.ajax({
+                    url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        self.resume = res.data;
+                    }
+
+                });
+            },
             handleProvinceSelected() {
                 /*如果是直辖市*/
                 if (this.provinceSelected === "北京市" || this.provinceSelected === "天津市" || this.provinceSelected === "上海市" || this.provinceSelected === "重庆市") {
@@ -412,7 +455,7 @@
                 myFormData.append("require_education", this.formNewJob.require_education)
                 myFormData.append("description", this.formNewJob.description)
                 myFormData.append("enterprise_id", this.enterprise.enterprise_id);
-                myFormData.append("department",this.formNewJob.department);
+                myFormData.append("department", this.formNewJob.department);
 
                 $.ajax({
                     url: "{{urlfor "JobController.NewJob"}}",
@@ -522,7 +565,7 @@
                 myFormData.append("require_experience", this.formNewJob.require_experience)
                 myFormData.append("require_education", this.formNewJob.require_education)
                 myFormData.append("description", this.formNewJob.description)
-                myFormData.append("department",this.formNewJob.department);
+                myFormData.append("department", this.formNewJob.department);
                 myFormData.append("enterprise_id", this.enterprise.enterprise_id)
 
                 $.ajax({

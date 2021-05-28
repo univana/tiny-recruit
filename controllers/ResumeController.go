@@ -16,9 +16,8 @@ type ResumeController struct {
 }
 
 func (c *ResumeController) GetResumeByMemberID() {
-	c.TplName = "navigation/userCenter.html"
 
-	memberID := c.Member.MemberId
+	memberID, _ := strconv.Atoi(c.GetString("id"))
 	resume, err := models.GetResumeByMemberID(memberID)
 	if err != nil {
 		logs.Error("Error get resume:", err)

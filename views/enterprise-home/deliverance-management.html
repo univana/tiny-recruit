@@ -69,8 +69,9 @@
                         <template slot-scope="scope">
                             <span>
                                 {{/*投递状态选择器*/}}
-                                <el-select v-model="deliverStatus" :placeholder="scope.row.status" style="width: 120px" @change="handleSelectStatus(scope.row.deliverance_id,scope.row.status)">
-                                    <el-option v-for="status in deliverStatusList" :value="status" >
+                                <el-select v-model="deliverStatus" :placeholder="scope.row.status" style="width: 120px"
+                                           @change="handleSelectStatus(scope.row.deliverance_id,scope.row.status)">
+                                    <el-option v-for="status in deliverStatusList" :value="status">
                                         <span>{[status]}</span>
                                     </el-option>
                                 </el-select>
@@ -83,7 +84,10 @@
                         <template slot-scope="scope">
                             <span>
                                 <el-button-group>
-                                    <el-button type="primary" size="small">下载简历</el-button>
+                                    <el-button type="primary" icon="el-icon-search" size="small"
+                                               @click="handlePreviewResume(scope.row.resume.Member.member_id)"></el-button>
+                                    <el-button type="primary" icon="el-icon-download" size="small"
+                                               @click="handleDownloadResume(scope.row.resume.Member.member_id)"></el-button>
                                 </el-button-group>
                             </span>
                         </template>

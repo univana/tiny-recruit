@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了职位的部门字段及相应前后端逻辑">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="取消了企业详情页的收藏和认证标记">
+      <change afterPath="$PROJECT_DIR$/store/session/d/0/d0aad0727c818a5eca2d59d76f4a21c9" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/enterprise-home/dialog-preview-resume.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/2/9/29dad3170f60f09ceac1570f674e4795" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/2/9/29dad3170f60f09ceac1570f674e4795" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enterprise/enterprise-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise/enterprise-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/2/9/29dad3170f60f09ceac1570f674e4795" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,9 +20,9 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="HTML File" />
         <option value="CSS File" />
         <option value="Go File" />
+        <option value="HTML File" />
       </list>
     </option>
   </component>
@@ -122,7 +128,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了添加实习经历的前后端逻辑" />
     <MESSAGE value="添加了搜藏表的模型" />
     <MESSAGE value="实现了收藏职位的后端逻辑" />
     <MESSAGE value="实现了收藏管理的前后端逻辑" />
@@ -147,7 +152,8 @@
     <MESSAGE value="修复了一些bug" />
     <MESSAGE value="添加了登录验证码" />
     <MESSAGE value="添加了职位的部门字段及相应前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了职位的部门字段及相应前后端逻辑" />
+    <MESSAGE value="取消了企业详情页的收藏和认证标记" />
+    <option name="LAST_COMMIT_MESSAGE" value="取消了企业详情页的收藏和认证标记" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -155,11 +161,6 @@
   <component name="XDebuggerManager">
     <breakpoint-manager>
       <breakpoints>
-        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
-          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
-          <line>30</line>
-          <option name="timeStamp" value="12" />
-        </line-breakpoint>
         <line-breakpoint enabled="true" type="DlvLineBreakpoint">
           <url>file://$PROJECT_DIR$/models/deliverance.go</url>
           <line>50</line>

@@ -213,7 +213,7 @@
                     });
                 });
             },
-            test() {
+            handleDownloadResume() {
                 let element = document.getElementById('resume-box');
                 let opt = {
                     image: {type: 'jpeg', quality: 1},
@@ -228,11 +228,13 @@
                 let self = this;
                 let myFormData = new FormData();
                 let memberID = this.member.member_id;
-                console.log(memberID);
                 myFormData.append("id", memberID);
                 $.ajax({
                     url: "{{urlfor "ResumeController.GetResumeByMemberID"}}",
                     type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
                     success: function (res) {
                         self.resume = res.data;
                         self.formEditResume.resumeID = res.data.resume_id;

@@ -1,0 +1,116 @@
+<el-dialog title="简历预览" :visible.sync="dialogPreviewResumeVisible">
+    {{/*div-个人简历内容*/}}
+    <div class="resume-box" id="resume-box">
+        {{/*个人基本信息*/}}
+        <el-card id="user-info" shadow="hover" style="border: none">
+
+            <el-avatar fit="fit" :size="100" shape="square"
+                       :src="resume.photo" style="float: right"></el-avatar>
+            {{/*姓名*/}}
+            <span class="user-info-name">{[resume.name]}</span><br>
+
+            <span>
+                            {{/*生日*/}}
+                            <span><i class="fa fa-birthday-cake"></i>{[dateFormat(resume.birthday)]}</span>
+                            <el-divider direction="vertical"></el-divider>
+                        </span>
+
+
+            <br>
+            {{/*电话号码*/}}
+            <span class="user-info-tel"><i class="el-icon-phone"></i>{[resume.tel]}</span>
+            <el-divider direction="vertical"></el-divider>
+            {{/*邮箱*/}}
+            <span class="user-info-tel"><i class="fa fa-envelope"></i>{[resume.email]}</span>
+        </el-card>
+        {{/*个人优势*/}}
+        <el-card id="advantage" shadow="hover" style="border: none">
+            <p class="user-info-title">个人优势与获奖经历</p>
+            {[resume.advantage]}
+        </el-card>
+
+        {{/*期望职位*/}}
+        <el-card id="hope-job" shadow="hover" style="border: none">
+            <p class="user-info-title">期望职位</p>
+            {{/*职位*/}}
+            <span class="user-info-tel"><i class="fa fa-black-tie"></i>{[resume.hope_job]}</span>
+            <el-divider direction="vertical"></el-divider>
+            {{/*期望薪资*/}}
+            <span class="user-info-tel"><i class="fa fa-money"></i>{[resume.hope_salary]}</span>
+            <el-divider direction="vertical"></el-divider>
+            {{/*城市*/}}
+            <span class="user-info-tel"><i class="fa fa-building"></i>{[resume.city]}</span>
+        </el-card>
+
+        {{/*教育经历*/}}
+        <el-card id="education-experience" shadow="never" style="border: none">
+            <p class="user-info-title">
+                教育经历
+
+            </p>
+            <template v-for="edu_exp in resume.education_experiences">
+                <el-card shadow="hover" style="margin: 5px 20px;border: none" >
+                    <p style="font-size: 10px">{[edu_exp.start_year]} - {[edu_exp.end_year]}</p>
+                    <p style="font-weight: bold">{[edu_exp.school]}</p>
+                    <p>{[edu_exp.education]}
+                        <el-divider direction="vertical"></el-divider>
+                        {[edu_exp.profession]}
+                    </p>
+                    <p>{[edu_exp.experience]}</p>
+                </el-card>
+            </template>
+
+        </el-card>
+
+        {{/*项目经历*/}}
+        <el-card id="project-experience" shadow="never" style="border: none" >
+            <p class="user-info-title">
+                项目经历
+            </p>
+            <template v-for="project_exp in resume.project_experiences">
+                <el-card shadow="hover" style="margin: 5px 20px;border: none">
+                    <p style="font-size: 10px">{[dateFormat(project_exp.start_time)]} -
+                        {[dateFormat(project_exp.end_time)]}</p>
+                    <p style="font-weight: bold">{[project_exp.name]}</p>
+                    <p>{[project_exp.description]}</p>
+                </el-card>
+            </template>
+        </el-card>
+
+        {{/*实习经历*/}}
+        <el-card id="internship-experience" shadow="never" style="border: none">
+            <p class="user-info-title">
+                实习经历
+            </p>
+            <template v-for="int_exp in resume.internship_experiences">
+                <el-card shadow="hover" style="margin: 5px 20px;border: none">
+                    <p style="font-size: 10px">{[dateFormat(int_exp.start_time)]} -
+                        {[dateFormat(int_exp.end_time)]}</p>
+                    <p style="font-weight: bold">{[int_exp.company_name]}</p>
+                    <p>{[int_exp.department]}
+                        <el-divider direction="vertical"></el-divider>
+                        {[int_exp.position]}
+                    </p>
+                    <p>{[int_exp.work_content]}</p>
+                </el-card>
+            </template>
+        </el-card>
+    </div>
+</el-dialog>
+
+<style>
+    .resume-box{
+        position: relative;
+        border: 1px solid transparent;
+    }
+
+    .user-info-tel{
+        margin-top: 10px;
+        font-size: 14px;
+    }
+
+    .user-info-title{
+        font-size: 18px;
+    }
+
+</style>
