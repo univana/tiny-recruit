@@ -80,4 +80,33 @@ func (c *NavigationController) EnterpriseHome() {
 func (c *NavigationController) Panel() {
 	c.TplName = "navigation/panel.html"
 
+	type Res struct {
+		TypeID     int    `orm:"column(type_id)" json:"type_id"`
+		Name       string `json:"name"`
+		ParentName string `json:"parent_name"`
+		ParentID   int    `orm:"column(parent_id)" json:"parent_id"`
+		Level      string `json:"level"`
+	}
+	var res []Res
+	//获取所有职位类型
+	types, err := models.GetAllTypes()
+	if err != nil {
+		logs.Error("Error NavigationController Panel: ", err)
+	}
+	//获取所有类型的父类型名
+	for _, t := range types {
+		parentName, err := t.GetParentName()
+		if err != nil {
+			logs.Error("Error get parent name: ", err)
+		}
+		res = append(res, Res{
+			TypeID:     t.TypeID,
+			Name:       t.Name,
+			ParentID:   t.ParentID,
+			Level:      t.Level,
+			ParentName: parentName,
+		})
+	}
+	c.Data["JobTypes"] = res
+
 }

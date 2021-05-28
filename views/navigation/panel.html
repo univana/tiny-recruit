@@ -22,6 +22,9 @@
                     <el-menu-item index="3" @click="displayIndex=3;getJobs()" style="text-align: center">
                         <span>职位</span>
                     </el-menu-item>
+                    <el-menu-item index="4" @click="displayIndex=4;" style="text-align: center">
+                        <span>职位类型</span>
+                    </el-menu-item>
                 </el-menu>
             </el-col>
             <!-- 右侧内容 -->
@@ -31,7 +34,8 @@
             {{template "panel/job-management.html" .}}
             {{/*企业管理*/}}
             {{template "panel/enterprise-management.html" .}}
-
+            {{/*职位类型管理*/}}
+            {{template "panel/job-type-management.html" .}}
 
         </el-col>
     </el-row>
@@ -45,16 +49,68 @@
         el: '#app',
         data: function () {
             return {
+                activeCollapseItem: '',
                 displayIndex: '1',
                 activeIndex: '5',
                 currentPage: 1,
                 pageSize: 8,
                 members: [],
                 jobs: [],
-                enterprises:[],
+                enterprises: [],
+                jobTypes:{{.JobTypes}},
+                formAddChildType: {
+                    name: '',
+                    level: '',
+                    parentID: ''
+                }
             }
         },
         methods: {
+            /*添加职位子类型*/
+            handleAddChildType(parentID,parentLevel) {
+                let self = this;
+
+                this.$prompt('请输入子类型名', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(({ value }) => {
+                    //向后端发起请求
+                    let fd = new FormData();
+                    fd.append("parent_id", parentID);
+                    fd.append("parent_level", parentLevel);
+                    fd.append("name",value)
+                    $.ajax({
+                        url: "{{urlfor "JobTypeController.AddChildType"}}",
+                        type: "POST",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.$notify({
+                                    type: "success",
+                                    message: "添加子类型成功！"
+                                });
+                            }
+                        }
+                    })
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+
+            },
+            /*删除职位类型*/
+            handleDeleteType(id) {
+
+            },
             dateFormatYMDDel(time) {
                 return moment(time).format("YYYY-MM-DD")
             },
@@ -85,7 +141,7 @@
                     }
                 });
             },
-            getEnterprises(){
+            getEnterprises() {
                 let self = this;
                 $.ajax({
                     url: "{{urlfor "EnterpriseController.GetEnterprises"}}",
@@ -149,7 +205,7 @@
                 })
             },
             /*s设置职位状态*/
-            handleSetJobStatus(id, status){
+            handleSetJobStatus(id, status) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("job_id", id);
@@ -176,7 +232,7 @@
                 })
 
             },
-            handleSetEnterpriseStatus(id, status){
+            handleSetEnterpriseStatus(id, status) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("enterprise_id", id);
@@ -203,7 +259,7 @@
                 })
             },
             /*下载营业执照*/
-            handleGetLicence(id){
+            handleGetLicence(id) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("enterprise_id", id);
@@ -216,13 +272,13 @@
                     success: function () {
                         self.$notify({
                             message: '开始下载！',
-                            type:'success',
+                            type: 'success',
                         });
                     }
                 })
             },
             /*设置认证*/
-            handleSetVerify(id, verify){
+            handleSetVerify(id, verify) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("enterprise_id", id);
