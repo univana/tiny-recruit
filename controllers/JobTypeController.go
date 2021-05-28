@@ -36,3 +36,23 @@ func (c *JobTypeController) AddChildType() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// DeleteType 删除类型
+func (c *JobTypeController) DeleteType() {
+	typeID, _ := strconv.Atoi(c.GetString("type_id"))
+	jobType, err := models.GetTypeByID(typeID)
+	if err != nil {
+		logs.Error("Error JobTypeController DeleteType: ", err)
+		c.JsonResult(1, err.Error())
+	}
+	//如果是三级类型，直接删除
+	if jobType.Level == "三级" {
+		jobType.Deleted = 1
+		err = jobType.InsertOrUpdate("deleted")
+		if err != nil {
+			logs.Error("Error JobTypeController DeleteType: ", err)
+			c.JsonResult(1, err.Error())
+		}
+		c.JsonResult(0, "ok")
+	}
+}

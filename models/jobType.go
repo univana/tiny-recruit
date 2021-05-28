@@ -66,3 +66,15 @@ func (j *JobType) InsertOrUpdate(fields ...string) error {
 	}
 	return err
 }
+
+// GetTypeByID 根据ID获取职位类型数据
+func GetTypeByID(typeID int) (JobType, error) {
+	o := orm.NewOrm()
+	var jobType JobType
+	err := o.QueryTable(TNJobType()).Filter("type_id", typeID).Filter("deleted", 0).One(&jobType)
+	if err != nil {
+		return JobType{}, err
+	} else {
+		return jobType, nil
+	}
+}

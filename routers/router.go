@@ -125,6 +125,9 @@ func init() {
 	//添加子类型
 	beego.Router("/panel/addChildType", &controllers.JobTypeController{}, "*:AddChildType")
 
+	//删除类型
+	beego.Router("/panel/deleteType", &controllers.JobTypeController{}, "*:DeleteType")
+
 	//获取省份对应的城市信息
 	beego.Router("/common/getCities", &controllers.BaseController{}, "*:GetCities")
 

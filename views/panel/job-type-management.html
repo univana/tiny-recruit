@@ -29,9 +29,9 @@
                             <span>
                                 <el-button-group>
                                      <el-button type="primary" icon="el-icon-plus" size="small"
-                                                @click="handleAddChildType(scope.row.type_id,scope.row.level)"></el-button>
+                                                @click="handleAddChildType(scope.row.type_id,scope.row.level)"  v-if="scope.row.level!='三级'"></el-button>
                                     <el-button type="danger" icon="el-icon-delete" size="small"
-                                               @click="handleDeleteType(scope.row.type_id)" v-if="scope.row.level!='三级'"></el-button>
+                                               @click="handleDeleteType(scope.row.type_id)"></el-button>
                                 </el-button-group>
                             </span>
                </template>
