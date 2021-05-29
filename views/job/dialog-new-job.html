@@ -17,9 +17,22 @@
             <el-input v-model="formNewJob.department" style="width: 200px"></el-input>
         </el-form-item>
         <el-form-item label="城市">
-            <el-select v-model="formNewJob.location">
-                <el-option v-for="city in cities" :value="city">
-                </el-option>
+            <el-select v-model="provinceSelected" @change="handleProvinceSelected">
+                <el-option
+                        v-for="province in provinces"
+                        :key="province.pro_id"
+                        :label="province.pro_name"
+                        :value="province.pro_name"
+                ></el-option>
+            </el-select>
+            <el-select v-if="citySelectVisible" v-model="citySelected" @change="handleCitySelected">
+                <el-option
+                        v-for="city in cities"
+                        :key="city.city_name"
+                        :label="city.city_name"
+                        :value="city.city_name"
+                ></el-option>
+
             </el-select>
         </el-form-item>
         <el-form-item label="薪资范围">

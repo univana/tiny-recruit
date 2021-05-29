@@ -17,7 +17,7 @@
                         <el-menu-item index="3" @click="displayIndex=3;" style="text-align: center">
                             <span>基本信息</span>
                         </el-menu-item>
-                        <el-menu-item index="1" @click="displayIndex=1;" style="text-align: center">
+                        <el-menu-item index="1" @click="displayIndex=1;test()" style="text-align: center">
                             <span>职位</span>
                         </el-menu-item>
                         <el-menu-item index="2" @click="displayIndex=2;" style="text-align: center">
@@ -146,7 +146,7 @@
         data: function () {
             return {
                 dialogPreviewResumeVisible: false,
-                dialogSelectJobTypeVisible:false,
+                dialogSelectJobTypeVisible: false,
                 activeStep: '1',
                 step1: true,
                 step2: false,
@@ -204,8 +204,11 @@
             }
         },
         methods: {
+            test(){
+              console.log(this.jobs);
+            },
             /*选择职位类型*/
-            handleSelectJobType(){
+            handleSelectJobType() {
 
 
             },
@@ -216,7 +219,7 @@
                 alert(element);
                 let opt = {
                     image: {type: 'jpeg', quality: 1},
-                    pagebreak: {mode:'avoid-all'},
+                    pagebreak: {mode: 'avoid-all'},
                 };
                 html2pdf().set(opt).from(element).save();
             },
@@ -251,6 +254,7 @@
                 /*如果是直辖市*/
                 if (this.provinceSelected === "北京市" || this.provinceSelected === "天津市" || this.provinceSelected === "上海市" || this.provinceSelected === "重庆市") {
                     this.formEditEnterprise.location = this.provinceSelected;
+                    this.formNewJob.location = this.provinceSelected;
                 } else {
                     /*查询省对应的市数据*/
                     let self = this;
@@ -281,6 +285,7 @@
             },
             handleCitySelected() {
                 this.formEditEnterprise.location = this.citySelected;
+                this.formNewJob.location = this.citySelected;
             },
             handleNextStep() {
                 this.step1 = false;
