@@ -23,7 +23,7 @@
                 <el-table v-if="deliverListVisible==1" :data="deliverList">
 
                     {{/*投递时间*/}}
-                    <el-table-column label="投递时间" width="110px">
+                    <el-table-column label="投递时间" width="110px" sortable>
                         <template slot-scope="scope">
                             <span>{[dateFormatYMDDel(scope.row.deliver_time)]}</span>
                         </template>
@@ -44,7 +44,7 @@
                     </el-table-column>
 
                     {{/*年龄*/}}
-                    <el-table-column label="年龄" width="80px">
+                    <el-table-column label="年龄" width="80px" sortable>
                         <template slot-scope="scope">
                             <span>{[dateFormatAge(scope.row.resume.birthday)]}岁</span>
                         </template>

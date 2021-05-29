@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修复了投递管理选择已删除职位的bug">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修复了一些Bug">
+      <change afterPath="$PROJECT_DIR$/static/images/avatar.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/photos/2a8163bd-6ffe-432c-a31b-f824567e9834.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/photos/7af4a82d-d474-46ff-abad-f0f85dff27e1.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/photos/7ed72197-792b-4f33-857e-f58c349a7c4d.jpg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/7/4/7484d0b8c9b76976c52423cde5f4507f" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enterprise-home/job-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/job-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/DeliveranceController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/DeliveranceController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/ResumeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/ResumeController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/8/d/8d9428165ce04de2d69415759bd1255a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,7 +73,7 @@
     <property name="go.import.settings.migrated" value="true" />
     <property name="go.sdk.automatically.set" value="true" />
     <property name="go.tried.to.enable.integration.vgo.integrator" value="true" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/views/panel" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
     <property name="settings.editor.selected.configurable" value="preferences.pluginManager" />
@@ -72,9 +81,9 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="F:\Go-Projects\tiny-recruit\static\images" />
       <recent name="F:\Go-Projects\tiny-recruit\views\panel" />
       <recent name="F:\Go-Projects\tiny-recruit\static\js" />
-      <recent name="F:\Go-Projects\tiny-recruit\static\images" />
       <recent name="F:\Go-Projects\tiny-recruit\views\user-center" />
       <recent name="F:\Go-Projects\tiny-recruit\static\images\covers" />
     </key>
@@ -124,7 +133,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了企业基本信息管理的前端样式" />
     <MESSAGE value="实现了企业信息管理的前后端逻辑" />
     <MESSAGE value="添加了用户管理的前端样式" />
     <MESSAGE value="实现了设置用户状态的后端逻辑" />
@@ -149,7 +157,8 @@
     <MESSAGE value="实现了添加职位类型的前后端逻辑" />
     <MESSAGE value="实现了删除职位类型的前后端逻辑" />
     <MESSAGE value="修复了投递管理选择已删除职位的bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了投递管理选择已删除职位的bug" />
+    <MESSAGE value="修复了一些Bug" />
+    <option name="LAST_COMMIT_MESSAGE" value="修复了一些Bug" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -176,6 +185,26 @@
           <url>file://$PROJECT_DIR$/controllers/NavigationController.go</url>
           <line>66</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>66</line>
+          <option name="timeStamp" value="17" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>67</line>
+          <option name="timeStamp" value="18" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>74</line>
+          <option name="timeStamp" value="19" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/ResumeController.go</url>
+          <line>119</line>
+          <option name="timeStamp" value="20" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

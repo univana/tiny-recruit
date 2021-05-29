@@ -14,8 +14,14 @@ type DeliveranceController struct {
 // Deliver 投递简历的后端逻辑
 func (c *DeliveranceController) Deliver() {
 	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	t := time.Now().Add(time.Hour * 8)
 
-	deliverance := models.Deliverance{JobID: jobID, MemberID: c.Member.MemberId, Status: "待查看"}
+	deliverance := models.Deliverance{
+		JobID:       jobID,
+		MemberID:    c.Member.MemberId,
+		Status:      "待查看",
+		DeliverTime: t,
+	}
 	err := deliverance.InsertOrUpdate()
 	if err != nil {
 		logs.Error("Error deliver :", err)

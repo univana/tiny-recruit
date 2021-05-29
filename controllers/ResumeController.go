@@ -3,6 +3,7 @@ package controllers
 import (
 	"fmt"
 	"github.com/astaxie/beego/logs"
+	"github.com/astaxie/beego/orm"
 	uuid "github.com/iris-contrib/go.uuid"
 	"myApp/models"
 	"path"
@@ -19,8 +20,8 @@ func (c *ResumeController) GetResumeByMemberID() {
 
 	memberID, _ := strconv.Atoi(c.GetString("id"))
 	resume, err := models.GetResumeByMemberID(memberID)
-	if err != nil {
-		logs.Error("Error get resume:", err)
+	if err == orm.ErrNoRows {
+		c.JsonResult(0, "ok", models.Resume{ResumeID: 0})
 	}
 	//查找简历对应的教育经历
 	educationExperiences, err := models.GetEducationExperiencesByResumeID(resume.ResumeID)
@@ -83,6 +84,8 @@ func (c *ResumeController) EditResume() {
 			HopeJob:    c.GetString("hope_job"),
 			City:       c.GetString("city"),
 			Photo:      "/" + filePath,
+			ModifyTime: time.Now(),
+			Member:     &models.Member{MemberId: c.Member.MemberId},
 		}
 		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
 		if err != nil {
@@ -111,6 +114,8 @@ func (c *ResumeController) EditResume() {
 			HopeSalary: c.GetString("hope_salary"),
 			HopeJob:    c.GetString("hope_job"),
 			City:       c.GetString("city"),
+			ModifyTime: time.Now(),
+			Member:     &models.Member{MemberId: c.Member.MemberId},
 		}
 		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
 		if err != nil {
