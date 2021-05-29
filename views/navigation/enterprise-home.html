@@ -38,6 +38,10 @@
 
                 {{/*预览简历对话框*/}}
                 {{template "enterprise-home/dialog-preview-resume.html" .}}
+
+                {{/*选择职位类别对话框*/}}
+                {{template "job/dialog-select-job-type.html" .}}
+
             </el-col>
         {{else}}
             <el-col :span="18">
@@ -142,6 +146,7 @@
         data: function () {
             return {
                 dialogPreviewResumeVisible: false,
+                dialogSelectJobTypeVisible:false,
                 activeStep: '1',
                 step1: true,
                 step2: false,
@@ -199,6 +204,11 @@
             }
         },
         methods: {
+            /*选择职位类型*/
+            handleSelectJobType(){
+
+
+            },
             /*下载用户简历*/
             handleDownloadResume(id) {
                 this.getResume(id);

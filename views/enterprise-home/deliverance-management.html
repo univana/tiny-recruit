@@ -8,7 +8,7 @@
             <el-col :span="24">
                 {{/*职位选择器*/}}
                 <el-select placeholder="请选择职位" v-model="jobQueryID">
-                    <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title">
+                    <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title" v-if="job.status==0">
                         <span>{[dateFormatYMDDel(job.create_time)]}</span>
                         <el-divider direction="vertical"></el-divider>
                         <span>{[job.location]}</span>

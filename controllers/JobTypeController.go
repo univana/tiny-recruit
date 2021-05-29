@@ -54,5 +54,8 @@ func (c *JobTypeController) DeleteType() {
 			c.JsonResult(1, err.Error())
 		}
 		c.JsonResult(0, "ok")
+	} else if jobType.Level == "二级" {
+		//TODO 二级类型整体删除
+
 	}
 }

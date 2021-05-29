@@ -91,7 +91,7 @@ func GetEnterpriseByMemberID(memberID int) Enterprise {
 // LoadJobs 加载企业对应的所有职位信息
 func (e *Enterprise) LoadJobs() {
 	o := orm.NewOrm()
-	_, err := o.LoadRelated(e, "Jobs")
+	_, err := o.LoadRelated(e, "Jobs", "status", 0)
 	if err != nil {
 		logs.Error("Error load jobs: ", err)
 	}

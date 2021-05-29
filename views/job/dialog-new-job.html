@@ -10,11 +10,8 @@
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-form-item label="职位类别">
-            <el-select v-model="formNewJob.type">
-                <el-option v-for="type in types" :value="type">
-                </el-option>
-            </el-select>
+        <el-form-item label="职位类型">
+            <el-button @click="dialogSelectJobTypeVisible=true" size="small" type="primary">选择</el-button>
         </el-form-item>
         <el-form-item label="所属部门">
             <el-input v-model="formNewJob.department" style="width: 200px"></el-input>

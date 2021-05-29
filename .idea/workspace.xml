@@ -1,15 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了添加职位类型的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/d/9/d9254ac0d91d33c700d7901bce90467a" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了删除职位类型的前后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/8/d/8d9428165ce04de2d69415759bd1255a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/job/dialog-select-job-type.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/controllers/JobTypeController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobTypeController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/jobType.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/jobType.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/2/b/2b2fc2e7fa15baaa2876cef5d7159ab2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/panel.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/panel/job-type-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/job-type-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/enterprise.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/enterprise.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/f/a/fa7c5882a490027200e747bb93e13924" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -127,7 +128,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了管理面板的前端样式" />
     <MESSAGE value="实现了账户信息管理的前后端逻辑" />
     <MESSAGE value="添加了企业基本信息管理的前端样式" />
     <MESSAGE value="实现了企业信息管理的前后端逻辑" />
@@ -152,7 +152,8 @@
     <MESSAGE value="实现了预览与下载简历的后端逻辑" />
     <MESSAGE value="添加了 model jobType.go" />
     <MESSAGE value="实现了添加职位类型的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了添加职位类型的前后端逻辑" />
+    <MESSAGE value="实现了删除职位类型的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了删除职位类型的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
