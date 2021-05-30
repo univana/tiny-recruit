@@ -145,6 +145,8 @@
         el: '#app',
         data: function () {
             return {
+                jobTypes:{{.JobTypes}}, /*职位类型选项*/
+                jobTypeSelected: '',
                 dialogPreviewResumeVisible: false,
                 dialogSelectJobTypeVisible: false,
                 activeStep: '1',
@@ -204,13 +206,13 @@
             }
         },
         methods: {
-            test(){
-              console.log(this.jobs);
+            test() {
+                console.log(this.jobs);
             },
             /*选择职位类型*/
             handleSelectJobType() {
-
-
+                this.formNewJob.type = this.jobTypeSelected[0] + '/' + this.jobTypeSelected[1] + '/' + this.jobTypeSelected[2]
+                this.dialogSelectJobTypeVisible = false;
             },
             /*下载用户简历*/
             handleDownloadResume(id) {
@@ -218,6 +220,7 @@
                 let element = document.getElementById('resume-box');
                 alert(element);
                 let opt = {
+                    filename: this.resume.name + '.pdf',
                     image: {type: 'jpeg', quality: 1},
                     pagebreak: {mode: 'avoid-all'},
                 };

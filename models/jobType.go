@@ -14,18 +14,6 @@ func (j *JobType) TableName() string {
 	return TNJobType()
 }
 
-// GetFirstLevelTypes 获取一级职位分类
-func GetFirstLevelTypes() ([]JobType, error) {
-	o := orm.NewOrm()
-	var types []JobType
-	_, err := o.QueryTable(TNJobType()).Filter("level", "1").All(&types)
-	if err != nil {
-		return nil, err
-	} else {
-		return types, err
-	}
-}
-
 // GetAllTypes 获取所有职位类型
 func GetAllTypes() ([]JobType, error) {
 	o := orm.NewOrm()
@@ -76,5 +64,41 @@ func GetTypeByID(typeID int) (JobType, error) {
 		return JobType{}, err
 	} else {
 		return jobType, nil
+	}
+}
+
+// GetFirstLevelJobTypes 获取所有一级职位分类
+func GetFirstLevelJobTypes() ([]JobType, error) {
+	o := orm.NewOrm()
+	var jobTypes []JobType
+	_, err := o.QueryTable(TNJobType()).Filter("level", "一级").Filter("deleted", 0).All(&jobTypes)
+	if err != nil {
+		return nil, err
+	} else {
+		return jobTypes, nil
+	}
+}
+
+// GetSecondLevelJobTypesByParentID 获取所有一级职位分类
+func GetSecondLevelJobTypesByParentID(parentID int) ([]JobType, error) {
+	o := orm.NewOrm()
+	var jobTypes []JobType
+	_, err := o.QueryTable(TNJobType()).Filter("level", "二级").Filter("deleted", 0).Filter("parent_id", parentID).All(&jobTypes)
+	if err != nil {
+		return nil, err
+	} else {
+		return jobTypes, nil
+	}
+}
+
+// GetThirdLevelJobTypesByParentID 获取所有一级职位分类
+func GetThirdLevelJobTypesByParentID(parentID int) ([]JobType, error) {
+	o := orm.NewOrm()
+	var jobTypes []JobType
+	_, err := o.QueryTable(TNJobType()).Filter("level", "三级").Filter("deleted", 0).Filter("parent_id", parentID).All(&jobTypes)
+	if err != nil {
+		return nil, err
+	} else {
+		return jobTypes, nil
 	}
 }

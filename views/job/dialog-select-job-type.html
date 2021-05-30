@@ -1,6 +1,6 @@
-<el-dialog title="选择职位类型" :visible.sync="dialogSelectJobTypeVisible" width="80%">
-  hello
-  {{/*TODO: 选择职位类型对话框*/}}
+<el-dialog title="选择职位类型" :visible.sync="dialogSelectJobTypeVisible" width="50%">
+  <el-cascader-panel :options="jobTypes" v-model="jobTypeSelected"></el-cascader-panel>
+
 
   <div slot="footer" class="dialog-footer">
     <el-button @click="dialogSelectJobTypeVisible = false">取 消</el-button>

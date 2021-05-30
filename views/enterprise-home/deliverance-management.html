@@ -20,7 +20,12 @@
                 <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
 
                 {{/*投递清单*/}}
-                <el-table v-if="deliverListVisible==1" :data="deliverList">
+                <el-table v-if="deliverListVisible==1" :data="deliverList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+
+                    <el-table-column
+                            type="selection"
+                            width="40">
+                    </el-table-column>
 
                     {{/*投递时间*/}}
                     <el-table-column label="投递时间" width="110px" sortable>
@@ -69,7 +74,7 @@
                         <template slot-scope="scope">
                             <span>
                                 {{/*投递状态选择器*/}}
-                                <el-select v-model="deliverStatus" :placeholder="scope.row.status" style="width: 120px"
+                                <el-select :placeholder="scope.row.status" style="width: 120px"
                                            @change="handleSelectStatus(scope.row.deliverance_id,scope.row.status)">
                                     <el-option v-for="status in deliverStatusList" :value="status">
                                         <span>{[status]}</span>
@@ -99,7 +104,7 @@
             </el-col>
         </el-row>
 
-        {{/* */}}{{/*分页器*/}}{{/*
+        {{/*分页器*/}}
         <el-row type="flex" justify="center">
             <el-col :span="10" style="text-align: center;margin-top: 20px">
                 <el-pagination
@@ -108,10 +113,10 @@
                         @current-change="handleCurrentChange"
                         :current-page="currentPage"
                         :page-size="pageSize"
-                        :total=resumes.length>
+                        :total=deliverList.length>
                 </el-pagination>
             </el-col>
-        </el-row>*/}}
+        </el-row>
 
     </el-card>
 </el-col>

@@ -308,6 +308,7 @@
                                     message: res.message
                                 });
                             } else {
+                                self.getDelivers();
                                 self.$notify({
                                     type: "success",
                                     message: "该投递已成功撤销!"

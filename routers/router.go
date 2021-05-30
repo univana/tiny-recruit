@@ -9,7 +9,7 @@ import (
 func init() {
 
 	//欢迎页面
-	beego.Router("/", &controllers.NavigationController{}, "*:Home")
+	beego.Router("/", &controllers.NavigationController{}, "*:Job")
 	beego.Router("/home", &controllers.NavigationController{}, "*:Home")
 	beego.Router("/job", &controllers.NavigationController{}, "*:Job")
 	beego.Router("/enterprise", &controllers.NavigationController{}, "*:Enterprise")

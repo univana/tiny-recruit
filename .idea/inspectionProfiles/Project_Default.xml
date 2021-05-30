@@ -23,7 +23,7 @@
     <inspection_tool class="HtmlUnknownTag" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="myValues">
         <value>
-          <list size="43">
+          <list size="44">
             <item index="0" class="java.lang.String" itemvalue="nobr" />
             <item index="1" class="java.lang.String" itemvalue="noembed" />
             <item index="2" class="java.lang.String" itemvalue="comment" />
@@ -67,6 +67,7 @@
             <item index="40" class="java.lang.String" itemvalue="el-popconfirm" />
             <item index="41" class="java.lang.String" itemvalue="el-collapse" />
             <item index="42" class="java.lang.String" itemvalue="el-collapse-item" />
+            <item index="43" class="java.lang.String" itemvalue="el-cascader-panel" />
           </list>
         </value>
       </option>
