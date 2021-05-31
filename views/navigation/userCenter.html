@@ -91,9 +91,9 @@
                 jobTypes:{{.JobTypes}}, /*职位类型选项*/
                 jobTypeSelected: '',
                 dialogSelectJobTypeVisible: false,
-                addButtonVisible:false,
-                deleteIntVisible:false,
-                deleteProVisible:false,
+                addButtonVisible: false,
+                deleteIntVisible: false,
+                deleteProVisible: false,
                 deleteEduVisible: false,
                 activeIndex: '0',
                 displayIndex: 0,
@@ -151,6 +151,30 @@
                     password: '',
                     passwordConfirm: '',
                     hunt_status: {{.Member.HuntStatus}},
+                },
+                /*验证编辑简历的表单*/
+                rulesEditResume: {
+                    name: [
+                        {required: true, message: '请输入姓名', trigger: 'blur'},
+                        {min: 2, max: 5, message: '长度在 2 到 5 个字符', trigger: 'blur'}
+                    ],
+                    gender: [
+                        {required: true, message: '请选择性别', trigger: 'blur'}
+                    ],
+                    tel: [
+                        {required: true, message: '请输入电话号码'},
+                        {type: 'number', message: '输入必须为数字'}
+                    ],
+                    email: [
+                        {type: 'email', message:'请输入正确格式的邮箱' },
+                        {required: true, message: '请输入邮箱'},
+                    ],
+                    hope_salary:[
+                        {required: true, message: '请选择期望薪资',trigger:'change'},
+                    ],
+                    city:[
+                        {required: true, message: '请输入期望城市'},
+                    ]
                 }
 
             }
@@ -161,10 +185,10 @@
                 this.formEditResume.hope_job = this.jobTypeSelected[0] + '/' + this.jobTypeSelected[1] + '/' + this.jobTypeSelected[2]
                 this.dialogSelectJobTypeVisible = false;
             },
-            handleMouseOverCard(){
+            handleMouseOverCard() {
                 this.addButtonVisible = true;
             },
-            handleMouseLeaveCard(){
+            handleMouseLeaveCard() {
                 this.addButtonVisible = false;
             },
             handleMouseOverInt() {
@@ -229,7 +253,7 @@
                 let element = document.getElementById('resume-box');
                 let opt = {
                     image: {type: 'jpeg', quality: 1},
-                    pagebreak: {mode:'avoid-all'},
+                    pagebreak: {mode: 'avoid-all'},
                 };
                 html2pdf().set(opt).from(element).save();
             },
@@ -248,7 +272,7 @@
                     contentType: false,
                     processData: false,
                     success: function (res) {
-                        if(res.data.resume_id === 0){
+                        if (res.data.resume_id === 0) {
                             self.$message({
                                 message: '您还没有简历信息呢！',
                                 type: 'warning'
@@ -347,44 +371,78 @@
             },
             /*确定编辑简历*/
             handleConfirmEditResume() {
-                let self = this;
-                let myFormData = new FormData();
-                myFormData.append("resume_id", this.formEditResume.resumeID);
-                myFormData.append("name", this.formEditResume.name);
-                myFormData.append("gender", this.formEditResume.gender);
-                myFormData.append("birthday", this.formEditResume.birthday);
-                myFormData.append("tel", this.formEditResume.tel);
-                myFormData.append("email", this.formEditResume.email);
-                myFormData.append("hope_salary", this.formEditResume.hope_salary);
-                myFormData.append("city", this.formEditResume.city);
-                myFormData.append("advantage", this.formEditResume.advantage);
-                myFormData.append("hope_job", this.formEditResume.hope_job);
-                myFormData.append("file", this.formEditResume.file);
+                /*检验输入是否为空*/
+                if(this.formEditResume.name === ""){
+                    this.$message({
+                        message: '姓名不能为空！',
+                        type: 'warning'
+                    });
+                }else if(this.formEditResume.tel ===""){
+                    this.$message({
+                        message: '电话号码不能为空！',
+                        type: 'warning'
+                    });
 
-                $.ajax({
-                    url: "{{urlfor "ResumeController.EditResume"}}",
-                    type: "POST",
-                    data: myFormData,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.errcode !== 0) {
+                }else if(this.formEditResume.email ===""){
+                    this.$message({
+                        message: '邮箱不能为空！',
+                        type: 'warning'
+                    });
 
-                            self.$notify.error({
-                                message: res.message
-                            });
-                        } else {
-                            //刷新简历
-                            self.getResume()
-                            self.dialogEditResumeVisible = false;
-                            self.$notify({
-                                type: "success",
-                                message: "修改简历成功！"
-                            });
+                }else if(this.formEditResume.city ===""){
+                    this.$message({
+                        message: '期望城市不能为空！',
+                        type: 'warning'
+                    });
 
+                }else if(this.formEditResume.advantage ===""){
+                    this.$message({
+                        message: '个人优势不能为空！',
+                        type: 'warning'
+                    });
+
+                }else{
+                    /*请求后端编辑简历*/
+                    let self = this;
+                    let myFormData = new FormData();
+                    myFormData.append("resume_id", this.formEditResume.resumeID);
+                    myFormData.append("name", this.formEditResume.name);
+                    myFormData.append("gender", this.formEditResume.gender);
+                    myFormData.append("birthday", this.formEditResume.birthday);
+                    myFormData.append("tel", this.formEditResume.tel);
+                    myFormData.append("email", this.formEditResume.email);
+                    myFormData.append("hope_salary", this.formEditResume.hope_salary);
+                    myFormData.append("city", this.formEditResume.city);
+                    myFormData.append("advantage", this.formEditResume.advantage);
+                    myFormData.append("hope_job", this.formEditResume.hope_job);
+                    myFormData.append("file", this.formEditResume.file);
+
+                    $.ajax({
+                        url: "{{urlfor "ResumeController.EditResume"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                //刷新简历
+                                self.getResume()
+                                self.dialogEditResumeVisible = false;
+                                self.$notify({
+                                    type: "success",
+                                    message: "修改简历成功！"
+                                });
+
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             },
             /*确定添加教育经历*/
             handleConfirmAddEdu() {

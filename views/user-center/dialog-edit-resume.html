@@ -1,24 +1,27 @@
 <el-dialog title="编辑简历" :visible.sync="dialogEditResumeVisible" width="80%" v-model="formEditResume" style="padding: 0">
     <template>
-        <el-form>
+        <el-form :rules="rulesEditResume" :model="formEditResume">
             <el-row>
                 <el-col :span="12">
                     <el-form-item label="照片" style="width: 500px">
                         <img  v-if="formEditResume.photo" :src="formEditResume.photo" alt="" style="width: 100px;height: 100px">
                         <input type="file" @change="getFiles($event)" />
                     </el-form-item>
-                    <el-form-item label="姓名" style="width: 400px">
-                        <el-input v-model="formEditResume.name" style="width: 200px"></el-input>
+                    <el-form-item  style="width: 400px" prop="name">
+                        <span slot="label">姓名</span>
+                        <el-input v-model="formEditResume.name" style="width: 200px" maxlength="5" show-word-limit></el-input>
                     </el-form-item>
 
-                    <el-form-item label="性别" style="width: 400px">
+                    <el-form-item  style="width: 400px" prop="gender">
+                        <span slot="label">性别</span>
                         <el-select v-model="formEditResume.gender" placeholder="请选择性别" style="width: 200px">
                             <el-option label="男" value="0"></el-option>
                             <el-option label="女" value="1"></el-option>
                         </el-select>
                     </el-form-item>
 
-                    <el-form-item label="生日" style="width: 400px">
+                    <el-form-item style="width: 400px">
+                        <span slot="label"><span style="color: red">*</span>生日</span>
                         <el-date-picker
                                 v-model="formEditResume.birthday"
                                 style="width: 200px"
@@ -28,17 +31,20 @@
                         </el-date-picker>
                     </el-form-item>
 
-                    <el-form-item label="电话" style="width: 400px">
-                        <el-input v-model="formEditResume.tel" style="width: 200px"></el-input>
+                    <el-form-item  style="width: 400px" prop="tel">
+                        <span slot="label">电话</span>
+                        <el-input v-model.number="formEditResume.tel" style="width: 200px" maxlength="11" show-word-limit></el-input>
                     </el-form-item>
 
-                    <el-form-item label="邮箱" style="width: 400px">
-                        <el-input v-model="formEditResume.email" style="width: 200px"></el-input>
+                    <el-form-item style="width: 400px" prop="email">
+                        <span slot="label">邮箱</span>
+                        <el-input v-model="formEditResume.email" style="width: 200px" maxlength="25" show-word-limit></el-input>
                     </el-form-item>
                 </el-col>
                 <el-col :span="12">
 
-                    <el-form-item label="期望薪资" style="width: 400px">
+                    <el-form-item  style="width: 400px" prop="hope_salary">
+                        <span slot="label">期望薪资</span>
                         <el-select v-model="formEditResume.hope_salary" style="width: 200px">
                             <el-option label="5k" value="5k"></el-option>
                             <el-option label="10k" value="10k"></el-option>
@@ -51,20 +57,24 @@
                         </el-select>
                     </el-form-item>
 
-                    <el-form-item label="期望城市" style="width: 400px">
-                        <el-input v-model="formEditResume.city" style="width: 200px"></el-input>
+                    <el-form-item  style="width: 400px"  prop="city">
+                        <span slot="label">期望城市</span>
+                        <el-input v-model="formEditResume.city" style="width: 200px" maxlength="10" show-word-limit></el-input>
                     </el-form-item>
 
-                    <el-form-item label="期望职位" style="width: 400px">
+                    <el-form-item  style="width: 400px">
+                        <span slot="label"><span style="color: red">*</span>期望职位</span>
                         <el-button @click="dialogSelectJobTypeVisible=true" size="small" type="primary">选择</el-button>
                         <el-tag v-if="jobTypeSelected">{[jobTypeSelected[0]]}/{[jobTypeSelected[1]]}/{[jobTypeSelected[2]]}</el-tag>
                     </el-form-item>
 
-                    <el-form-item label="个人优势" style="width: 400px">
+                    <el-form-item  style="width: 400px">
+                        <span slot="label"><span style="color: red">*</span>个人优势</span>
                         <el-input
                                 type="textarea"
                                 :rows="4"
                                 placeholder="请输入内容"
+                                maxlength="200" show-word-limit
                                 v-model="formEditResume.advantage">
                         </el-input>
                     </el-form-item>

@@ -1,17 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了选择职位类型的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修改了编辑简历时的期望职位选择器">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/f/0/f0fcb6fd677a2125a1270d53e0176c8a" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/footer.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -129,7 +123,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了设置用户状态的后端逻辑" />
     <MESSAGE value="实现了设置用户权限的后端逻辑" />
     <MESSAGE value="实现了职位管理的前后端逻辑" />
     <MESSAGE value="重构了职位过滤器的工作地点的结构" />
@@ -154,7 +147,8 @@
     <MESSAGE value="修复了一些Bug" />
     <MESSAGE value="修复了时间显示的Bug" />
     <MESSAGE value="添加了选择职位类型的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了选择职位类型的前后端逻辑" />
+    <MESSAGE value="修改了编辑简历时的期望职位选择器" />
+    <option name="LAST_COMMIT_MESSAGE" value="修改了编辑简历时的期望职位选择器" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
