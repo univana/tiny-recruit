@@ -166,15 +166,31 @@
                         {type: 'number', message: '输入必须为数字'}
                     ],
                     email: [
-                        {type: 'email', message:'请输入正确格式的邮箱' },
+                        {type: 'email', message: '请输入正确格式的邮箱'},
                         {required: true, message: '请输入邮箱'},
                     ],
-                    hope_salary:[
-                        {required: true, message: '请选择期望薪资',trigger:'change'},
+                    hope_salary: [
+                        {required: true, message: '请选择期望薪资', trigger: 'change'},
                     ],
-                    city:[
+                    city: [
                         {required: true, message: '请输入期望城市'},
                     ]
+                },
+                /*教育经历表单验证规则*/
+                rulesEditEdu: {
+                    school: [
+                        {required: true, message: '请输入学校名'},
+                    ],
+                    education: [
+                        {required: true, message: '请选择学历'},
+                    ],
+                    profession: [
+                        {required: true, message: '请输入专业名'},
+                    ],
+                    experience: [
+                        {required: true, message: '请输在校经历'},
+                    ]
+
                 }
 
             }
@@ -372,36 +388,36 @@
             /*确定编辑简历*/
             handleConfirmEditResume() {
                 /*检验输入是否为空*/
-                if(this.formEditResume.name === ""){
+                if (this.formEditResume.name === "") {
                     this.$message({
                         message: '姓名不能为空！',
                         type: 'warning'
                     });
-                }else if(this.formEditResume.tel ===""){
+                } else if (this.formEditResume.tel === "") {
                     this.$message({
                         message: '电话号码不能为空！',
                         type: 'warning'
                     });
 
-                }else if(this.formEditResume.email ===""){
+                } else if (this.formEditResume.email === "") {
                     this.$message({
                         message: '邮箱不能为空！',
                         type: 'warning'
                     });
 
-                }else if(this.formEditResume.city ===""){
+                } else if (this.formEditResume.city === "") {
                     this.$message({
                         message: '期望城市不能为空！',
                         type: 'warning'
                     });
 
-                }else if(this.formEditResume.advantage ===""){
+                } else if (this.formEditResume.advantage === "") {
                     this.$message({
                         message: '个人优势不能为空！',
                         type: 'warning'
                     });
 
-                }else{
+                } else {
                     /*请求后端编辑简历*/
                     let self = this;
                     let myFormData = new FormData();
@@ -446,37 +462,63 @@
             },
             /*确定添加教育经历*/
             handleConfirmAddEdu() {
-                let self = this;
-                let fd = new FormData();
-                fd.append("school", this.formEditEdu.school);
-                fd.append("education", this.formEditEdu.education);
-                fd.append("profession", this.formEditEdu.profession);
-                fd.append("start_year", this.formEditEdu.start_year);
-                fd.append("end_year", this.formEditEdu.end_year);
-                fd.append("experience", this.formEditEdu.experience);
+                /*检验输入是否为空*/
+                if (this.formEditEdu.school === "") {
+                    this.$message({
+                        message: '学校名不能为空！',
+                        type: 'warning'
+                    });
+                } else if (this.formEditEdu.education === "") {
+                    this.$message({
+                        message: '请选择学历！',
+                        type: 'warning'
+                    });
 
-                $.ajax({
-                    url: "{{urlfor "ResumeController.AddEdu"}}",
-                    type: "POST",
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.errcode !== 0) {
+                } else if (this.formEditEdu.profession === "") {
+                    this.$message({
+                        message: '专业名不能为空！',
+                        type: 'warning'
+                    });
 
-                            self.$notify.error({
-                                message: res.message
-                            });
-                        } else {
-                            self.getResume();
-                            self.dialogAddEduVisible = false;
-                            self.$notify({
-                                type: "success",
-                                message: "添加教育经历成功！"
-                            });
+                } else if (this.formEditEdu.experience === "") {
+                    this.$message({
+                        message: '在校经历不能为空！',
+                        type: 'warning'
+                    });
+                } else {
+                    /*请求后端编辑教育经历*/
+                    let self = this;
+                    let fd = new FormData();
+                    fd.append("school", this.formEditEdu.school);
+                    fd.append("education", this.formEditEdu.education);
+                    fd.append("profession", this.formEditEdu.profession);
+                    fd.append("start_year", this.formEditEdu.start_year);
+                    fd.append("end_year", this.formEditEdu.end_year);
+                    fd.append("experience", this.formEditEdu.experience);
+
+                    $.ajax({
+                        url: "{{urlfor "ResumeController.AddEdu"}}",
+                        type: "POST",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.getResume();
+                                self.dialogAddEduVisible = false;
+                                self.$notify({
+                                    type: "success",
+                                    message: "添加教育经历成功！"
+                                });
+                            }
                         }
-                    }
-                })
+                    })
+                }
             },
             /*添加项目经历的后端逻辑*/
             handleConfirmAddProject() {

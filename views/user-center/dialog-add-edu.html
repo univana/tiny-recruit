@@ -1,12 +1,12 @@
-<el-dialog title="添加教育经历" :visible.sync="dialogAddEduVisible" width="50%" v-model="formEditEdu" style="padding: 0">
+<el-dialog title="添加教育经历"  :visible.sync="dialogAddEduVisible" width="50%" style="padding: 0">
     <template>
-        <el-form>
+        <el-form :rules="rulesEditEdu"  :model="formEditEdu">
             <el-row>
                 <el-col :span="12">
-                    <el-form-item label="学校名称" style="width: 400px">
-                        <el-input v-model="formEditEdu.school" style="width: 200px"></el-input>
+                    <el-form-item label="学校名称" style="width: 400px" prop="school">
+                        <el-input v-model="formEditEdu.school" style="width: 200px" maxlength="20" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="学历" style="width: 400px">
+                    <el-form-item label="学历" style="width: 400px" prop="education">
                         <el-select v-model="formEditEdu.education" placeholder="请选择学历" style="width: 200px">
                             <el-option label="初中及以下" value="初中及以下"></el-option>
                             <el-option label="中专/中技" value="中专/中技"></el-option>
@@ -17,10 +17,11 @@
                             <el-option label="博士" value="博士"></el-option>
                         </el-select>
                     </el-form-item>
-                    <el-form-item label="专业" style="width: 400px">
-                        <el-input v-model="formEditEdu.profession" style="width: 200px"></el-input>
+                    <el-form-item label="专业" style="width: 400px" prop="profession">
+                        <el-input v-model="formEditEdu.profession" style="width: 200px" maxlength="20" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="时间段" style="width: 800px">
+                    <el-form-item style="width: 800px">
+                        <span slot="label"><span style="color: red">*</span>时间段</span>
                         <el-date-picker
                                 v-model="formEditEdu.start_year"
                                 type="year"
@@ -33,11 +34,12 @@
                                 placeholder="选择年">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="在校经历" style="width: 400px">
+                    <el-form-item label="在校经历" style="width: 400px" prop="experience">
                         <el-input
                                 type="textarea"
                                 :rows="6"
                                 placeholder="请输入内容"
+                                maxlength="200" show-word-limit
                                 v-model="formEditEdu.experience">
                         </el-input>
                     </el-form-item>
