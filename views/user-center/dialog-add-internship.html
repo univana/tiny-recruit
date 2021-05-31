@@ -1,18 +1,19 @@
 <el-dialog title="添加实习经历" :visible.sync="dialogAddInternshipVisible" width="50%" v-model="formEditInternship" style="padding: 0">
     <template>
-        <el-form>
+        <el-form :rules="rulesEditInternship"  :model="formEditInternship">
             <el-row>
                 <el-col :span="12">
-                    <el-form-item label="公司名称" style="width: 500px">
-                        <el-input v-model="formEditInternship.company_name" style="width: 300px"></el-input>
+                    <el-form-item label="公司名称" style="width: 500px" prop="company_name">
+                        <el-input v-model="formEditInternship.company_name" style="width: 300px" maxlength="20" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="所属部门" style="width: 500px">
-                        <el-input v-model="formEditInternship.department" style="width: 300px"></el-input>
+                    <el-form-item label="所属部门" style="width: 500px" prop="department">
+                        <el-input v-model="formEditInternship.department" style="width: 300px" maxlength="10" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="职位名称" style="width: 500px">
-                        <el-input v-model="formEditInternship.position" style="width: 300px"></el-input>
+                    <el-form-item label="职位名称" style="width: 500px" prop="position">
+                        <el-input v-model="formEditInternship.position" style="width: 300px" maxlength="10" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="在职时间" style="width: 600px">
+                    <el-form-item  style="width: 600px">
+                        <span slot="label"><span style="color: red;">*</span>在职时间</span>
                         <el-date-picker
                                 v-model="formEditInternship.start_time"
                                 style="width: 200px"
@@ -29,11 +30,12 @@
                                 placeholder="选择日期">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="工作内容" style="width: 400px">
+                    <el-form-item label="工作内容" style="width: 400px" prop="work_content">
                         <el-input
                                 type="textarea"
                                 :rows="6"
                                 placeholder="请输入内容"
+                                maxlength="200" show-word-limit
                                 v-model="formEditInternship.work_content">
                         </el-input>
                     </el-form-item>

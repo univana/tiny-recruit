@@ -191,6 +191,21 @@
                         {required: true, message: '请输在校经历'},
                     ]
                 },
+                /*实习经历表单验证规则*/
+                rulesEditInternship: {
+                    company_name: [
+                        {required: true, message: '请输入项目名称'},
+                    ],
+                    department: [
+                        {required: true, message: '请输入部门名称'},
+                    ],
+                    position: [
+                        {required: true, message: '请输入职位名称'},
+                    ],
+                    work_content: [
+                        {required: true, message: '请输入工作内容名称'},
+                    ],
+                },
                 /*项目经历表单验证规则*/
                 rulesEditProject: {
                     name: [
@@ -202,7 +217,6 @@
                     description: [
                         {required: true, message: '请输入项目描述'},
                     ],
-
                 }
 
             }
@@ -588,37 +602,64 @@
             },
             /*添加实习经历的后端逻辑*/
             handleConfirmAddInternship() {
-                let self = this;
-                let fd = new FormData();
-                fd.append("company_name", this.formEditInternship.company_name);
-                fd.append("department", this.formEditInternship.department);
-                fd.append("position", this.formEditInternship.position);
-                fd.append("start_time", this.formEditInternship.start_time);
-                fd.append("end_time", this.formEditInternship.end_time);
-                fd.append("work_content", this.formEditInternship.work_content);
+                /*检验输入是否为空*/
+                if (this.formEditInternship.company_name === "") {
+                    this.$message({
+                        message: '公司名称不能为空！',
+                        type: 'warning'
+                    });
+                } else if (this.formEditInternship.department === "") {
+                    this.$message({
+                        message: '部门名称不能为空！',
+                        type: 'warning'
+                    });
 
-                $.ajax({
-                    url: "{{urlfor "ResumeController.AddInternship"}}",
-                    type: "POST",
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.errcode !== 0) {
+                } else if (this.formEditInternship.position === "") {
+                    this.$message({
+                        message: '职位名称不能为空！',
+                        type: 'warning'
+                    });
 
-                            self.$notify.error({
-                                message: res.message
-                            });
-                        } else {
-                            self.getResume();
-                            self.dialogAddInternshipVisible = false;
-                            self.$notify({
-                                type: "success",
-                                message: "添加实习经历成功！"
-                            });
+                } else if (this.formEditInternship.work_content === "") {
+                    this.$message({
+                        message: '工作内容不能为空！',
+                        type: 'warning'
+                    });
+
+                } else {
+                    let self = this;
+                    let fd = new FormData();
+                    fd.append("company_name", this.formEditInternship.company_name);
+                    fd.append("department", this.formEditInternship.department);
+                    fd.append("position", this.formEditInternship.position);
+                    fd.append("start_time", this.formEditInternship.start_time);
+                    fd.append("end_time", this.formEditInternship.end_time);
+                    fd.append("work_content", this.formEditInternship.work_content);
+
+                    $.ajax({
+                        url: "{{urlfor "ResumeController.AddInternship"}}",
+                        type: "POST",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.getResume();
+                                self.dialogAddInternshipVisible = false;
+                                self.$notify({
+                                    type: "success",
+                                    message: "添加实习经历成功！"
+                                });
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             },
             /*取消收藏*/
             handleCancelCollection(id) {

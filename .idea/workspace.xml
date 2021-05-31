@@ -1,10 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了编辑教育经历的表单验证">
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了编辑项目经历的表单验证">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" beforeDir="false" afterPath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-add-project.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-add-project.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-add-internship.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-add-internship.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -122,7 +123,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="重构了职位过滤器的工作地点的结构" />
     <MESSAGE value="重构了企业过滤器的工作地点的结构" />
     <MESSAGE value="实现了上传简历头像的后端逻辑" />
     <MESSAGE value="实现了新建企业的前后端逻辑" />
@@ -147,7 +147,8 @@
     <MESSAGE value="修改了编辑简历时的期望职位选择器" />
     <MESSAGE value="添加了编辑简历的表单验证" />
     <MESSAGE value="添加了编辑教育经历的表单验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了编辑教育经历的表单验证" />
+    <MESSAGE value="添加了编辑项目经历的表单验证" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了编辑项目经历的表单验证" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
