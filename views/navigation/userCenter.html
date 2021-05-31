@@ -190,6 +190,18 @@
                     experience: [
                         {required: true, message: '请输在校经历'},
                     ]
+                },
+                /*项目经历表单验证规则*/
+                rulesEditProject: {
+                    name: [
+                        {required: true, message: '请输入项目名称'},
+                    ],
+                    role: [
+                        {required: true, message: '请输入项目角色'},
+                    ],
+                    description: [
+                        {required: true, message: '请输入项目描述'},
+                    ],
 
                 }
 
@@ -522,36 +534,57 @@
             },
             /*添加项目经历的后端逻辑*/
             handleConfirmAddProject() {
-                let self = this;
-                let fd = new FormData();
-                fd.append("name", this.formEditProject.name);
-                fd.append("role", this.formEditProject.role);
-                fd.append("description", this.formEditProject.description);
-                fd.append("start_time", this.formEditProject.start_time);
-                fd.append("end_time", this.formEditProject.end_time);
+                /*检验输入是否为空*/
+                if (this.formEditProject.name === "") {
+                    this.$message({
+                        message: '项目名称不能为空！',
+                        type: 'warning'
+                    });
+                } else if (this.formEditProject.role === "") {
+                    this.$message({
+                        message: '项目角色不能为空！',
+                        type: 'warning'
+                    });
 
-                $.ajax({
-                    url: "{{urlfor "ResumeController.AddProject"}}",
-                    type: "POST",
-                    data: fd,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.errcode !== 0) {
+                } else if (this.formEditProject.description === "") {
+                    this.$message({
+                        message: '项目描述不能为空！',
+                        type: 'warning'
+                    });
 
-                            self.$notify.error({
-                                message: res.message
-                            });
-                        } else {
-                            self.getResume();
-                            self.dialogAddProjectVisible = false;
-                            self.$notify({
-                                type: "success",
-                                message: "添加项目经历成功！"
-                            });
+                } else {
+                    let self = this;
+                    let fd = new FormData();
+                    fd.append("name", this.formEditProject.name);
+                    fd.append("role", this.formEditProject.role);
+                    fd.append("description", this.formEditProject.description);
+                    fd.append("start_time", this.formEditProject.start_time);
+                    fd.append("end_time", this.formEditProject.end_time);
+
+                    $.ajax({
+                        url: "{{urlfor "ResumeController.AddProject"}}",
+                        type: "POST",
+                        data: fd,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
+
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.getResume();
+                                self.dialogAddProjectVisible = false;
+                                self.$notify({
+                                    type: "success",
+                                    message: "添加项目经历成功！"
+                                });
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             },
             /*添加实习经历的后端逻辑*/
             handleConfirmAddInternship() {

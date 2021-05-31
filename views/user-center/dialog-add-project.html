@@ -1,15 +1,16 @@
 <el-dialog title="添加项目经历" :visible.sync="dialogAddProjectVisible" width="50%" v-model="formEditProject" style="padding: 0">
     <template>
-        <el-form>
+        <el-form :rules="rulesEditProject"  :model="formEditProject">
             <el-row>
                 <el-col :span="12">
-                    <el-form-item label="项目名称" style="width: 500px">
-                        <el-input v-model="formEditProject.name" style="width: 300px"></el-input>
+                    <el-form-item label="项目名称" style="width: 500px" prop="name">
+                        <el-input v-model="formEditProject.name" style="width: 300px" maxlength="30" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="项目角色" style="width: 400px">
-                        <el-input v-model="formEditProject.role" style="width: 200px"></el-input>
+                    <el-form-item label="项目角色" style="width: 400px" prop="role" >
+                        <el-input v-model="formEditProject.role" style="width: 200px" maxlength="10" show-word-limit></el-input>
                     </el-form-item>
-                    <el-form-item label="项目持续时间" style="width: 600px">
+                    <el-form-item  style="width: 600px">
+                        <span slot="label"><span style="color: red">*</span>项目持续时间</span>
                         <el-date-picker
                                 v-model="formEditProject.start_time"
                                 style="width: 200px"
@@ -26,11 +27,12 @@
                                 placeholder="选择日期">
                         </el-date-picker>
                     </el-form-item>
-                    <el-form-item label="项目描述" style="width: 400px">
+                    <el-form-item label="项目描述" style="width: 400px" prop="description">
                         <el-input
                                 type="textarea"
                                 :rows="6"
                                 placeholder="请输入内容"
+                                maxlength="200" show-word-limit
                                 v-model="formEditProject.description">
                         </el-input>
                     </el-form-item>
