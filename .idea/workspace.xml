@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="修复了时间显示的Bug">
-      <change afterPath="$PROJECT_DIR$/static/images/licences/licence1.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/photos/440f125d-0ba7-4961-8ba8-8e5b0c4599bc.jpg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/static/images/photos/c93ad9e7-f499-4f81-8148-7ad439e4b33e.jpeg" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/f/2/f26d983c567f8682125963c1ed5dc07d" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了选择职位类型的前后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/f/0/f0fcb6fd677a2125a1270d53e0176c8a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/jobType.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/jobType.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/4/e/4e176f5493461793d15ec2797de2562f" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/dialog-select-job-type.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-select-job-type.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/f/2/f26d983c567f8682125963c1ed5dc07d" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-edit-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-edit-job.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/panel/enterprise-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/enterprise-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/panel/job-type-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/panel/job-type-management.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -139,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了用户管理的前端样式" />
     <MESSAGE value="实现了设置用户状态的后端逻辑" />
     <MESSAGE value="实现了设置用户权限的后端逻辑" />
     <MESSAGE value="实现了职位管理的前后端逻辑" />
@@ -164,7 +149,8 @@
     <MESSAGE value="修复了投递管理选择已删除职位的bug" />
     <MESSAGE value="修复了一些Bug" />
     <MESSAGE value="修复了时间显示的Bug" />
-    <option name="LAST_COMMIT_MESSAGE" value="修复了时间显示的Bug" />
+    <MESSAGE value="添加了选择职位类型的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了选择职位类型的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
