@@ -202,7 +202,22 @@
                     cover:{{.Enterprise.Cover}},
                     file: '',
                     fileLicense: '',
+                },
+                /*编辑职位信息的表单验证规则*/
+                rulesEditJob:{
+                    title:[
+                        {required:true,message:'请输入标题'}
+                    ],
+                    department:[
+                        {required:true,message:'请输入所属部门'}
+                    ],
+                    description:[
+                        {required:true,message:'请职位描述'}
+                    ],
+
+
                 }
+
             }
         },
         methods: {
@@ -459,44 +474,98 @@
                 })
             },
             handleNewJob() {
-                //请求新建职位
-                let self = this;
-                let myFormData = new FormData();
-                myFormData.append("title", this.formNewJob.title)
-                myFormData.append("nature", this.formNewJob.nature)
-                myFormData.append("type", this.formNewJob.type)
-                myFormData.append("location", this.formNewJob.location)
-                myFormData.append("min_monthly_salary", this.formNewJob.min_monthly_salary)
-                myFormData.append("max_monthly_salary", this.formNewJob.max_monthly_salary)
-                myFormData.append("pay_times", this.formNewJob.pay_times)
-                myFormData.append("require_experience", this.formNewJob.require_experience)
-                myFormData.append("require_education", this.formNewJob.require_education)
-                myFormData.append("description", this.formNewJob.description)
-                myFormData.append("enterprise_id", this.enterprise.enterprise_id);
-                myFormData.append("department", this.formNewJob.department);
+                /*输入信息非空检测*/
+                if (this.formNewJob.title === ""){
+                    this.$message({
+                        message: '职位标题不能为空！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.nature === ""){
+                    this.$message({
+                        message: '未选择职位性质！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.type === ""){
+                    this.$message({
+                        message: '未选择职位类型！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.location === ""){
+                    this.$message({
+                        message: '未选所在城市！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.min_monthly_salary === "" || this.formNewJob.max_monthly_salary===""){
+                    this.$message({
+                        message: '未输入薪资范围！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.pay_times === ""){
+                    this.$message({
+                        message: '未输入年薪笔数！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.require_experience === ""){
+                    this.$message({
+                        message: '未选择经历需求！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.require_education === ""){
+                    this.$message({
+                        message: '未选择学历需求！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.department === ""){
+                    this.$message({
+                        message: '职位所在部门为空！',
+                        type: 'warning'
+                    });
+                }else if(this.formNewJob.description === ""){
+                    this.$message({
+                        message: '职位描述为空！',
+                        type: 'warning'
+                    });
+                }else{
+                    //请求新建职位
+                    let self = this;
+                    let myFormData = new FormData();
+                    myFormData.append("title", this.formNewJob.title)
+                    myFormData.append("nature", this.formNewJob.nature)
+                    myFormData.append("type", this.formNewJob.type)
+                    myFormData.append("location", this.formNewJob.location)
+                    myFormData.append("min_monthly_salary", this.formNewJob.min_monthly_salary)
+                    myFormData.append("max_monthly_salary", this.formNewJob.max_monthly_salary)
+                    myFormData.append("pay_times", this.formNewJob.pay_times)
+                    myFormData.append("require_experience", this.formNewJob.require_experience)
+                    myFormData.append("require_education", this.formNewJob.require_education)
+                    myFormData.append("description", this.formNewJob.description)
+                    myFormData.append("enterprise_id", this.enterprise.enterprise_id);
+                    myFormData.append("department", this.formNewJob.department);
 
-                $.ajax({
-                    url: "{{urlfor "JobController.NewJob"}}",
-                    type: "POST",
-                    data: myFormData,
-                    contentType: false,
-                    processData: false,
-                    success: function (res) {
-                        if (res.errcode !== 0) {
+                    $.ajax({
+                        url: "{{urlfor "JobController.NewJob"}}",
+                        type: "POST",
+                        data: myFormData,
+                        contentType: false,
+                        processData: false,
+                        success: function (res) {
+                            if (res.errcode !== 0) {
 
-                            self.$notify.error({
-                                message: res.message
-                            });
-                        } else {
-                            self.dialogNewJobVisible = false;
-                            self.$notify({
-                                type: "success",
-                                message: "新建职位成功！"
-                            });
+                                self.$notify.error({
+                                    message: res.message
+                                });
+                            } else {
+                                self.dialogNewJobVisible = false;
+                                self.$notify({
+                                    type: "success",
+                                    message: "新建职位成功！"
+                                });
 
+                            }
                         }
-                    }
-                })
+                    })
+                }
+
             },
             /*职位编辑*/
             handleEditJob(jobID) {
