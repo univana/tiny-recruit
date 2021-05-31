@@ -16,8 +16,10 @@
             <el-button style="float: right;margin-right: 5px;" @click="handleDownloadResume" icon="el-icon-download"></el-button>
         </div>
 
+        <el-button type="text" @click="handleEditResume">立即编辑我的简历</el-button>
+
         {{/*div-个人简历内容*/}}
-        <div class="resume-box" id="resume-box">
+        <div class="resume-box" id="resume-box" v-if="resume.resume_id">
             {{/*个人基本信息*/}}
             <el-card id="user-info" shadow="hover" style="border: none">
 

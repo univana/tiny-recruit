@@ -55,6 +55,47 @@ func (c *NavigationController) Enterprise() {
 func (c *NavigationController) UserCenter() {
 	c.TplName = "navigation/userCenter.html"
 	c.Data["Member"] = c.Member
+	//获取所有职位信息
+	// JobTypeOption 用以返回职位类型
+	type JobTypeOption struct {
+		Value    string          `json:"value"`
+		Label    string          `json:"label"`
+		Children []JobTypeOption `json:"children"`
+	}
+	var jobTypesToReturn []JobTypeOption
+	firstLevelTypes, _ := models.GetFirstLevelJobTypes()
+	for _, f := range firstLevelTypes {
+		var tmp JobTypeOption //一级分类的临时变量
+		tmp.Label = f.Name
+		tmp.Value = f.Name
+
+		//为一级分类添加二级分类
+		secondLevelTypes, err := models.GetSecondLevelJobTypesByParentID(f.TypeID)
+		if err != nil {
+			logs.Error("Error NavigationController EnterpriseHome: ", err)
+		}
+		for _, s := range secondLevelTypes {
+			var sTmp JobTypeOption
+			sTmp.Label = s.Name
+			sTmp.Value = s.Name
+			/*为二级分类添加三级子分类*/
+			thirdLevelTypes, err := models.GetThirdLevelJobTypesByParentID(s.TypeID)
+			if err != nil {
+				logs.Error("Error NavigationController EnterpriseHome: ", err)
+			}
+			for _, t := range thirdLevelTypes {
+				var tTmp JobTypeOption
+				tTmp.Label = t.Name
+				tTmp.Value = t.Name
+				sTmp.Children = append(sTmp.Children, tTmp)
+			}
+
+			tmp.Children = append(tmp.Children, sTmp)
+		}
+		jobTypesToReturn = append(jobTypesToReturn, tmp)
+
+	}
+	c.Data["JobTypes"] = jobTypesToReturn
 }
 
 // EnterpriseHome 企业中心导航

@@ -2,12 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了选择职位类型的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/f/0/f0fcb6fd677a2125a1270d53e0176c8a" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/f/2/f26d983c567f8682125963c1ed5dc07d" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/dialog-edit-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-edit-job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/f/0/f0fcb6fd677a2125a1270d53e0176c8a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/account/login.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/account/login.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/widgets/footer.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/footer.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />

@@ -56,7 +56,8 @@
                     </el-form-item>
 
                     <el-form-item label="期望职位" style="width: 400px">
-                        <el-input v-model="formEditResume.hope_job" style="width: 200px"></el-input>
+                        <el-button @click="dialogSelectJobTypeVisible=true" size="small" type="primary">选择</el-button>
+                        <el-tag v-if="jobTypeSelected">{[jobTypeSelected[0]]}/{[jobTypeSelected[1]]}/{[jobTypeSelected[2]]}</el-tag>
                     </el-form-item>
 
                     <el-form-item label="个人优势" style="width: 400px">

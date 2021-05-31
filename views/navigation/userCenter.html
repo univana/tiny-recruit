@@ -12,7 +12,7 @@
         <el-col :span="20">
             <!-- 左侧导航栏 -->
             <el-col :span="3" style="height:100%;margin-top: 10px;">
-                <el-menu default-active="1">
+                <el-menu default-active="0">
                     <el-menu-item index="4" @click="displayIndex=4;getResume();" style="text-align: center">
                         <span>账户</span>
                     </el-menu-item>
@@ -37,6 +37,10 @@
             {{template "user-center/collection.html" .}}
             {{/*账户设置*/}}
             {{template "user-center/account.html" .}}
+            {{/*职位选择对话框*/}}
+            {{template "job/dialog-select-job-type.html" .}}
+
+
         </el-col>
     </el-row>
 </div>
@@ -84,11 +88,14 @@
         el: '#app',
         data: function () {
             return {
+                jobTypes:{{.JobTypes}}, /*职位类型选项*/
+                jobTypeSelected: '',
+                dialogSelectJobTypeVisible: false,
                 addButtonVisible:false,
                 deleteIntVisible:false,
                 deleteProVisible:false,
                 deleteEduVisible: false,
-                activeIndex: "0",
+                activeIndex: '0',
                 displayIndex: 0,
                 resume: '',
                 member:{{.Member}},
@@ -149,6 +156,11 @@
             }
         },
         methods: {
+            /*选择职位类型*/
+            handleSelectJobType() {
+                this.formEditResume.hope_job = this.jobTypeSelected[0] + '/' + this.jobTypeSelected[1] + '/' + this.jobTypeSelected[2]
+                this.dialogSelectJobTypeVisible = false;
+            },
             handleMouseOverCard(){
                 this.addButtonVisible = true;
             },
@@ -236,6 +248,12 @@
                     contentType: false,
                     processData: false,
                     success: function (res) {
+                        if(res.data.resume_id === 0){
+                            self.$message({
+                                message: '您还没有简历信息呢！',
+                                type: 'warning'
+                            });
+                        }
                         self.resume = res.data;
                         self.formEditResume.resumeID = res.data.resume_id;
                         self.formEditResume.name = res.data.name;
