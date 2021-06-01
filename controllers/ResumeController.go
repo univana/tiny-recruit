@@ -86,8 +86,9 @@ func (c *ResumeController) EditResume() {
 			Photo:      "/" + filePath,
 			ModifyTime: time.Now(),
 			Member:     &models.Member{MemberId: c.Member.MemberId},
+			SkillTags:  c.GetString("skill_tags"),
 		}
-		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
+		err := resume.InsertOrUpdate("skill_tags", "photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
 		if err != nil {
 			logs.Error("Error ResumeController EditResume: ", err)
 			c.JsonResult(1, "修改简历失败！")
@@ -116,8 +117,9 @@ func (c *ResumeController) EditResume() {
 			City:       c.GetString("city"),
 			ModifyTime: time.Now(),
 			Member:     &models.Member{MemberId: c.Member.MemberId},
+			SkillTags:  c.GetString("skill_tags"),
 		}
-		err := resume.InsertOrUpdate("photo", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
+		err := resume.InsertOrUpdate("skill_tags", "name", "gender", "birthday", "advantage", "tel", "email", "hope_salary", "hope_job", "city")
 		if err != nil {
 			logs.Error("Error ResumeController EditResume: ", err)
 			c.JsonResult(1, "修改简历失败！")

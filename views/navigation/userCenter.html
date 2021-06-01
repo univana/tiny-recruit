@@ -39,6 +39,8 @@
             {{template "user-center/account.html" .}}
             {{/*职位选择对话框*/}}
             {{template "job/dialog-select-job-type.html" .}}
+            {{/*技能标签选择对话框*/}}
+            {{template "job/dialog-select-skill-tag.html" .}}
 
 
         </el-col>
@@ -88,6 +90,8 @@
         el: '#app',
         data: function () {
             return {
+                skillTagSelected: [],
+                skillTagSelector:{{.SkillTagSelector}},
                 jobTypes:{{.JobTypes}}, /*职位类型选项*/
                 jobTypeSelected: '',
                 dialogSelectJobTypeVisible: false,
@@ -106,6 +110,7 @@
                 dialogAddProjectVisible: false,
                 dialogAddInternshipVisible: false,
                 dialogEditResumeVisible: false,
+                dialogSelectSkillTagVisible: false,
                 formEditResume: {
                     resumeID: 0,
                     name: '',
@@ -119,6 +124,7 @@
                     city: '',
                     photo: '',
                     file: '',
+                    skill_tags: '',
                 },
                 formEditEdu: {
                     edu_exp_id: 0,
@@ -222,6 +228,30 @@
             }
         },
         methods: {
+            /*确定选择技能标签*/
+            handleConfirmSelectSkillTag() {
+                this.formEditResume.skill_tags = this.skillTagSelected.join("-");
+                this.dialogSelectSkillTagVisible= false;
+            },
+            /*关闭选中的标签*/
+            handleCloseSkillTag(tag) {
+                this.skillTagSelected.splice(this.skillTagSelected.indexOf(tag), 1);
+
+            },
+            /*选择技能标签*/
+            handleSelectSkillTag(tag) {
+                if (this.skillTagSelected.length === 10) {
+                    this.$message({
+                        type: 'warning',
+                        message: '最多只能添加十个技能标签！'
+                    })
+                } else {
+                    // 如果不包含该标签，则添加
+                    if (!this.skillTagSelected.includes(tag)) {
+                        this.skillTagSelected.push(tag)
+                    }
+                }
+            },
             /*选择职位类型*/
             handleSelectJobType() {
                 this.formEditResume.hope_job = this.jobTypeSelected[0] + '/' + this.jobTypeSelected[1] + '/' + this.jobTypeSelected[2]
@@ -332,6 +362,7 @@
                         self.formEditResume.city = res.data.city;
                         self.formEditResume.advantage = res.data.advantage;
                         self.formEditResume.photo = res.data.photo;
+                        self.formEditResume.skill_tags = res.data.skill_tags;
 
                     }
 
@@ -458,6 +489,7 @@
                     myFormData.append("advantage", this.formEditResume.advantage);
                     myFormData.append("hope_job", this.formEditResume.hope_job);
                     myFormData.append("file", this.formEditResume.file);
+                    myFormData.append("skill_tags", this.formEditResume.skill_tags);
 
                     $.ajax({
                         url: "{{urlfor "ResumeController.EditResume"}}",

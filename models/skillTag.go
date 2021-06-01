@@ -38,3 +38,29 @@ func (s *SkillTag) InsertOrUpdate(fields ...string) error {
 	}
 	return err
 }
+
+// GetAllSkillTagTypes 获取所有的技能标签类型
+func GetAllSkillTagTypes() ([]string, error) {
+	o := orm.NewOrm()
+	var types []string
+	sql := "select distinct type from t_skill_tag where deleted = 0"
+	_, err := o.Raw(sql).QueryRows(&types)
+	if err != nil {
+		return nil, err
+	} else {
+		return types, nil
+	}
+}
+
+// GetAllSkillTagsByType 根据类型名获取所有的技能标签
+func GetAllSkillTagsByType(tagType string) ([]SkillTag, error) {
+	o := orm.NewOrm()
+	var tags []SkillTag
+	_, err := o.QueryTable(TNSkillTag()).Filter("type", tagType).Filter("deleted", 0).All(&tags)
+	if err != nil {
+		return nil, err
+	} else {
+		return tags, nil
+	}
+
+}

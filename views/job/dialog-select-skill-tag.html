@@ -1,0 +1,23 @@
+<el-dialog title="选择技能标签" :visible.sync="dialogSelectSkillTagVisible" width="50%">
+  <div v-if="skillTagSelected">
+    <template v-for="tag in skillTagSelected">
+      <el-tag style="margin: 5px 5px"  closable @close="handleCloseSkillTag(tag)">{[tag]}</el-tag>
+    </template>
+
+  </div>
+
+  <el-collapse v-for="skill_tag_type in skillTagSelector" accordion>
+    <el-collapse-item :title="skill_tag_type.type" >
+      <template v-for="tag in skill_tag_type.tags">
+        <el-button style="margin: 5px 5px" @click="handleSelectSkillTag(tag.name)">{[tag.name]}</el-button>
+      </template>
+    </el-collapse-item>
+  </el-collapse>
+
+
+
+  <div slot="footer" class="dialog-footer">
+    <el-button @click="dialogSelectSkillTagVisible = false">取 消</el-button>
+    <el-button type="primary" @click="handleConfirmSelectSkillTag">确 定</el-button>
+  </div>
+</el-dialog>
