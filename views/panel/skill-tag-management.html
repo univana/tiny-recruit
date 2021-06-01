@@ -3,6 +3,14 @@
         <div slot="header" class="clearfix">
             <span>技能标签管理</span>
         </div>
+        <p>
+            <span><b>标签名</b></span>
+            <el-input style="width: 200px" v-model="tagNameInput"></el-input>
+            <span><b>类型</b></span>
+            <el-input style="width: 200px" v-model="tagTypeInput"></el-input>
+            <el-button size="small" type="primary" @click="handleAddTag">添加</el-button>
+        </p>
+
 
         <el-table :data="skillTags">
             <el-table-column label="标签名" width="150">

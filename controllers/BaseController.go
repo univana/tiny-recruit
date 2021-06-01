@@ -152,3 +152,20 @@ func (c *BaseController) DeleteSkillTag() {
 		c.JsonResult(0, "ok")
 	}
 }
+
+// AddSkillTag 添加技能标签
+func (c *BaseController) AddSkillTag() {
+	var tag = models.SkillTag{
+		TagID:   0,
+		Name:    c.GetString("tag_name"),
+		Type:    c.GetString("tag_type"),
+		Deleted: 0,
+	}
+	err := tag.InsertOrUpdate()
+	if err != nil {
+		logs.Error("Error BaseController AddSkillTag: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
+	}
+}

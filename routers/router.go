@@ -113,6 +113,9 @@ func init() {
 	//删除标签
 	beego.Router("/panel/deleteSkillTag", &controllers.BaseController{}, "*:DeleteSkillTag")
 
+	//添加技能标签
+	beego.Router("/panel/addSkillTag", &controllers.BaseController{}, "*:AddSkillTag")
+
 	//设置职位状态
 	beego.Router("/panel/setJobStatus", &controllers.JobController{}, "*:SetJobStatus")
 

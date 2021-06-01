@@ -61,30 +61,32 @@
                 pageSize: 8,
                 members: [],
                 jobs: [],
-                skillTags:[],
+                skillTags: [],
                 enterprises: [],
                 jobTypes:{{.JobTypes}},
                 formAddChildType: {
                     name: '',
                     level: '',
                     parentID: ''
-                }
+                },
+                tagNameInput: '',
+                tagTypeInput: '',
             }
         },
         methods: {
             /*添加职位子类型*/
-            handleAddChildType(parentID,parentLevel) {
+            handleAddChildType(parentID, parentLevel) {
                 let self = this;
 
                 this.$prompt('请输入子类型名', '提示', {
                     confirmButtonText: '确定',
                     cancelButtonText: '取消',
-                }).then(({ value }) => {
+                }).then(({value}) => {
                     //向后端发起请求
                     let fd = new FormData();
                     fd.append("parent_id", parentID);
                     fd.append("parent_level", parentLevel);
-                    fd.append("name",value)
+                    fd.append("name", value)
                     $.ajax({
                         url: "{{urlfor "JobTypeController.AddChildType"}}",
                         type: "POST",
@@ -191,7 +193,7 @@
                     }
                 });
             },
-            getSkillTags(){
+            getSkillTags() {
                 let self = this;
                 $.ajax({
                     url: "{{urlfor "BaseController.GetSkillTags"}}",
@@ -356,7 +358,7 @@
                 })
             },
             /*删除标签*/
-            handleDeleteTag(id){
+            handleDeleteTag(id) {
                 let self = this;
                 let fd = new FormData();
                 fd.append("tag_id", id);
@@ -376,6 +378,33 @@
                             self.$notify({
                                 type: "success",
                                 message: "删除技能标签成功！"
+                            });
+                        }
+                    }
+                })
+            },
+            /*添加标签*/
+            handleAddTag() {
+                let self = this;
+                let fd = new FormData();
+                fd.append("tag_name",this.tagNameInput);
+                fd.append("tag_type",this.tagTypeInput);
+                $.ajax({
+                    url: "{{urlfor "BaseController.AddSkillTag"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getSkillTags();
+                            self.$notify({
+                                type: "success",
+                                message: "添加技能标签成功！"
                             });
                         }
                     }
