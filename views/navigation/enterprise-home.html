@@ -42,6 +42,10 @@
                 {{/*选择职位类别对话框*/}}
                 {{template "job/dialog-select-job-type.html" .}}
 
+                {{/*选择技能标签对话框*/}}
+                {{template "job/dialog-select-skill-tag.html" .}}
+
+
             </el-col>
         {{else}}
             <el-col :span="18">
@@ -145,6 +149,9 @@
         el: '#app',
         data: function () {
             return {
+                dialogSelectSkillTagVisible: false,
+                skillTagSelected: [],
+                skillTagSelector:{{.SkillTagSelector}},
                 jobTypes:{{.JobTypes}}, /*职位类型选项*/
                 jobTypeSelected: '',
                 dialogPreviewResumeVisible: false,
@@ -191,6 +198,7 @@
                     type: '',
                     nature: '',
                     department: '',
+                    skill_tags:'',
                 },
                 formEditEnterprise: {
                     name:{{.Enterprise.Name}},
@@ -221,6 +229,30 @@
             }
         },
         methods: {
+            /*确定选择技能标签*/
+            handleConfirmSelectSkillTag() {
+                this.formNewJob.skill_tags = this.skillTagSelected.join("-");
+                this.dialogSelectSkillTagVisible= false;
+            },
+            /*关闭选中的标签*/
+            handleCloseSkillTag(tag) {
+                this.skillTagSelected.splice(this.skillTagSelected.indexOf(tag), 1);
+
+            },
+            /*选择技能标签*/
+            handleSelectSkillTag(tag) {
+                if (this.skillTagSelected.length === 10) {
+                    this.$message({
+                        type: 'warning',
+                        message: '最多只能添加十个技能标签！'
+                    })
+                } else {
+                    // 如果不包含该标签，则添加
+                    if (!this.skillTagSelected.includes(tag)) {
+                        this.skillTagSelected.push(tag)
+                    }
+                }
+            },
             test() {
                 console.log(this.jobs);
             },
@@ -541,6 +573,7 @@
                     myFormData.append("description", this.formNewJob.description)
                     myFormData.append("enterprise_id", this.enterprise.enterprise_id);
                     myFormData.append("department", this.formNewJob.department);
+                    myFormData.append("skill_tags",this.formNewJob.skill_tags);
 
                     $.ajax({
                         url: "{{urlfor "JobController.NewJob"}}",
@@ -593,6 +626,7 @@
                         self.formNewJob.require_experience = res.data.require_experience;
                         self.formNewJob.description = res.data.description;
                         self.formNewJob.department = res.data.department;
+                        self.formNewJob.skill_tags = res.data.skill_tags;
                         self.dialogEditJobVisible = true;
                     }
                 })
@@ -653,7 +687,8 @@
                 myFormData.append("require_education", this.formNewJob.require_education)
                 myFormData.append("description", this.formNewJob.description)
                 myFormData.append("department", this.formNewJob.department);
-                myFormData.append("enterprise_id", this.enterprise.enterprise_id)
+                myFormData.append("enterprise_id", this.enterprise.enterprise_id);
+                myFormData.append("skill_tags",this.formNewJob.skill_tags);
 
                 $.ajax({
                     url: "{{urlfor "JobController.EditJob"}}",

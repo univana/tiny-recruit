@@ -14,6 +14,15 @@
             <el-button @click="dialogSelectJobTypeVisible=true" size="small" type="primary">选择</el-button>
             <el-tag v-if="jobTypeSelected">{[jobTypeSelected[0]]}/{[jobTypeSelected[1]]}/{[jobTypeSelected[2]]}</el-tag>
         </el-form-item>
+        <el-form-item style="width: 400px">
+            <span slot="label"><span style="color: red">*</span>技能标签</span>
+            <el-button @click="dialogSelectSkillTagVisible=true" size="small" type="primary">选择</el-button>
+        </el-form-item>
+        <div style="border:1px dashed #000;height: 100px;width: 400px" v-if="formNewJob.skill_tags">
+            <template v-for="tag in formNewJob.skill_tags.split('-')">
+                <el-tag style="margin: 5px 5px">{[tag]}</el-tag>
+            </template>
+        </div>
         <el-form-item label="所属部门">
             <el-input v-model="formNewJob.department" style="width: 200px"></el-input>
         </el-form-item>

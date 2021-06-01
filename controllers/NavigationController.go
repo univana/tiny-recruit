@@ -181,6 +181,32 @@ func (c *NavigationController) EnterpriseHome() {
 
 	}
 	c.Data["JobTypes"] = jobTypesToReturn
+
+	//获取技能标签分类
+	type Tag struct {
+		Type string            `json:"type"`
+		Tags []models.SkillTag `json:"tags"`
+	}
+	var skillTagSelector []Tag
+	//获取所有技能标签类型
+	tagTypes, err := models.GetAllSkillTagTypes()
+	if err != nil {
+		logs.Error("Error get skill tag types: ", err)
+	}
+	for _, tagType := range tagTypes {
+		var tmp Tag
+		tmp.Type = tagType
+		// 获取该类型下的所有标签
+		tags, err := models.GetAllSkillTagsByType(tagType)
+		if err != nil {
+			logs.Error("Error GetAllSkillTagsByType: ", err)
+		}
+		tmp.Tags = tags
+
+		skillTagSelector = append(skillTagSelector, tmp)
+	}
+	c.Data["SkillTagSelector"] = skillTagSelector
+
 	c.TplName = "navigation/enterprise-home.html"
 }
 

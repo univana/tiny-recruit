@@ -1,20 +1,28 @@
 <el-dialog title="新建职位" :visible.sync="dialogNewJobVisible" width="80%" v-model="formNewJob">
-    <el-form :rules="rulesEditJob"  :model="formNewJob" >
+    <el-form :rules="rulesEditJob" :model="formNewJob">
 
         <el-form-item label="标题" prop="title">
             <el-input v-model="formNewJob.title" style="width: 500px" maxlength="30" show-word-limit></el-input>
         </el-form-item>
-        <el-form-item >
+        <el-form-item>
             <span slot="label"><span style="color: red">*</span>职位性质</span>
             <el-select v-model="formNewJob.nature">
                 <el-option v-for="nature in natures" :value="nature">
                 </el-option>
             </el-select>
         </el-form-item>
-        <el-form-item >
+        <el-form-item>
             <span slot="label"><span style="color: red">*</span>职位类型</span>
             <el-button @click="dialogSelectJobTypeVisible=true" size="small" type="primary">选择</el-button>
             <el-tag v-if="jobTypeSelected">{[jobTypeSelected[0]]}/{[jobTypeSelected[1]]}/{[jobTypeSelected[2]]}</el-tag>
+        </el-form-item>
+        <el-form-item style="width: 400px">
+            <span slot="label"><span style="color: red">*</span>技能标签</span>
+            <el-button @click="dialogSelectSkillTagVisible=true" size="small" type="primary">选择</el-button>
+            <div style="margin-top: 10px;border:1px dashed #000;" v-if="formNewJob.skill_tags"
+                 v-for="tag in formNewJob.skill_tags.split('-')">
+                <el-tag style="margin: 0 5px">{[tag]}</el-tag>
+            </div>
         </el-form-item>
         <el-form-item label="所属部门" prop="department">
             <el-input v-model="formNewJob.department" style="width: 200px" maxlength="20" show-word-limit></el-input>

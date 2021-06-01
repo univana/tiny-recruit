@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了技能标签选择对话框和简历编辑技能标签的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/9/b/9b5d92bff197031a026f336cda50ab7d" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了预览简历时的技能标签展示">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/f/7/f767bb0131f10a75e7e6e2ba8b7871e4" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/enterprise-home/dialog-preview-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/dialog-preview-resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/JobController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/JobController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-edit-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-edit-job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/dialog-edit-resume.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +126,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了所有删除经历的前后端逻辑" />
     <MESSAGE value="添加了投递撤销的筛选样式" />
     <MESSAGE value="修复了一些bug" />
     <MESSAGE value="添加了登录验证码" />
@@ -148,7 +150,8 @@
     <MESSAGE value="添加了技能标签字段" />
     <MESSAGE value="添加了简历的技能标签展示" />
     <MESSAGE value="实现了技能标签选择对话框和简历编辑技能标签的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了技能标签选择对话框和简历编辑技能标签的前后端逻辑" />
+    <MESSAGE value="添加了预览简历时的技能标签展示" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了预览简历时的技能标签展示" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

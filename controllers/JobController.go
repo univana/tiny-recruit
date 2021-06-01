@@ -102,6 +102,7 @@ func (c *JobController) NewJob() {
 		CreateTime:        time.Now().In(cstZone),
 		ModifyTime:        time.Now().In(cstZone),
 		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
+		SkillTags:         c.GetString("skill_tags"),
 	}
 	err := job.InsertOrUpdate()
 	if err != nil {
@@ -142,8 +143,9 @@ func (c *JobController) EditJob() {
 		Status:            0,
 		ModifyTime:        time.Now().In(cstZone),
 		Enterprise:        &models.Enterprise{EnterpriseID: enterpriseID},
+		SkillTags:         c.GetString("skill_tags"),
 	}
-	err := job.InsertOrUpdate("department", "title", "description", "location", "min_monthly_salary",
+	err := job.InsertOrUpdate("skill_tags", "department", "title", "description", "location", "min_monthly_salary",
 		"max_monthly_salary", "pay_times", "require_education", "require_experience", "type", "nature", "modify_time")
 	if err != nil {
 		logs.Error("Error JobController EditJob: ", err)
