@@ -49,6 +49,13 @@
                 <p class="user-info-title">个人优势与获奖经历</p>
                 {[resume.advantage]}
             </el-card>
+            {{/*技能标签*/}}
+            <el-card id="skill-tags" shadow="hover" style="border: none">
+                <p class="user-info-title">技能标签</p>
+                <template v-for="tag in resume.skill_tags.split('-')">
+                    <el-tag style="margin: 0 5px">{[tag]}</el-tag>
+                </template>
+            </el-card>
 
             {{/*期望职位*/}}
             <el-card id="hope-job" shadow="hover" style="border: none">
