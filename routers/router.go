@@ -107,6 +107,12 @@ func init() {
 	//获取所有职位
 	beego.Router("/panel/getJobs", &controllers.JobController{}, "*:GetJobs")
 
+	//获取所有职位标签
+	beego.Router("/panel/getSkillTags", &controllers.BaseController{}, "*:GetSkillTags")
+
+	//删除标签
+	beego.Router("/panel/deleteSkillTag", &controllers.BaseController{}, "*:DeleteSkillTag")
+
 	//设置职位状态
 	beego.Router("/panel/setJobStatus", &controllers.JobController{}, "*:SetJobStatus")
 

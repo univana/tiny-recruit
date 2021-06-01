@@ -25,6 +25,9 @@
                     <el-menu-item index="4" @click="displayIndex=4;" style="text-align: center">
                         <span>职位类型</span>
                     </el-menu-item>
+                    <el-menu-item index="5" @click="displayIndex=5;getSkillTags()" style="text-align: center">
+                        <span>技能标签</span>
+                    </el-menu-item>
                 </el-menu>
             </el-col>
             <!-- 右侧内容 -->
@@ -36,6 +39,8 @@
             {{template "panel/enterprise-management.html" .}}
             {{/*职位类型管理*/}}
             {{template "panel/job-type-management.html" .}}
+            {{/*技能标签管理*/}}
+            {{template "panel/skill-tag-management.html" .}}
 
         </el-col>
     </el-row>
@@ -56,6 +61,7 @@
                 pageSize: 8,
                 members: [],
                 jobs: [],
+                skillTags:[],
                 enterprises: [],
                 jobTypes:{{.JobTypes}},
                 formAddChildType: {
@@ -184,6 +190,17 @@
                         self.enterprises = res.data;
                     }
                 });
+            },
+            getSkillTags(){
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "BaseController.GetSkillTags"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.skillTags = res.data;
+                    }
+                });
+
             },
             /*禁用用户*/
             handleSetMemberStatus(id, status) {
@@ -333,6 +350,32 @@
                             self.$notify({
                                 type: "success",
                                 message: "设置企业认证成功！"
+                            });
+                        }
+                    }
+                })
+            },
+            /*删除标签*/
+            handleDeleteTag(id){
+                let self = this;
+                let fd = new FormData();
+                fd.append("tag_id", id);
+                $.ajax({
+                    url: "{{urlfor "BaseController.DeleteSkillTag"}}",
+                    type: "POST",
+                    data: fd,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        if (res.errcode !== 0) {
+                            self.$notify.error({
+                                message: res.message
+                            });
+                        } else {
+                            self.getSkillTags();
+                            self.$notify({
+                                type: "success",
+                                message: "删除技能标签成功！"
                             });
                         }
                     }

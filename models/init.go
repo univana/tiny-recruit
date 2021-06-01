@@ -14,6 +14,7 @@ func init() {
 		new(Deliverance),
 		new(Collection),
 		new(JobType),
+		new(SkillTag),
 	)
 }
 
@@ -58,4 +59,8 @@ func TNCollection() string {
 
 func TNJobType() string {
 	return "t_job_type"
+}
+
+func TNSkillTag() string {
+	return "t_skill_tag"
 }

@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了编辑实习经历的表单验证">
-      <change afterPath="$PROJECT_DIR$/store/session/c/7/c7409f77d418147a0f6568c91b0fbc1c" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了新建职位的表单验证">
+      <change afterPath="$PROJECT_DIR$/models/skillTag.go" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/0/1/016569cb2cfc98fe1119a727aed6f34b" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/store/session/5/9/5993f62c20059f9a38fdf949b3f01ad1" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/views/panel/skill-tag-management.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/7/5/752912418c34998aca7d683aceb06ed5" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/BaseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/c/7/c7409f77d418147a0f6568c91b0fbc1c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/job-detail.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/job-detail.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/panel.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/panel.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -68,7 +73,7 @@
     <property name="last_opened_file_path" value="$PROJECT_DIR$/static/images/licences" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
     <property name="restartRequiresConfirmation" value="false" />
-    <property name="settings.editor.selected.configurable" value="editor.preferences.gutterIcons" />
+    <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -125,7 +130,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="实现了上传简历头像的后端逻辑" />
     <MESSAGE value="实现了新建企业的前后端逻辑" />
     <MESSAGE value="实现了设置企业状态的前后端逻辑" />
     <MESSAGE value="实现了下载营业执照的前后端逻辑" />
@@ -150,7 +154,8 @@
     <MESSAGE value="添加了编辑教育经历的表单验证" />
     <MESSAGE value="添加了编辑项目经历的表单验证" />
     <MESSAGE value="添加了编辑实习经历的表单验证" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了编辑实习经历的表单验证" />
+    <MESSAGE value="添加了新建职位的表单验证" />
+    <option name="LAST_COMMIT_MESSAGE" value="添加了新建职位的表单验证" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

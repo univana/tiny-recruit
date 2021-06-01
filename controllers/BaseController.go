@@ -8,6 +8,7 @@ import (
 	"io"
 	"myApp/common"
 	"myApp/models"
+	"strconv"
 	"strings"
 	"time"
 
@@ -124,5 +125,30 @@ func (c *BaseController) GetCities() {
 		c.JsonResult(1, err.Error())
 	} else {
 		c.JsonResult(0, "ok", cities)
+	}
+}
+
+// GetSkillTags 获取所有的技能标签
+func (c *BaseController) GetSkillTags() {
+	tags, err := models.GetAllSkillTags()
+	if err != nil {
+		logs.Error("Error BaseController GetSkillTags: ", err)
+	} else {
+		c.JsonResult(0, "ok", tags)
+	}
+}
+
+func (c *BaseController) DeleteSkillTag() {
+	tagID, _ := strconv.Atoi(c.GetString("tag_id"))
+	var tag = models.SkillTag{
+		TagID:   tagID,
+		Deleted: 1,
+	}
+	err := tag.InsertOrUpdate("deleted")
+	if err != nil {
+		logs.Error("Error Delete Tag: ", err)
+		c.JsonResult(1, err.Error())
+	} else {
+		c.JsonResult(0, "ok")
 	}
 }
