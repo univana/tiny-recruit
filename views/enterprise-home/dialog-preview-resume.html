@@ -32,9 +32,11 @@
         {{/*技能标签*/}}
         <el-card id="skill-tags" shadow="hover" style="border: none">
             <p class="user-info-title">技能标签</p>
-            <template v-for="tag in resume.skill_tags.split('-')">
+
+            <template v-for="tag in (resume.skill_tags || '').split('-')">
                 <el-tag style="margin: 0 5px">{[tag]}</el-tag>
             </template>
+
         </el-card>
 
         {{/*期望职位*/}}
@@ -57,7 +59,7 @@
 
             </p>
             <template v-for="edu_exp in resume.education_experiences">
-                <el-card shadow="hover" style="margin: 5px 20px;border: none" >
+                <el-card shadow="hover" style="margin: 5px 20px;border: none">
                     <p style="font-size: 10px">{[edu_exp.start_year]} - {[edu_exp.end_year]}</p>
                     <p style="font-weight: bold">{[edu_exp.school]}</p>
                     <p>{[edu_exp.education]}
@@ -71,7 +73,7 @@
         </el-card>
 
         {{/*项目经历*/}}
-        <el-card id="project-experience" shadow="never" style="border: none" >
+        <el-card id="project-experience" shadow="never" style="border: none">
             <p class="user-info-title">
                 项目经历
             </p>
@@ -107,17 +109,17 @@
 </el-dialog>
 
 <style>
-    .resume-box{
+    .resume-box {
         position: relative;
         border: 1px solid transparent;
     }
 
-    .user-info-tel{
+    .user-info-tel {
         margin-top: 10px;
         font-size: 14px;
     }
 
-    .user-info-title{
+    .user-info-title {
         font-size: 18px;
     }
 
