@@ -13,6 +13,7 @@ type Resume struct {
 	Gender     int       `json:"gender"`                                        //性别
 	Birthday   time.Time `orm:"type(datetime)" json:"birthday"`                 //生日
 	Photo      string    `json:"photo"`                                         //照片
+	SkillTags  string    `json:"skill_tags"`                                    //技能标签
 	Tel        string    `json:"tel"`                                           //手机号
 	Email      string    `json:"email"`                                         //邮箱
 	Advantage  string    `orm:"type(text)" json:"advantage"`                    //个人优势

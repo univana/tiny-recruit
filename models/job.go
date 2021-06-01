@@ -11,6 +11,7 @@ type Job struct {
 	Title             string    `json:"title"`                                         //职位标题
 	Description       string    `orm:"type(text)" json:"description"`                  //职位描述
 	Location          string    `json:"location"`                                      //职位工作地址
+	SkillTags         string    `json:"skill_tags"`                                    //职位的技能标签
 	MinMonthlySalary  int       `json:"min_monthly_salary"`                            //最低月薪
 	MaxMonthlySalary  int       `json:"max_monthly_salary"`                            //最高月薪
 	PayTimes          int       `json:"pay_times"`                                     //每年发薪次数
