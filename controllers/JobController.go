@@ -28,6 +28,10 @@ func (c *JobController) ShowJob() {
 
 func (c *JobController) GetDeliverance() {
 	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	wEdu, _ := c.GetFloat("w-edu")
+	wLoc, _ := c.GetFloat("w-loc")
+	wSal, _ := c.GetFloat("w-sal")
+	wSkill, _ := c.GetFloat("w-skill")
 	job := models.GetJobByID(jobID)
 	//获取该职位的所有投递信息
 	type Deliver struct {
@@ -50,7 +54,7 @@ func (c *JobController) GetDeliverance() {
 		resume.LoadExperiences()
 
 		//匹配度计算
-		matchingDegree := common.GetMatchingDegree(resume, job, 0.3, 0.2, 0.3, 0.2)
+		matchingDegree := common.GetMatchingDegree(resume, job, wEdu, wLoc, wSkill, wSal)
 
 		memberID := resume.Member.MemberId
 		var deliverance models.Deliverance

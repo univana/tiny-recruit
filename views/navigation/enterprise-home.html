@@ -223,11 +223,21 @@
                         {required: true, message: '请职位描述'}
                     ],
                 },
-
-
+                weight:{
+                    edu:0.2,
+                    loc:0.3,
+                    skill:0.2,
+                    sal:0.3,
+                }
             }
         },
         methods: {
+            handleDefaultWeight(){
+                this.weight.edu = 0.2
+                this.weight.loc = 0.3
+                this.weight.sal = 0.3
+                this.weight.skill = 0.2
+            },
             customColorMethod(percentage) {
                 if (percentage < 30) {
                     return '#909399';
@@ -445,10 +455,17 @@
                 console.log(this.currentPage)  //点击第几页
             },
             handleQuery() {
+                this.deliverList = [];
                 let self = this;
                 let myFormData = new FormData();
                 let jobID = this.jobQueryID;
                 myFormData.append("job_id", jobID);
+                myFormData.append("w-edu",this.weight.edu);
+                myFormData.append("w-loc",this.weight.loc);
+                myFormData.append("w-sal",this.weight.sal);
+                myFormData.append("w-skill",this.weight.skill);
+
+
                 $.ajax({
                     url: "{{urlfor "JobController.GetDeliverance"}}",
                     type: "POST",

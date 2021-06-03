@@ -6,6 +6,16 @@
 
         <el-row>
             <el-col :span="24">
+
+                <h4>匹配度权重分配</h4>
+                {{/*匹配权重设置*/}}
+                <p>
+                    <span>最高学历 <el-input-number v-model="weight.edu" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
+                    <span>工作地点 <el-input-number v-model="weight.loc" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
+                    <span>薪资 <el-input-number v-model="weight.sal" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
+                    <span>技能 <el-input-number v-model="weight.skill" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
+                    <span><el-button type="primary" size="small" @click="handleDefaultWeight">默认</el-button></span>
+                </p>
                 {{/*职位选择器*/}}
                 <el-select placeholder="请选择职位" v-model="jobQueryID">
                     <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title"
@@ -17,6 +27,8 @@
                         <span>{[job.title]}</span>
                     </el-option>
                 </el-select>
+
+
                 {{/*查询按钮*/}}
                 <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
 

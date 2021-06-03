@@ -164,7 +164,7 @@ func GetMatchingDegree(resume models.Resume, job models.Job, wEdu float64, wLoc 
 		hopeSalary, _ := strconv.Atoi(resume.HopeSalary[:len(resume.HopeSalary)-1])
 		mSalary = matchSalary(hopeSalary, job.MinMonthlySalary, job.MaxMonthlySalary)
 	}
-	matchingDegree = mEducation*wEdu + mLocation*wLoc + mSkill*wSkill + mSalary*wSal
+	matchingDegree = (mEducation*wEdu + mLocation*wLoc + mSkill*wSkill + mSalary*wSal) / (wEdu + wLoc + wSkill + wSal)
 
 	return matchingDegree
 }
