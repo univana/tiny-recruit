@@ -8,7 +8,8 @@
             <el-col :span="24">
                 {{/*职位选择器*/}}
                 <el-select placeholder="请选择职位" v-model="jobQueryID">
-                    <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title" v-if="job.status==0">
+                    <el-option v-for="job in jobs" :value="job.job_id" :label="job.title" :key="job.title"
+                               v-if="job.status==0">
                         <span>{[dateFormatYMDDel(job.create_time)]}</span>
                         <el-divider direction="vertical"></el-divider>
                         <span>{[job.location]}</span>
@@ -20,7 +21,10 @@
                 <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
 
                 {{/*投递清单*/}}
-                <el-table v-if="deliverListVisible==1" :data="deliverList.slice((currentPage-1)*pageSize,currentPage*pageSize)">
+                <el-table v-if="deliverListVisible==1"
+                          :data="deliverList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+                          :default-sort="{prop: 'match', order: 'descending'}"
+                >
 
                     <el-table-column
                             type="selection"
@@ -81,6 +85,13 @@
                                     </el-option>
                                 </el-select>
                             </span>
+                        </template>
+                    </el-table-column>
+
+                    {{/*匹配度*/}}
+                    <el-table-column label="匹配度" width="150px" :sortable="true" :sort-method="sortByMatch">
+                        <template slot-scope="scope">
+                            <el-progress :percentage="parseFloat(scope.row.match).toFixed(2)*100" :color="customColorMethod(parseFloat(scope.row.match).toFixed(2)*100)"></el-progress>
                         </template>
                     </el-table-column>
 

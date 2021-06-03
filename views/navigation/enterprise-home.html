@@ -198,7 +198,7 @@
                     type: '',
                     nature: '',
                     department: '',
-                    skill_tags:'',
+                    skill_tags: '',
                 },
                 formEditEnterprise: {
                     name:{{.Enterprise.Name}},
@@ -212,27 +212,39 @@
                     fileLicense: '',
                 },
                 /*编辑职位信息的表单验证规则*/
-                rulesEditJob:{
-                    title:[
-                        {required:true,message:'请输入标题'}
+                rulesEditJob: {
+                    title: [
+                        {required: true, message: '请输入标题'}
                     ],
-                    department:[
-                        {required:true,message:'请输入所属部门'}
+                    department: [
+                        {required: true, message: '请输入所属部门'}
                     ],
-                    description:[
-                        {required:true,message:'请职位描述'}
+                    description: [
+                        {required: true, message: '请职位描述'}
                     ],
+                },
 
-
-                }
 
             }
         },
         methods: {
+            customColorMethod(percentage) {
+                if (percentage < 30) {
+                    return '#909399';
+                } else if (percentage < 70) {
+                    return '#e6a23c';
+                } else {
+                    return '#67c23a';
+                }
+            },
+            /*根据匹配值排序的规则*/
+            sortByMatch(m1, m2) {
+                return m1 - m2
+            },
             /*确定选择技能标签*/
             handleConfirmSelectSkillTag() {
                 this.formNewJob.skill_tags = this.skillTagSelected.join("-");
-                this.dialogSelectSkillTagVisible= false;
+                this.dialogSelectSkillTagVisible = false;
             },
             /*关闭选中的标签*/
             handleCloseSkillTag(tag) {
@@ -507,57 +519,57 @@
             },
             handleNewJob() {
                 /*输入信息非空检测*/
-                if (this.formNewJob.title === ""){
+                if (this.formNewJob.title === "") {
                     this.$message({
                         message: '职位标题不能为空！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.nature === ""){
+                } else if (this.formNewJob.nature === "") {
                     this.$message({
                         message: '未选择职位性质！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.type === ""){
+                } else if (this.formNewJob.type === "") {
                     this.$message({
                         message: '未选择职位类型！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.location === ""){
+                } else if (this.formNewJob.location === "") {
                     this.$message({
                         message: '未选所在城市！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.min_monthly_salary === "" || this.formNewJob.max_monthly_salary===""){
+                } else if (this.formNewJob.min_monthly_salary === "" || this.formNewJob.max_monthly_salary === "") {
                     this.$message({
                         message: '未输入薪资范围！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.pay_times === ""){
+                } else if (this.formNewJob.pay_times === "") {
                     this.$message({
                         message: '未输入年薪笔数！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.require_experience === ""){
+                } else if (this.formNewJob.require_experience === "") {
                     this.$message({
                         message: '未选择经历需求！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.require_education === ""){
+                } else if (this.formNewJob.require_education === "") {
                     this.$message({
                         message: '未选择学历需求！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.department === ""){
+                } else if (this.formNewJob.department === "") {
                     this.$message({
                         message: '职位所在部门为空！',
                         type: 'warning'
                     });
-                }else if(this.formNewJob.description === ""){
+                } else if (this.formNewJob.description === "") {
                     this.$message({
                         message: '职位描述为空！',
                         type: 'warning'
                     });
-                }else{
+                } else {
                     //请求新建职位
                     let self = this;
                     let myFormData = new FormData();
@@ -573,7 +585,7 @@
                     myFormData.append("description", this.formNewJob.description)
                     myFormData.append("enterprise_id", this.enterprise.enterprise_id);
                     myFormData.append("department", this.formNewJob.department);
-                    myFormData.append("skill_tags",this.formNewJob.skill_tags);
+                    myFormData.append("skill_tags", this.formNewJob.skill_tags);
 
                     $.ajax({
                         url: "{{urlfor "JobController.NewJob"}}",
@@ -688,7 +700,7 @@
                 myFormData.append("description", this.formNewJob.description)
                 myFormData.append("department", this.formNewJob.department);
                 myFormData.append("enterprise_id", this.enterprise.enterprise_id);
-                myFormData.append("skill_tags",this.formNewJob.skill_tags);
+                myFormData.append("skill_tags", this.formNewJob.skill_tags);
 
                 $.ajax({
                     url: "{{urlfor "JobController.EditJob"}}",

@@ -3,6 +3,7 @@ package controllers
 import (
 	"github.com/astaxie/beego/logs"
 	"github.com/astaxie/beego/orm"
+	"myApp/common"
 	"myApp/models"
 	"strconv"
 	"time"
@@ -27,6 +28,7 @@ func (c *JobController) ShowJob() {
 
 func (c *JobController) GetDeliverance() {
 	jobID, _ := strconv.Atoi(c.GetString("job_id"))
+	job := models.GetJobByID(jobID)
 	//获取该职位的所有投递信息
 	type Deliver struct {
 		DeliveranceID int           `json:"deliverance_id"`
@@ -34,6 +36,7 @@ func (c *JobController) GetDeliverance() {
 		ModifyTime    time.Time     `json:"modify_time"`  //投递修改时间
 		Status        string        `json:"status"`       //投递状态
 		Resume        models.Resume `json:"resume"`       //投递对应的简历
+		Match         float64       `json:"match"`        //简历-职位匹配度
 	}
 	var deliverList []Deliver
 	//获取简历
@@ -44,6 +47,11 @@ func (c *JobController) GetDeliverance() {
 
 	for _, resume := range resumes {
 		//获取投递时间、投递修改时间和投递状态
+		resume.LoadExperiences()
+
+		//匹配度计算
+		matchingDegree := common.GetMatchingDegree(resume, job, 0.3, 0.2, 0.3, 0.2)
+
 		memberID := resume.Member.MemberId
 		var deliverance models.Deliverance
 		o := orm.NewOrm()
@@ -52,7 +60,7 @@ func (c *JobController) GetDeliverance() {
 			logs.Error("Error JobController query t_deliverance: ", err)
 			c.JsonResult(1, "获取投递数据错误")
 		}
-		deliverList = append(deliverList, Deliver{DeliveranceID: deliverance.DeliveranceID, DeliverTime: deliverance.DeliverTime, ModifyTime: deliverance.ModifyTime, Status: deliverance.Status, Resume: resume})
+		deliverList = append(deliverList, Deliver{DeliveranceID: deliverance.DeliveranceID, DeliverTime: deliverance.DeliverTime, ModifyTime: deliverance.ModifyTime, Status: deliverance.Status, Resume: resume, Match: matchingDegree})
 	}
 	c.JsonResult(0, "ok", deliverList)
 }
