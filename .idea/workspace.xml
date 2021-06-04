@@ -1,21 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="添加了权重分配器">
-      <change afterPath="$PROJECT_DIR$/controllers/NotifyController.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/models/notify.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/store/session/b/e/bebdb3a43dceb584cb2706da4de17fe4" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/views/navigation/notify-center.html" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了消息通知系统的前后端逻辑">
+      <change afterPath="$PROJECT_DIR$/store/session/f/8/f83483b98362b11d2030c7c2336d469a" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/BaseController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/BaseController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/models/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/models/init.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routers/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/routers/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/4/3/43c2868e8cf4cba72749d014c110d7de" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/b/e/bebdb3a43dceb584cb2706da4de17fe4" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/userCenter.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/userCenter.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/widgets/head-menu.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/widgets/head-menu.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/notify-center.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/notify-center.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -133,7 +125,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="添加了职位的部门字段及相应前后端逻辑" />
     <MESSAGE value="取消了企业详情页的收藏和认证标记" />
     <MESSAGE value="实现了预览与下载简历的后端逻辑" />
     <MESSAGE value="添加了 model jobType.go" />
@@ -158,7 +149,8 @@
     <MESSAGE value="实现了企业方技能标签的相关逻辑" />
     <MESSAGE value="实现了简历匹配度的相关逻辑及样式" />
     <MESSAGE value="添加了权重分配器" />
-    <option name="LAST_COMMIT_MESSAGE" value="添加了权重分配器" />
+    <MESSAGE value="实现了消息通知系统的前后端逻辑" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了消息通知系统的前后端逻辑" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>

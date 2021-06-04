@@ -253,6 +253,86 @@
                 });
 
             },
+            handleInterview(){
+                let self = this;
+                this.$prompt('请输入备注', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(({value}) => {
+                    for (let i = 0; i < this.multipleSelection.length; i++) {
+                        this.handleSendNotify(this.multipleSelection[i].resume.Member.member_id, "投递", "您的投递收到了面试邀约",value);
+                        //修改投递状态
+                        let myFormData = new FormData();
+                        myFormData.append("status", "邀约面试");
+                        myFormData.append("deliverance_id", this.multipleSelection[i].deliverance_id);
+                        $.ajax({
+                            url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
+                            type: "POST",
+                            data: myFormData,
+                            contentType: false,
+                            processData: false,
+                            success: function (res) {
+                                if (res.errcode !== 0) {
+                                    self.$notify.error({
+                                        message: "邀约面试成功！"
+                                    });
+                                }
+                            }
+                        })
+                    }
+                    this.handleQuery();
+                    this.$notify({
+                        type: 'success',
+                        message: "邀约面试成功！"
+                    });
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+            },
+            handleEmploy(){
+                let self = this;
+                this.$prompt('请输入备注', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(({value}) => {
+                    for (let i = 0; i < this.multipleSelection.length; i++) {
+                        this.handleSendNotify(this.multipleSelection[i].resume.Member.member_id, "投递", "您的投递已被录用",value);
+                        //修改投递状态
+                        let myFormData = new FormData();
+                        myFormData.append("status", "拟录用");
+                        myFormData.append("deliverance_id", this.multipleSelection[i].deliverance_id);
+                        $.ajax({
+                            url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
+                            type: "POST",
+                            data: myFormData,
+                            contentType: false,
+                            processData: false,
+                            success: function (res) {
+                                if (res.errcode !== 0) {
+                                    self.$notify.error({
+                                        message: res.message
+                                    });
+                                }
+                            }
+                        })
+                    }
+                    this.handleQuery();
+                    this.$notify({
+                        type: 'success',
+                        message: "录用投递成功！"
+                    });
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+            },
             /*释放投递*/
             handleFree() {
                 let self = this;

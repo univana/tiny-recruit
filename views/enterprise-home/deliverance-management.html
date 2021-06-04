@@ -38,7 +38,8 @@
 
 
                 <el-button-group v-if="deliverListVisible==1">
-                    <el-button type="primary">录用</el-button>
+                    <el-button type="primary" @click="handleInterview">邀约面试</el-button>
+                    <el-button type="primary" @click="handleEmploy">录用</el-button>
                     <el-button type="primary" @click="handleFree">释放</el-button>
                 </el-button-group>
 
