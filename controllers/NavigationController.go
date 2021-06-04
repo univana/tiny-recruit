@@ -129,6 +129,14 @@ func (c *NavigationController) EnterpriseHome() {
 	enterprise := models.GetEnterpriseByMemberID(c.Member.MemberId)
 	//为企业加载对应的职位信息
 	enterprise.LoadJobs()
+	//过滤出正常状态的职位
+	var jobs []*models.Job
+	for _, job := range enterprise.Jobs {
+		if job.Status == 0 {
+			jobs = append(jobs, job)
+		}
+	}
+	enterprise.Jobs = jobs
 	c.Data["Enterprise"] = enterprise
 	c.Data["Jobs"] = enterprise.Jobs
 	c.Data["Member"] = c.Member

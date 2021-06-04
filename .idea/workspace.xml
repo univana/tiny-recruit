@@ -1,13 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了消息通知系统的前后端逻辑">
-      <change afterPath="$PROJECT_DIR$/store/session/f/8/f83483b98362b11d2030c7c2336d469a" afterDir="false" />
+    <list default="true" id="48edefc6-e395-4bde-a88f-e1baf00fed20" name="默认变更列表" comment="实现了投递管理的部分功能">
+      <change afterPath="$PROJECT_DIR$/static/images/photos/d2b1b013-de30-40f2-a0c9-8c67b03d2b18.jpeg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/static/images/photos/f69673ab-6f41-4b71-b3ed-daebba433a90.jpeg" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/store/session/b/e/bebdb3a43dceb584cb2706da4de17fe4" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/common/match.go" beforeDir="false" afterPath="$PROJECT_DIR$/common/match.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/controllers/NavigationController.go" beforeDir="false" afterPath="$PROJECT_DIR$/controllers/NavigationController.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/store/session/f/8/f83483b98362b11d2030c7c2336d469a" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/base-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/base-management.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/deliverance-management.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/enterprise-home/dialog-preview-resume.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/enterprise-home/dialog-preview-resume.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-edit-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-edit-job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/job/dialog-new-job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/job/dialog-new-job.html" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/views/navigation/enterprise-home.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise-home.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/views/navigation/notify-center.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/notify-center.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/enterprise.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/enterprise.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/navigation/job.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/navigation/job.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/views/user-center/resume-display.html" beforeDir="false" afterPath="$PROJECT_DIR$/views/user-center/resume-display.html" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -125,7 +135,6 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="取消了企业详情页的收藏和认证标记" />
     <MESSAGE value="实现了预览与下载简历的后端逻辑" />
     <MESSAGE value="添加了 model jobType.go" />
     <MESSAGE value="实现了添加职位类型的前后端逻辑" />
@@ -150,7 +159,8 @@
     <MESSAGE value="实现了简历匹配度的相关逻辑及样式" />
     <MESSAGE value="添加了权重分配器" />
     <MESSAGE value="实现了消息通知系统的前后端逻辑" />
-    <option name="LAST_COMMIT_MESSAGE" value="实现了消息通知系统的前后端逻辑" />
+    <MESSAGE value="实现了投递管理的部分功能" />
+    <option name="LAST_COMMIT_MESSAGE" value="实现了投递管理的部分功能" />
   </component>
   <component name="VgoProject">
     <integration-enabled>true</integration-enabled>
@@ -168,7 +178,62 @@
           <line>27</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>173</line>
+          <option name="timeStamp" value="26" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/controllers/BaseController.go</url>
+          <line>92</line>
+          <option name="timeStamp" value="27" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>42</line>
+          <option name="timeStamp" value="28" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>43</line>
+          <option name="timeStamp" value="29" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>44</line>
+          <option name="timeStamp" value="30" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>47</line>
+          <option name="timeStamp" value="31" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>49</line>
+          <option name="timeStamp" value="32" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>59</line>
+          <option name="timeStamp" value="38" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>54</line>
+          <option name="timeStamp" value="43" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="DlvLineBreakpoint">
+          <url>file://$PROJECT_DIR$/common/match.go</url>
+          <line>51</line>
+          <option name="timeStamp" value="44" />
+        </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
+    <watches-manager>
+      <configuration name="GoApplicationRunConfiguration">
+        <watch expression="*(*&quot;[]string&quot;)(824637619912)" />
+      </configuration>
+    </watches-manager>
   </component>
 </project>

@@ -13,7 +13,8 @@
         <div slot="header" class="clearfix">
             <span>我的在线简历</span>
             <el-button style="float: right" icon="el-icon-edit" @click="handleEditResume"></el-button>
-            <el-button style="float: right;margin-right: 5px;" @click="handleDownloadResume" icon="el-icon-download"></el-button>
+            <el-button style="float: right;margin-right: 5px;" @click="handleDownloadResume"
+                       icon="el-icon-download"></el-button>
         </div>
 
         <el-button type="text" @click="handleEditResume" v-if="resume.resume_id == 0">立即编辑我的简历</el-button>
@@ -22,13 +23,11 @@
         <div class="resume-box" id="resume-box" v-if="resume.resume_id">
             {{/*个人基本信息*/}}
             <el-card id="user-info" shadow="hover" style="border: none">
+                <el-col :span="20">
+                    {{/*姓名*/}}
+                    <span class="user-info-name">{[resume.name]}</span><br>
 
-                <el-avatar fit="fit" :size="100" shape="square"
-                           :src="resume.photo" style="float: right"></el-avatar>
-                {{/*姓名*/}}
-                <span class="user-info-name">{[resume.name]}</span><br>
-
-                <span>
+                    <span>
                             {{/*生日*/}}
                             <span><i class="fa fa-birthday-cake"></i>{[dateFormat(resume.birthday)]}</span>
                             <el-divider direction="vertical"></el-divider>
@@ -37,12 +36,22 @@
                         </span>
 
 
-                <br>
-                {{/*电话号码*/}}
-                <span class="user-info-tel"><i class="el-icon-phone"></i>{[resume.tel]}</span>
-                <el-divider direction="vertical"></el-divider>
-                {{/*邮箱*/}}
-                <span class="user-info-tel"><i class="fa fa-envelope"></i>{[resume.email]}</span>
+                    <br>
+                    {{/*电话号码*/}}
+                    <span class="user-info-tel"><i class="el-icon-phone"></i>{[resume.tel]}</span>
+                    <el-divider direction="vertical"></el-divider>
+                    {{/*邮箱*/}}
+                    <span class="user-info-tel"><i class="fa fa-envelope"></i>{[resume.email]}</span>
+                </el-col>
+                <el-col :span="2">
+                    <div style="width: 100px;height: 100px">
+                        <el-image fit="fill"  shape="square"
+                                   :src="resume.photo" style="width: auto;height: auto"></el-image>
+
+                    </div>
+                </el-col>
+
+
             </el-card>
             {{/*个人优势*/}}
             <el-card id="advantage" shadow="hover" style="border: none">

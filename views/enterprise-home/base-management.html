@@ -18,8 +18,22 @@
                 </el-select>
             </el-form-item>
             <el-form-item label="所在城市" style="width: 500px">
-                <el-select v-model="formEditEnterprise.location">
-                    <el-option v-for="city in cities" :value="city" :label="city"></el-option>
+                <span><el-tag>{[formEditEnterprise.location]}</el-tag></span>
+                <el-select v-model="provinceSelected" @change="handleProvinceSelected">
+                    <el-option
+                            v-for="province in provinces"
+                            :key="province.pro_id"
+                            :label="province.pro_name"
+                            :value="province.pro_name"
+                    ></el-option>
+                </el-select>
+                <el-select v-if="citySelectVisible" v-model="citySelected" @change="handleCitySelected">
+                    <el-option
+                            v-for="city in cities"
+                            :key="city.city_name"
+                            :label="city.city_name"
+                            :value="city.city_name"
+                    ></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item label="融资阶段" style="width: 500px">

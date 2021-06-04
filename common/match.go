@@ -70,6 +70,10 @@ func matchSkillTag(resume string, job string) float64 {
 	lenX1 = math.Sqrt(lenX1)
 	lenX2 = math.Sqrt(lenX2)
 
+	if lenX2 == 0 {
+		return 0
+	}
+
 	cos := up / (lenX1 * lenX2)
 
 	return cos

@@ -48,7 +48,6 @@
                 <el-table v-if="deliverListVisible==1"
                           ref="multipleTable"
                           :data="deliverList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
-                          :default-sort="{prop: 'match', order: 'descending'}"
                           stripe
                           @selection-change="handleSelectionChange">
                     >
@@ -120,8 +119,8 @@
                     {{/*匹配度*/}}
                     <el-table-column label="匹配度" width="150px" :sortable="true" :sort-method="sortByMatch">
                         <template slot-scope="scope">
-                            <el-progress :percentage="parseFloat(scope.row.match).toFixed(2)*100"
-                                         :color="customColorMethod(parseFloat(scope.row.match).toFixed(2)*100)"></el-progress>
+                            <el-progress :percentage="(scope.row.match*100).toFixed(2)"
+                                         :color="customColorMethod((scope.row.match*100).toFixed(2))"></el-progress>
                         </template>
                     </el-table-column>
 

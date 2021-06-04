@@ -19,11 +19,12 @@
         <el-form-item style="width: 400px">
             <span slot="label"><span style="color: red">*</span>技能标签</span>
             <el-button @click="dialogSelectSkillTagVisible=true" size="small" type="primary">选择</el-button>
-            <div style="margin-top: 10px;border:1px dashed #000;" v-if="formNewJob.skill_tags"
-                 v-for="tag in formNewJob.skill_tags.split('-')">
-                <el-tag style="margin: 0 5px">{[tag]}</el-tag>
-            </div>
         </el-form-item>
+        <div style="border:1px dashed #000;height: 100px;width: 400px" v-if="formNewJob.skill_tags">
+            <template v-for="tag in formNewJob.skill_tags.split('-')">
+                <el-tag style="margin: 5px 5px">{[tag]}</el-tag>
+            </template>
+        </div>
         <el-form-item label="所属部门" prop="department">
             <el-input v-model="formNewJob.department" style="width: 200px" maxlength="20" show-word-limit></el-input>
         </el-form-item>

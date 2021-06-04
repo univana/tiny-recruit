@@ -167,7 +167,7 @@
                 enterprise:{{.Enterprise}},
                 jobs: {{.Jobs}},
                 provinces:{{.Provinces}},
-                provinceSelected: '不限',
+                provinceSelected: '',
                 citySelected: '',
                 cities: [],
                 citySelectVisible: false,
@@ -650,7 +650,7 @@
                 }).then(() => {
                     //修改投递状态
                     let myFormData = new FormData();
-                    myFormData.append("status", status);
+                    myFormData.append("status", origin);
                     myFormData.append("deliverance_id", id);
                     $.ajax({
                         url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
