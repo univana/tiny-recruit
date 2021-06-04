@@ -14,9 +14,19 @@ func init() {
 	beego.Router("/job", &controllers.NavigationController{}, "*:Job")
 	beego.Router("/enterprise", &controllers.NavigationController{}, "*:Enterprise")
 	beego.Router("/userCenter", &controllers.NavigationController{}, "*:UserCenter")
+	beego.Router("/notifyCenter", &controllers.NavigationController{}, "*:NotifyCenter")
 	beego.Router("/enterprise/home", &controllers.NavigationController{}, "*:EnterpriseHome")
 	beego.Router("/panel", &controllers.NavigationController{}, "*:Panel")
 	beego.Router("/userCenter/getResume", &controllers.ResumeController{}, "*:GetResumeByMemberID")
+
+	//将消息通知设为已读
+	beego.Router("/notifyCenter/read", &controllers.NotifyController{}, "*:Read")
+
+	//刷新消息通知
+	beego.Router("/notifyCenter/refresh", &controllers.NotifyController{}, "*:Refresh")
+
+	//刪除消息通知
+	beego.Router("/notifyCenter/Delete", &controllers.NotifyController{}, "*:Delete")
 
 	//注册
 	beego.Router("/regist", &controllers.AccountController{}, "*:Regist")
@@ -139,5 +149,8 @@ func init() {
 
 	//获取省份对应的城市信息
 	beego.Router("/common/getCities", &controllers.BaseController{}, "*:GetCities")
+
+	//发送通知
+	beego.Router("/common/send", &controllers.NotifyController{}, "*:Send")
 
 }

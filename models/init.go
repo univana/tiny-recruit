@@ -15,6 +15,7 @@ func init() {
 		new(Collection),
 		new(JobType),
 		new(SkillTag),
+		new(Notify),
 	)
 }
 
@@ -63,4 +64,8 @@ func TNJobType() string {
 
 func TNSkillTag() string {
 	return "t_skill_tag"
+}
+
+func TNNotify() string {
+	return "t_notify"
 }

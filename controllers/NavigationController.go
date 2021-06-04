@@ -242,5 +242,8 @@ func (c *NavigationController) Panel() {
 		})
 	}
 	c.Data["JobTypes"] = res
+}
 
+func (c *NavigationController) NotifyCenter() {
+	c.TplName = "navigation/notify-center.html"
 }

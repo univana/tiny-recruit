@@ -52,6 +52,13 @@ func (c *BaseController) Prepare() {
 		}
 	}
 	c.Data["Member"] = c.Member
+
+	notifies, err := models.GetAllNotifiesByMemberID(c.Member.MemberId)
+	if err != nil {
+		logs.Error("Error get notify:", err)
+	}
+	c.Data["Notifies"] = notifies
+	c.Data["HasUnread"] = models.HasUnread(c.Member.MemberId)
 	c.Data["BaseUrl"] = c.BaseUrl()
 	c.Data["SITE_NAME"] = "tiny-recruit"
 	//设置全局配置

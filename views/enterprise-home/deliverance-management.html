@@ -10,10 +10,14 @@
                 <h4>匹配度权重分配</h4>
                 {{/*匹配权重设置*/}}
                 <p>
-                    <span>最高学历 <el-input-number v-model="weight.edu" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
-                    <span>工作地点 <el-input-number v-model="weight.loc" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
-                    <span>薪资 <el-input-number v-model="weight.sal" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
-                    <span>技能 <el-input-number v-model="weight.skill" controls-position="right" :min="0" :max="1" :step="0.1" size="small"></el-input-number></span>
+                    <span>最高学历 <el-input-number v-model="weight.edu" controls-position="right" :min="0" :max="1"
+                                                :step="0.1" size="small"></el-input-number></span>
+                    <span>工作地点 <el-input-number v-model="weight.loc" controls-position="right" :min="0" :max="1"
+                                                :step="0.1" size="small"></el-input-number></span>
+                    <span>薪资 <el-input-number v-model="weight.sal" controls-position="right" :min="0" :max="1"
+                                              :step="0.1" size="small"></el-input-number></span>
+                    <span>技能 <el-input-number v-model="weight.skill" controls-position="right" :min="0" :max="1"
+                                              :step="0.1" size="small"></el-input-number></span>
                     <span><el-button type="primary" size="small" @click="handleDefaultWeight">默认</el-button></span>
                 </p>
                 {{/*职位选择器*/}}
@@ -32,11 +36,21 @@
                 {{/*查询按钮*/}}
                 <el-button type="primary" icon="el-icon-search" @click="handleQuery"></el-button>
 
+
+                <el-button-group v-if="deliverListVisible==1">
+                    <el-button type="primary">录用</el-button>
+                    <el-button type="primary" @click="handleFree">释放</el-button>
+                </el-button-group>
+
+
                 {{/*投递清单*/}}
                 <el-table v-if="deliverListVisible==1"
+                          ref="multipleTable"
                           :data="deliverList.slice((currentPage-1)*pageSize,currentPage*pageSize)"
                           :default-sort="{prop: 'match', order: 'descending'}"
-                >
+                          stripe
+                          @selection-change="handleSelectionChange">
+                    >
 
                     <el-table-column
                             type="selection"
@@ -91,7 +105,9 @@
                             <span>
                                 {{/*投递状态选择器*/}}
                                 <el-select :placeholder="scope.row.status" style="width: 120px"
-                                           @change="handleSelectStatus(scope.row.deliverance_id,scope.row.status)">
+                                           @change="handleSelectStatus(scope.row.deliverance_id,scope.row.status)"
+                                           v-model="scope.row.status"
+                                >
                                     <el-option v-for="status in deliverStatusList" :value="status">
                                         <span>{[status]}</span>
                                     </el-option>
@@ -103,12 +119,13 @@
                     {{/*匹配度*/}}
                     <el-table-column label="匹配度" width="150px" :sortable="true" :sort-method="sortByMatch">
                         <template slot-scope="scope">
-                            <el-progress :percentage="parseFloat(scope.row.match).toFixed(2)*100" :color="customColorMethod(parseFloat(scope.row.match).toFixed(2)*100)"></el-progress>
+                            <el-progress :percentage="parseFloat(scope.row.match).toFixed(2)*100"
+                                         :color="customColorMethod(parseFloat(scope.row.match).toFixed(2)*100)"></el-progress>
                         </template>
                     </el-table-column>
 
                     {{/*操作*/}}
-                    <el-table-column label="操作">
+                    <el-table-column label="操作" width="150px">
                         <template slot-scope="scope">
                             <span>
                                 <el-button-group>
@@ -120,12 +137,10 @@
                             </span>
                         </template>
                     </el-table-column>
-
-
                 </el-table>
-
             </el-col>
         </el-row>
+
 
         {{/*分页器*/}}
         <el-row type="flex" justify="center">

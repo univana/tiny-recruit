@@ -175,7 +175,7 @@
                 deliverList: [],
                 deliverListVisible: 0,
                 deliverStatus: '',
-                deliverStatusList: ['已投递', '已查看', '邀约面试', '已录取', '已释放'],
+                deliverStatusList: ['待查看', '已查看', '邀约面试', '拟录用', '已释放'],
                 dialogNewJobVisible: false,
                 dialogEditJobVisible: false,
                 exps: ['在校/应届', '3年及以下', '3-5年', '5-10年', '10年以上'],
@@ -223,16 +223,83 @@
                         {required: true, message: '请职位描述'}
                     ],
                 },
-                weight:{
-                    edu:0.2,
-                    loc:0.3,
-                    skill:0.2,
-                    sal:0.3,
-                }
+                weight: {
+                    edu: 0.2,
+                    loc: 0.3,
+                    skill: 0.2,
+                    sal: 0.3,
+                },
+                multipleSelection: [],
+                message: "",
             }
         },
         methods: {
-            handleDefaultWeight(){
+            handleSendNotify(receiverID, type, title, content) {
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("receiver_id", receiverID);
+                myFormData.append("type", type);
+                myFormData.append("content", content);
+                myFormData.append("title", title)
+                $.ajax({
+                    url: "{{urlfor "NotifyController.Send"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                    }
+
+                });
+
+            },
+            /*释放投递*/
+            handleFree() {
+                let self = this;
+                this.$prompt('请输入备注', '提示', {
+                    confirmButtonText: '确定',
+                    cancelButtonText: '取消',
+                }).then(({value}) => {
+                    for (let i = 0; i < this.multipleSelection.length; i++) {
+                        this.handleSendNotify(this.multipleSelection[i].resume.Member.member_id, "投递", "您的投递已被释放",value);
+                        //修改投递状态
+                        let myFormData = new FormData();
+                        myFormData.append("status", "已释放");
+                        myFormData.append("deliverance_id", this.multipleSelection[i].deliverance_id);
+                        $.ajax({
+                            url: "{{urlfor "DeliveranceController.ChangeStatus"}}",
+                            type: "POST",
+                            data: myFormData,
+                            contentType: false,
+                            processData: false,
+                            success: function (res) {
+                                if (res.errcode !== 0) {
+                                    self.$notify.error({
+                                        message: res.message
+                                    });
+                                }
+                            }
+                        })
+                    }
+                    this.handleQuery();
+                    this.$notify({
+                        type: 'success',
+                        message: "释放投递成功！"
+                    });
+
+                }).catch(() => {
+                    this.$message({
+                        type: 'info',
+                        message: '取消输入'
+                    });
+                });
+
+
+            },
+            handleSelectionChange(val) {
+                this.multipleSelection = val;
+            },
+            handleDefaultWeight() {
                 this.weight.edu = 0.2
                 this.weight.loc = 0.3
                 this.weight.sal = 0.3
@@ -460,10 +527,10 @@
                 let myFormData = new FormData();
                 let jobID = this.jobQueryID;
                 myFormData.append("job_id", jobID);
-                myFormData.append("w-edu",this.weight.edu);
-                myFormData.append("w-loc",this.weight.loc);
-                myFormData.append("w-sal",this.weight.sal);
-                myFormData.append("w-skill",this.weight.skill);
+                myFormData.append("w-edu", this.weight.edu);
+                myFormData.append("w-loc", this.weight.loc);
+                myFormData.append("w-sal", this.weight.sal);
+                myFormData.append("w-skill", this.weight.skill);
 
 
                 $.ajax({

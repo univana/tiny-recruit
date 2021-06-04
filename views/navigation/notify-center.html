@@ -1,0 +1,154 @@
+<head>
+    {{template "widgets/head.html" .}}
+    <title>tiny-recruit</title>
+</head>
+
+<body style="background-color: #f6f6f6">
+<div id="app">
+    {{template "widgets/head-menu.html" .}}
+
+    <el-drawer
+            :title="drawerTitle"
+            :visible.sync="drawerVisible"
+            direction="rtl"
+    >
+        <p>{[drawerContent]}</p>
+    </el-drawer>
+
+    <el-row type="flex" justify="center">
+        <el-col :span="18">
+            <el-card shadow="never" style="padding: 0;margin-top: 5px">
+                <div slot="header" class="clearfix">
+                    <span>消息通知</span>
+                    <el-button type="primary" size="small" @click="refreshNotify" style="float: right">刷新</el-button>
+                </div>
+
+
+                <el-table :data="notifies" stripe>
+                    <el-table-column label="发送时间" width="200">
+                        <template slot-scope="scope">
+                            <span>{[dateFormat(scope.row.create_time)]}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="类型" width="200">
+                        <template slot-scope="scope">
+                            <span>{[scope.row.type]}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="标题" width="200">
+                        <template slot-scope="scope">
+                            <span>{[scope.row.title]}</span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="状态" width="200">
+                        <template slot-scope="scope">
+                            <span v-if="scope.row.read==0">
+                                <el-tag>未读</el-tag>
+                            </span>
+                            <span v-else>
+                                <el-tag type="success">已读</el-tag>
+                            </span>
+                        </template>
+                    </el-table-column>
+                    <el-table-column label="操作" width="200">
+                        <template slot-scope="scope">
+                            <el-button-group>
+                                <el-button icon="el-icon-search"
+                                           @click="handlePeek(scope.row.title,scope.row.content)"></el-button>
+                                <el-button icon="el-icon-success" v-if="scope.row.read==0"
+                                           @click="handleRead(scope.row.notify_id)"></el-button>
+                                <el-button icon="el-icon-delete" @click="handleDelete(scope.row.notify_id)"></el-button>
+                            </el-button-group>
+                        </template>
+                    </el-table-column>
+                </el-table>
+            </el-card>
+
+
+        </el-col>
+    </el-row>
+</div>
+
+</body>
+{{template "widgets/footer.html" .}}
+
+<script>
+    new Vue({
+        el: '#app',
+        data: function () {
+            return {
+                displayIndex: '1',
+                activeIndex: '5',
+                currentPage: 1,
+                pageSize: 8,
+                notifies:{{.Notifies}},
+                drawerTitle: '',
+                drawerVisible: false,
+                drawerContent: '',
+            }
+        },
+        methods: {
+            dateFormat(time) {
+                return moment(time).format("MM月DD日 h时mm分")
+            },
+            handlePeek(title, content) {
+                this.drawerTitle = title;
+                this.drawerContent = content;
+                this.drawerVisible = true;
+            },
+            handleRead(id) {
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("notify_id", id);
+                $.ajax({
+                    url: "{{urlfor "NotifyController.Read"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        self.refreshNotify();
+                        self.$notify({
+                            type: 'success',
+                            message: res.message
+                        })
+                    }
+
+                });
+            },
+            handleDelete(id){
+                let self = this;
+                let myFormData = new FormData();
+                myFormData.append("notify_id", id);
+                $.ajax({
+                    url: "{{urlfor "NotifyController.Delete"}}",
+                    type: "POST",
+                    data: myFormData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        self.refreshNotify();
+                        self.$notify({
+                            type: 'success',
+                            message: res.message
+                        })
+                    }
+
+                });
+            },
+            refreshNotify() {
+                let self = this;
+                $.ajax({
+                    url: "{{urlfor "NotifyController.Refresh"}}",
+                    type: "POST",
+                    success: function (res) {
+                        self.notifies = res.data;
+                        console.log(self.notifies)
+                    }
+
+                });
+            }
+        },
+        delimiters: ['{[', ']}'],
+    })
+</script>
