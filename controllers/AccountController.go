@@ -99,6 +99,10 @@ func (c *AccountController) login(memberId int) (err error) {
 	if member.MemberId == 0 {
 		return errors.New("用户不存在")
 	}
+
+	if member.Status == 1 {
+		return errors.New("用户已被禁用")
+	}
 	//如果没有数据
 	if err != nil {
 		return err

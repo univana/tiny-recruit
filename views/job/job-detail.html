@@ -10,7 +10,7 @@
     {{/*头部banner*/}}
     <el-row type="flex" justify="center">
         <el-col :span="20">
-            <el-card shadow="never" style="padding: 0;height: 200px;margin: 5px 0">
+            <el-card shadow="never" style="padding: 0;height: 300px;margin: 5px 0">
                 <el-row>
                     <el-col :span="12">
                         <p class="banner-company-name">{[job.enterprise.name]}</p>
@@ -28,6 +28,11 @@
                         </p>
                         <p class="banner-job-other">
                            所属部门: {[job.department]}
+                        </p>
+                        <p>
+                            <template v-if="job.skill_tags" v-for="tag in job.skill_tags.split('-')">
+                                <el-tag style="margin: 5px 5px">{[tag]}</el-tag>
+                            </template>
                         </p>
                     </el-col>
                     <el-col :span="12">
